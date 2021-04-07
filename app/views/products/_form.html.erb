@@ -146,19 +146,19 @@
               </div>
 
               <div class="col-span-6 sm:col-span-3">
-                <label for="brand" class="block text-sm font-medium text-gray-700">Brand</label>
-                <%= form.text_field :brand, id: :product_brand, class: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+                <label for="color" class="block text-sm font-medium text-gray-700">Color</label>
+                <%= form.text_field :color, id: :product_color, class: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
               </div>
 
               <div class="col-span-6 sm:col-span-4">
-                <label for="email_address" class="block text-sm font-medium text-gray-700">Email address</label>
-                <input type="text" name="email_address" id="email_address" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                <label for="brand" class="block text-sm font-medium text-gray-700">Brand</label>
+                <%= form.text_field :brand, id: :product_brand, class: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
               </div>
 
               <div class="col-span-6 sm:col-span-3">
                 <label for="category" class="block text-sm font-medium text-gray-700">Category</label>
 
-                <%= form.select :category, Product::CATEGORY, class: "mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+                <%= form.select :category, Product::CATEGORY, {}, {class: "mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"} %>
                 <!--select id="category" name="category" autocomplete="category" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
 
                   <option>United States</option>
@@ -168,8 +168,12 @@
               </div>
 
               <div class="col-span-6">
-                <label for="street_address" class="block text-sm font-medium text-gray-700">Street address</label>
-                <input type="text" name="street_address" id="street_address" autocomplete="street-address" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                <label for="about" class="block text-sm font-medium text-gray-700">
+                  Description
+                </label>
+                <div class="mt-1">
+                  <%= form.text_area :description, class: "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border-gray-300 rounded-md" %>
+                </div>
               </div>
 
               <div class="col-span-6 sm:col-span-6 lg:col-span-2">
