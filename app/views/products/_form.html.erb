@@ -1,0 +1,112 @@
+<%= form_with(model: product, local: true) do |form| %>
+  <% if product.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+      <ul>
+        <% product.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :brand %>
+    <%= form.text_field :brand %>
+  </div>
+
+  <div class="field">
+    <%= form.label :category %>
+    <%= form.text_field :category %>
+  </div>
+
+  <div class="field">
+    <%= form.label :product_name %>
+    <%= form.text_field :product_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :color %>
+    <%= form.text_field :color %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ean %>
+    <%= form.text_field :ean %>
+  </div>
+
+  <div class="field">
+    <%= form.label :vender_sku %>
+    <%= form.text_field :vender_sku %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sps_sku %>
+    <%= form.text_field :sps_sku %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fob_usd %>
+    <%= form.text_field :fob_usd %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fob_aud %>
+    <%= form.text_field :fob_aud %>
+  </div>
+
+  <div class="field">
+    <%= form.label :margin_rate %>
+    <%= form.text_field :margin_rate %>
+  </div>
+
+  <div class="field">
+    <%= form.label :total_profit %>
+    <%= form.text_field :total_profit %>
+  </div>
+
+  <div class="field">
+    <%= form.label :retail_price %>
+    <%= form.text_field :retail_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :channel_buy_price %>
+    <%= form.text_field :channel_buy_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :channel_MKT_rebate %>
+    <%= form.text_field :channel_MKT_rebate %>
+  </div>
+
+  <div class="field">
+    <%= form.label :saa %>
+    <%= form.check_box :saa %>
+  </div>
+
+  <div class="field">
+    <%= form.label :rcm %>
+    <%= form.check_box :rcm %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ce %>
+    <%= form.check_box :ce %>
+  </div>
+
+  <div class="field">
+    <%= form.label :active %>
+    <%= form.check_box :active %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,43 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  brand: MyString
+  category: MyString
+  product_name: MyString
+  color: MyString
+  ean: MyString
+  vender_sku: MyString
+  sps_sku: MyString
+  description: MyText
+  fob_usd: 9.99
+  fob_aud: 9.99
+  margin_rate: 9.99
+  total_profit: 9.99
+  retail_price: 9.99
+  channel_buy_price: 9.99
+  channel_MKT_rebate: 9.99
+  saa: false
+  rcm: false
+  ce: false
+  active: false
+
+two:
+  brand: MyString
+  category: MyString
+  product_name: MyString
+  color: MyString
+  ean: MyString
+  vender_sku: MyString
+  sps_sku: MyString
+  description: MyText
+  fob_usd: 9.99
+  fob_aud: 9.99
+  margin_rate: 9.99
+  total_profit: 9.99
+  retail_price: 9.99
+  channel_buy_price: 9.99
+  channel_MKT_rebate: 9.99
+  saa: false
+  rcm: false
+  ce: false
+  active: false

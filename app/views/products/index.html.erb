@@ -1,0 +1,63 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Products</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Brand</th>
+      <th>Category</th>
+      <th>Product name</th>
+      <th>Color</th>
+      <th>Ean</th>
+      <th>Vender sku</th>
+      <th>Sps sku</th>
+      <th>Description</th>
+      <th>Fob usd</th>
+      <th>Fob aud</th>
+      <th>Margin rate</th>
+      <th>Total profit</th>
+      <th>Retail price</th>
+      <th>Channel buy price</th>
+      <th>Channel mkt rebate</th>
+      <th>Saa</th>
+      <th>Rcm</th>
+      <th>Ce</th>
+      <th>Active</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= product.brand %></td>
+        <td><%= product.category %></td>
+        <td><%= product.product_name %></td>
+        <td><%= product.color %></td>
+        <td><%= product.ean %></td>
+        <td><%= product.vender_sku %></td>
+        <td><%= product.sps_sku %></td>
+        <td><%= product.description %></td>
+        <td><%= product.fob_usd %></td>
+        <td><%= product.fob_aud %></td>
+        <td><%= product.margin_rate %></td>
+        <td><%= product.total_profit %></td>
+        <td><%= product.retail_price %></td>
+        <td><%= product.channel_buy_price %></td>
+        <td><%= product.channel_MKT_rebate %></td>
+        <td><%= product.saa %></td>
+        <td><%= product.rcm %></td>
+        <td><%= product.ce %></td>
+        <td><%= product.active %></td>
+        <td><%= link_to 'Show', product %></td>
+        <td><%= link_to 'Edit', edit_product_path(product) %></td>
+        <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Product', new_product_path %>
