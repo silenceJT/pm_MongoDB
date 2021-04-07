@@ -14,3 +14,7 @@ require("channels")
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+
+//import  "/Users/jiataowu/Document/pm_MongoDB/app/javascript/stylesheets/application.scss"
+
+require("stylesheets/application.scss")
