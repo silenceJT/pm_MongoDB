@@ -1,3 +1,5 @@
+require File.expand_path('../boot', __FILE__)
+require 'csv'
 require_relative 'boot'
 
 require "rails"

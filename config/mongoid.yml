@@ -156,9 +156,10 @@ development:
 test:
   clients:
     default:
-      database: pm_mongodb_test
-      hosts:
-        - localhost:27017
+      #database: pm_mongodb_test
+      #hosts:
+       # - localhost:27017
+      uri: mongodb+srv://jiataow:jesse_0626X@cluster0.f0faw.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
       options:
         read:
           mode: :primary

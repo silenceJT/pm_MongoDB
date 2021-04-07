@@ -14,8 +14,8 @@ class Product
   field :margin_rate, type: Float
   field :total_profit, type: Float
   field :retail_price, type: Float
-  field :channel_buy_price, type: Float
-  field :channel_MKT_rebate, type: Float
+  field :channel_buy_price_egst, type: Float
+  field :channel_mkt_rebate_egst, type: Float
   field :saa, type: Mongoid::Boolean
   field :rcm, type: Mongoid::Boolean
   field :ce, type: Mongoid::Boolean
