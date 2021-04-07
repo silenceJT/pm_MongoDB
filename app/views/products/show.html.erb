@@ -1,6 +1,244 @@
 <p id="notice"><%= notice %></p>
 
-<p>
+<!-- This example requires Tailwind CSS v2.0+ -->
+<div class="bg-white shadow overflow-hidden sm:rounded-lg">
+  <div class="px-4 py-5 sm:px-6">
+    <h3 class="text-lg leading-6 font-medium text-gray-900">
+      Product Information
+    </h3>
+    <p class="mt-1 max-w-2xl text-sm text-gray-500">
+      Details and application.
+    </p>
+  </div>
+  <div class="border-t border-gray-200">
+    <dl>
+      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          Brand
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= @product.brand %>
+        </dd>
+      </div>
+
+      <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          Category
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= @product.category %>
+        </dd>
+      </div>
+
+      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          Product Name
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= @product.product_name %>
+        </dd>
+      </div>
+
+      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          Color
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= @product.color %>
+        </dd>
+      </div>
+
+      <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          EAN
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= @product.ean %>
+        </dd>
+      </div>
+
+      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          Vender SKU
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= @product.vender_sku %>
+        </dd>
+      </div>
+
+      <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          SPS SKU
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= @product.sps_sku %>
+        </dd>
+      </div>
+
+      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          Product Description
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= @product.description %>
+        </dd>
+      </div>
+
+      <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          FOB USD
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <span class="text-gray-500 sm:text-sm">
+            $
+          </span>
+          <%= @product.fob_usd %>
+        </dd>
+      </div>
+
+      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          FOB AUD
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <span class="text-gray-500 sm:text-sm">
+            $
+          </span>
+          <%= @product.fob_aud %>
+        </dd>
+      </div>
+
+      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          Margin Rate
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= @product.margin_rate %>
+        </dd>
+      </div>
+
+      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          Total Profit
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <span class="text-gray-500 sm:text-sm">
+            $
+          </span>
+          <%= @product.total_profit %>
+        </dd>
+      </div>
+
+      <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          Retail Price
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <span class="text-gray-500 sm:text-sm">
+            $
+          </span>
+          <%= @product.retail_price %>
+        </dd>
+      </div>
+
+      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          Channel Buy Price (excl GST)
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <span class="text-gray-500 sm:text-sm">
+            $
+          </span>
+          <%= @product.channel_buy_price_egst %>
+        </dd>
+      </div>
+
+      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          Channel Market Rebate (excl GST)
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <span class="text-gray-500 sm:text-sm">
+            $
+          </span>
+          <%= @product.channel_mkt_rebate_egst %>
+        </dd>
+      </div>
+
+      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          SAA
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <% if @product.saa == true %>
+            <span class="px-2 inline-flex text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                  True
+            </span>
+          <% else %>
+            <span class="px-2 inline-flex text-sm leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                  False
+            </span>
+          <% end %>
+        </dd>
+      </div>
+
+      <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          RCM
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <% if @product.rcm == true %>
+            <span class="px-2 inline-flex text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                  True
+            </span>
+          <% else %>
+            <span class="px-2 inline-flex text-sm leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                  False
+            </span>
+          <% end %>
+        </dd>
+      </div>
+
+      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          ce
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <% if @product.ce == true %>
+            <span class="px-2 inline-flex text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                  True
+            </span>
+          <% else %>
+            <span class="px-2 inline-flex text-sm leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                  False
+            </span>
+          <% end %>
+        </dd>
+      </div>
+
+      <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          Active
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <% if @product.active == true %>
+            <span class="px-2 inline-flex text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                  True
+            </span>
+          <% else %>
+            <span class="px-2 inline-flex text-sm leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                  False
+            </span>
+          <% end %>
+        </dd>
+      </div>
+    </dl>
+  </div>
+</div>
+
+
+
+<!--p>
   <strong>Brand:</strong>
   <%= @product.brand %>
 </p>
@@ -93,7 +331,11 @@
 <p>
   <strong>Active:</strong>
   <%= @product.active %>
-</p>
+</p-->
 
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+<br>
+
+<%= link_to 'Edit', edit_product_path(@product), class: " btn mr-5 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %> |
+<%= link_to 'Back', products_path, class: " btn ml-5 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+
+</br>
