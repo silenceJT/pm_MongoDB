@@ -22,7 +22,7 @@ class Product
   field :active, type: Mongoid::Boolean
 
 
-  validates :brand, :category, :product_name, :vendar_sku, :description, :retail_price, :active, presence: true
+  validates :brand, :category, :product_name, :vender_sku, :description, :retail_price, :active, presence: true
   validates :description, length: { maximum: 1000, too_long: "%{count} characters is the maximum alowed. " }
   validates :product_name, length: { maximum: 140, too_long: "%{count} characters is the maximum alowed. " }
   validates :fob_usd, :fob_aud, :retail_price, numericality: { only_integer: false }, length: { maximum: 7 }
