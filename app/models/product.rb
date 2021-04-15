@@ -31,4 +31,10 @@ class Product
     Doorbell e-bike Extra_Battery Garage_Sensor Gateway Home_Kit Hub Indoor_Camera Lamp Light Lock Mesh Mirror 
     Mosquito_Killer Motor Nest_Hub Nightlight NVR Outdoor_Battery Plug Projector Rack RoboVac Router Scale Scooter 
     SD Sensor Sensor_Nightlight Service Solar_Panel Speaker Stand Switch Tem_Sensor TMM Toy Watch }
+
+  BRAND = %w{ A-OK Aqara Ebo Ecoflow ESS Eufy Ezviz GIMI Google HikVision HOLACA imoo IP-COM Konke 
+    LifeSmart MEGVII realme Sonoff SP Tenda Terncy TLI TP-LINK Tronic Tuya Whill Wulian Xiaomi Yeelight Yio }
+
+
+
 end

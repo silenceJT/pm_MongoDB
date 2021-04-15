@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<h1 class="pl-3 mt-5 text-3xl text-gary-900 font-bold">Products</h1>
+
 <!--header class="bg-white shadow">
   <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
     <h1 class="text-3xl font-bold text-gray-900">
@@ -7,15 +9,60 @@
     </h1>
   </div>
 </header-->
+  <!--body class="bg-gray-100">
+    <div class="flex bg-gray-100">
 
-<br>
+      <div class="w-3/12 bg-white rounded p-3 shadow-lg fixed bottom-0 md:h-screen ">
+        <div class="content-center">
+          <%#= render 'shared/header' %>
+        </div>
+      </div>
+
+      <div class="main-content flex flex-col bg-gray-100">
+        <div class="">
+          <h1 class="text-3xl text-gary-900 font-bold">Products</h1>
+        </div>
+
+        <div class="overflow-x-auto">
+          <div class="align-middle inline-block min-w-full overflow-hidden">
+            <table class="min-w-full">
+              <thead>
+                 <tr>
+                  <th>Brand</th>
+                  <th>Category</th>
+                  <th>Name</th>
+                  <th>Retail Price</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @products.each do |product| %>
+                <tr>
+                  <td><%= product.brand %></td>
+                  <td><%= product.category %></td>
+                  <td><%= product.product_name %></td>
+                  <td><%= product.retail_price %></td>
+                </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+          
+        </div>
+        
+        
+      </div>
+    </div>
+  </body-->
+
+<!--br>
 <h1 class="text-3xl text-gary-900 font-bold">Products</h1>
-<br>
+<br-->
 
 <!-- This example requires Tailwind CSS v2.0+ -->
-<div class="flex flex-col">
-  <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-    <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+
+<!--div class="flex flex-col">
+  <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8"-->
+    <div class="align-middle inline-block min-w-full ">
       <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
         <table class="min-w-full divide-y divide-gray-200">
           <thead class="bg-gray-50">
@@ -32,29 +79,18 @@
                 Product Name
               </th>
 
-              <th scope="col" class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <!--th scope="col" class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 SPS SKU
               </th>
 
               <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Vender SKU
-              </th>
-
-              <!--th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Marketing Name
-              </th-->
-
-              <!--th scope="col" class="px-6 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Description
               </th-->
 
               <th scope="col" class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Retail Price
               </th>
 
-              <!--th scope="col" class="relative px-3 py-3">
-                <span class="sr-only">Edit</span>
-              </th-->
             </tr>
           </thead>
           <tbody class="bg-white divide-y divide-gray-200">
@@ -82,12 +118,12 @@
                 <td class="px-2 py-4 whitespace-nowrap">
                   <div class="text-sm text-gray-900"><%= product.product_name %></div>
                 </td>
-                <td class="px-3 py-4 whitespace-nowrap text-sm text-gray-500">
+                <!--td class="px-3 py-4 whitespace-nowrap text-sm text-gray-500">
                   <%= product.sps_sku %>
                 </td>
                 <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">
                   <%= product.vender_sku %>
-                </td>
+                </td-->
                 <!--td class="px-6 py-3 text-sm text-gray-500 ">
                   <%= product.description %>
                 </td-->
@@ -95,7 +131,7 @@
                   $<%= product.retail_price %>
                 </td>
                 <!--td class="px-2 py-4 whitespace-nowrap text-right text-sm font-medium">
-                  <%= link_to 'Edit', edit_product_path(product), class: "text-indigo-600 hover:text-indigo-900" %>
+                  <%#= link_to 'Edit', edit_product_path(product), class: "text-indigo-600 hover:text-indigo-900" %>
                 </td-->
               </tr>
               <% end %>
@@ -104,9 +140,11 @@
         </table>
       </div>
     </div>
-  </div>
-</div>
+  <!--/div>
+</div-->
 
+
+<!--
 <table>
   <thead>
     <tr>
@@ -163,6 +201,6 @@
   </tbody>
 </table>
 
-<br>
+<br-->
 
-<%= link_to 'New Product', new_product_path %>
+<!--%= link_to 'New Product', new_product_path %-->

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html class="antialiased">
-  <% render "shared/head" %>
+  <%= render "shared/head" %>
 
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,12 +11,31 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
 
-  <body>
-    <%#= yield %>
-    <%= render "shared/header" %>
+
+
+  <!-- dashboard design -->
+  <body class="flex flex-wrap bg-gray-100 w-full h-screen">
     
-    <main class="px-4 lg:px-10">
+    <div class="w-64 bg-white rounded p-3 shadow-lg fixed top-0 bottom-0">
+      <%= render 'shared/header' %>
+    </div>
+
+    <main class="pl-64 flex-1">
       <%= content_for?(:content) ? yield(:content) : yield %>
     </main>
   </body>
+
+  <!-- ** render must use # to comments out, original one -->
+  <!--body>
+    <%#= yield %> 
+    <%#= render "shared/header" %>
+    
+    <main class="px-4 lg:px-10">
+      <%#= content_for?(:content) ? yield(:content) : yield %>
+    </main>
+  </body>
+  <%#= content_for?(:content) ? yield(:content) : yield %>
+
+  <%#= yield %>
+
 </html>
