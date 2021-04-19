@@ -4,18 +4,24 @@
 
 const { environment } = require('@rails/webpacker')
 
-const css = environment.loaders.get('css')
-const sass = environment.loaders.get('sass')
+const customConfig = {
+  resolve: {
+    fallback: {
+      dgram: false,
+      fs: false,
+      net: false,
+      tls: false,
+      child_process: false
+    }
+  }
+};
 
-const postCssConfig = css.use.find(u => u.loader === 'postcss-loader')
-const postSassConfig = sass.use.find(u => u.loader === 'postcss-loader')
+environment.config.delete('node.dgram')
+environment.config.delete('node.fs')
+environment.config.delete('node.net')
+environment.config.delete('node.tls')
+environment.config.delete('node.child_process')
 
-if (postCssConfig) {
-  delete postCssConfig.options.config
-}
-
-if (postSassConfig) {
-  delete postCssConfig.options.config
-}
+environment.config.merge(customConfig);
 
 module.exports = environment
