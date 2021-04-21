@@ -16,7 +16,9 @@
   <!-- dashboard design -->
   <body class="flex flex-wrap bg-gray-100 w-full h-screen">
     
+    <!-- only if logined in, show header -->
     <div class="w-64 bg-white rounded p-3 shadow-lg fixed top-0 bottom-0">
+      <%= render "shared/flash_notice" %>
       <%= render 'shared/header' %>
     </div>
 
