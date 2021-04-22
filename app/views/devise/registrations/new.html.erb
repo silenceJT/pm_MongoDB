@@ -1,29 +1,51 @@
-<h2>Sign up</h2>
-
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+  <div class="min-h-full flex items-center justify-center bg-gray-50 pt-36 pb-6 px-4 sm:px-6 lg:px-8">
+    <div class="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
+      <div class="bg-white px-6 py-8 rounded shadow-md text-black w-full">
+        <h2 class="mb-8 text-3xl font-bold heading text-center">Sign up</h2>
+        <div>
+          <%= f.label :email, class: "block text-sm font-medium text-gray-700" %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+        </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+        <div class="mt-4">
+          <%= f.label :password, class: "block text-sm font-medium text-gray-700" %>
+          <% if @minimum_password_length %>
+          <em class="text-sm font-medium text-gray-700">(<%= @minimum_password_length %> characters minimum)</em>
+          <% end %>
+          <%= f.password_field :password, autocomplete: "new-password", class: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+        </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+        <div class="mt-4">
+          <%= f.label :password_confirmation, class: "block text-sm font-medium text-gray-700" %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+        </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
+        <div class="actions mt-6">
+          <%= f.submit "Sign up", class: "roup relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+        </div>
+
+        <div class="text-center text-sm text-grey-dark mt-4">
+          By signing up, you agree to the 
+          <a class="underline boder-b boder-gray-700 text-sm font-medium text-indigo-600 mt-3" href="#">
+            Terms of Service
+          </a> and 
+          <a class="underline boder-b boder-gray-700 text-sm font-medium text-indigo-600 mt-3" href="#">
+            Privacy Policy
+          </a>
+        </div>
+      </div>
+    </div>
+    
+</div>
+
 <% end %>
 
-<%= render "devise/shared/links" %>
+<div class="text-gray-700 bg-gray-50 text-center">
+  Already have an account?
+  <%= render "devise/shared/links" %>
+</div>
+
+<%#= render "devise/shared/links" %>
