@@ -13,11 +13,13 @@
 
   <header class="w-full fixed">
     <%= render "shared/nav" %>
-    <%= render "shared/flash_notice" %>
+    <div class="ml-64">
+      <%= render "shared/flash_notice" %>
+    </div>
   </header>
 
   <!-- dashboard design -->
-  <body class="flex flex-wrap bg-gray-100 w-full h-screen">
+  <body class="flex flex-wrap bg-gray-50 w-full h-screen">
 
     <!-- only if logined in, show header -->
     <div class="w-64 bg-white rounded p-3 shadow-lg fixed top-0 bottom-0 mt-16">
@@ -25,7 +27,7 @@
       <%= render "shared/header" %>
     </div>
 
-    <main class="pl-64 flex-1 mt-16">
+    <main class="ml-72 flex-1 mt-16 p-4">
       <%#= render "shared/flash_notice" %>
       <%= content_for?(:content) ? yield(:content) : yield %>
     </main>
