@@ -1,32 +1,27 @@
-<p id="notice"><%= notice %></p>
-
-<!-- This example requires Tailwind CSS v2.0+ -->
-<div class="bg-white shadow overflow-hidden sm:rounded-lg">
+<div id="Specs" class="tabcontent bg-white shadow overflow-hidden sm:rounded-lg">
   
   <div class="lg:flex lg:items-center lg:justify-between">
     <div class="flex-1 min-w-0 px-4 py-5 sm:px-6">
       <h3 class="text-lg leading-6 font-medium text-gray-900">
-         Product Information
+        Specs Information
       </h3>
       <p class="mt-1 max-w-2xl text-sm text-gray-500">
         Details and application.
       </p>
     </div>
     <div class="mt-5 flex lg:mt-0 lg:ml-4">
-      <% if current_user.admin? %>
-        <a href="<%= edit_product_path(@product) %>">
-          <span class="hidden sm:block">
-            <button type="button" class="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-            <!-- Heroicon name: solid/pencil -->
-            <svg class="-ml-1 mr-2 h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-              <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
-            </svg>
-            Edit
-            <%#= link_to 'Edit', edit_product_path(@product) %>
-            </button>  
-          </span>
-        </a>
-      <% end %>  
+      <a href="<%= edit_product_path(@product) %>">
+        <span class="hidden sm:block">
+          <button type="button" class="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+          <!-- Heroicon name: solid/pencil -->
+          <svg class="-ml-1 mr-2 h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+          </svg>
+          Edit
+          <%#= link_to 'Edit', edit_product_path(@product) %>
+          </button>  
+        </span>
+      </a>
       
 
       <span class="hidden sm:block ml-3 mr-3">
@@ -40,55 +35,82 @@
     <dl>
       <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
         <dt class="text-sm font-medium text-gray-500">
-          Brand
+          Whole-home coverage
         </dt>
-        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-          <%= @product.brand %>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 leading-relaxed">
+          Wifi router: Covers a 1-2 bedroom home <br>
+          Wifi point: Additional coverage for 1-2 rooms <br>
+          Wifi router & Wifi point: <br>
+          Expandable 802.11s mesh Wi-Fi <br>
+          Scalable and flexible system – add an additional router and points to fit homes of any size <br>
+          Supports both star and daisy chain configurations
         </dd>
       </div>
 
       <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
         <dt class="text-sm font-medium text-gray-500">
-          Category
+          Automatic Wi-Fi optimisation
         </dt>
-        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-          <%= @product.category %>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 leading-relaxed">
+          Automatic 802.11.k/v client roaming <br>
+          Proactive band steering – directs your devices to channels with the best performance <br>
+          Self-healing network <br>
+          Transmit beamforming
         </dd>
       </div>
 
       <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
         <dt class="text-sm font-medium text-gray-500">
-          Product Name
+          Smart home connectivity
         </dt>
-        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-          <%= @product.product_name %>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 leading-relaxed">
+          IEEE 802.15.4 Thread (2.4 GHz) – functionality not yet available <br>
+          Bluetooth® Low Energy (BLE)
         </dd>
       </div>
 
       <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
         <dt class="text-sm font-medium text-gray-500">
-          Color
+          Performance
         </dt>
-        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-          <%= @product.color %>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 leading-relaxed">
+          Router and point can each handle up to 100 connected devices <br>
+          Multiple simultaneous 4K video streams
         </dd>
       </div>
 
       <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
         <dt class="text-sm font-medium text-gray-500">
-          EAN
+          Security built in
         </dt>
-        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-          <%= @product.ean %>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 leading-relaxed">
+          Wifi router: <br>
+          WPA3 encryption <br>
+          Automatic security updates <br>
+          Trusted platform module <br> <br>
+          
+          Wifi point: <br>
+          WPA3 encryption <br>
+          Automatic security updates
         </dd>
       </div>
 
       <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
         <dt class="text-sm font-medium text-gray-500">
-          Vender SKU
+          Wi-Fi standard
         </dt>
-        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-          <%= @product.vender_sku %>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 leading-relaxed">
+          Wifi router: <br>
+          AC2200 MU-MIMO Wi-Fi <br>
+          4x4 (5 GHz) <br>
+          2x2 (2.4 GHz) <br> <br>
+
+          Wifi point: <br>
+          AC1200 MU-MIMO Wi-Fi <br>
+          2x2 (2.4 GHz/5 GHz) <br> <br>
+
+          Wifi router & Wifi point: <br>
+          Simultaneous dual-band (2.4 GHz/5 GHz) Wi-Fi supporting IEEE 802.11a/b/g/n/ac
         </dd>
       </div>
 
@@ -261,104 +283,3 @@
     </dl>
   </div>
 </div>
-
-
-
-<!--p>
-  <strong>Brand:</strong>
-  <%= @product.brand %>
-</p>
-
-<p>
-  <strong>Category:</strong>
-  <%= @product.category %>
-</p>
-
-<p>
-  <strong>Product name:</strong>
-  <%= @product.product_name %>
-</p>
-
-<p>
-  <strong>Color:</strong>
-  <%= @product.color %>
-</p>
-
-<p>
-  <strong>Ean:</strong>
-  <%= @product.ean %>
-</p>
-
-<p>
-  <strong>Vender sku:</strong>
-  <%= @product.vender_sku %>
-</p>
-
-<p>
-  <strong>Sps sku:</strong>
-  <%= @product.sps_sku %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @product.description %>
-</p>
-
-<p>
-  <strong>Fob usd:</strong>
-  <%= @product.fob_usd %>
-</p>
-
-<p>
-  <strong>Fob aud:</strong>
-  <%= @product.fob_aud %>
-</p>
-
-<p>
-  <strong>Margin rate:</strong>
-  <%= @product.margin_rate %>
-</p>
-
-<p>
-  <strong>Total profit:</strong>
-  <%= @product.total_profit %>
-</p>
-
-<p>
-  <strong>Retail price:</strong>
-  <%= @product.retail_price %>
-</p>
-
-<p>
-  <strong>Channel buy price:</strong>
-  <%= @product.channel_buy_price_egst %>
-</p>
-
-<p>
-  <strong>Channel mkt rebate:</strong>
-  <%= @product.channel_mkt_rebate_egst %>
-</p>
-
-<p>
-  <strong>Saa:</strong>
-  <%= @product.saa %>
-</p>
-
-<p>
-  <strong>Rcm:</strong>
-  <%= @product.rcm %>
-</p>
-
-<p>
-  <strong>Ce:</strong>
-  <%= @product.ce %>
-</p>
-
-<p>
-  <strong>Active:</strong>
-  <%= @product.active %>
-</p-->
-
-
-<%#= link_to 'Edit', edit_product_path(@product), class: " btn mr-5 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
-<%#= link_to 'Back', products_path, class: " btn ml-5 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
