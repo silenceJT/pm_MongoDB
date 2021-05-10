@@ -1,6 +1,7 @@
 class Product
   include Mongoid::Document
-  store_in collection: "Product", database: "SPS"
+  store_in collection: "Product_With_Number", database: "SPS"
+  field :no, type: Integer
   field :brand, type: String
   field :category, type: String
   field :product_name, type: String

@@ -74,6 +74,10 @@
           <thead class="bg-gray-50">
             <tr>
               <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                ID
+              </th>
+
+              <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Brand
                 <!--input type="text" id="myInput" onkeyup="myFunction(0)" title="Type in a name" class="focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md"-->
               </th>
@@ -102,6 +106,10 @@
           <tbody class="bg-white divide-y divide-gray-200">
             <% @products.each do |product| %>
               <tr onclick="window.location.href='/products/<%= product.id.to_s %>'" style="cursor:pointer">
+                <td class="px-4 py-4 whitespace-nowrap">
+                  <div class="text-sm text-gray-900"><%= product.no %></div>
+                </td>
+
                 <td class="px-4 py-4 whitespace-nowrap">
                   <div class="flex items-center">
                     <!--div class="flex-shrink-0 h-10 w-10">
