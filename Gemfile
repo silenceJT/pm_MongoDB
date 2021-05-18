@@ -24,6 +24,7 @@ gem 'devise', '~> 4.7', '>= 4.7.3'
 gem 'mongoid', '~> 7.0.5'
 
 gem 'kaminari-mongoid'
+gem 'kaminari-actionview'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false

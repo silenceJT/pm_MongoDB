@@ -5,14 +5,14 @@ class ProductsController < ApplicationController
   # GET /products or /products.json
   def index
     @products = Product.all
-
-
+    @products = Kaminari.paginate_array(@products).page(params[:page]).per(15)
+    #@products = Product.order(:product_name).page(params[:page]).per(20)
 
 
     respond_to do |format|
-        format.html do
-          @products = Kaminari.paginate_array(@products).page(params[:page]).per(20)
-        end
+        format.html
+        format.json { render json: @products }
+          
   
     end
   end
