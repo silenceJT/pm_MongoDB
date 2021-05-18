@@ -2,9 +2,13 @@ class ProductsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_product, only: %i[ show edit update destroy ]
 
+
   # GET /products or /products.json
   def index
     @products = Product.all
+    
+    @products = Product.full_text_search(params[:search], allow_empty_search: true)
+    @products = @products.order_by(no: 1)
     @products = Kaminari.paginate_array(@products).page(params[:page]).per(15)
     #@products = Product.order(:product_name).page(params[:page]).per(20)
 
@@ -77,4 +81,12 @@ class ProductsController < ApplicationController
     def product_params
       params.require(:product).permit(:brand, :category, :product_name, :color, :ean, :vender_sku, :sps_sku, :description, :fob_usd, :fob_aud, :margin_rate, :total_profit, :retail_price, :channel_buy_price, :channel_MKT_rebate, :saa, :rcm, :ce, :active)
     end
+
+
+  protected
+
+    def configure_search
+      @search = Product.search(params[:search])
+    end
+
 end

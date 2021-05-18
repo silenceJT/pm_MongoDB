@@ -1,5 +1,6 @@
 class Product
   include Mongoid::Document
+  include Mongoid::Search
   store_in collection: "Product_With_Number", database: "SPS"
   field :no, type: Integer
   field :brand, type: String
@@ -21,6 +22,8 @@ class Product
   field :rcm, type: Mongoid::Boolean
   field :ce, type: Mongoid::Boolean
   field :active, type: Mongoid::Boolean
+
+  search_in :no, :brand, :category, :product_name, :color, :ean, :vender_sku, :sps_sku, :description, :fob_usd, :fob_aud, :margin_rate, :total_profit, :retail_price, :channel_buy_price, :channel_MKT_rebate, :saa, :rcm, :ce, :active
 
 
   validates :brand, :category, :product_name, :description, :retail_price, :active, presence: true
