@@ -1,0 +1,52 @@
+<%= form_with(model: papua) do |form| %>
+  <% if papua.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(papua.errors.count, "error") %> prohibited this papua from being saved:</h2>
+
+      <ul>
+        <% papua.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :language %>
+    <%= form.text_field :language %>
+  </div>
+
+  <div class="field">
+    <%= form.label :language_family %>
+    <%= form.text_field :language_family %>
+  </div>
+
+  <div class="field">
+    <%= form.label :iso %>
+    <%= form.text_field :iso %>
+  </div>
+
+  <div class="field">
+    <%= form.label :country %>
+    <%= form.text_field :country %>
+  </div>
+
+  <div class="field">
+    <%= form.label :latitude %>
+    <%= form.text_field :latitude %>
+  </div>
+
+  <div class="field">
+    <%= form.label :longitude %>
+    <%= form.text_field :longitude %>
+  </div>
+
+  <div class="field">
+    <%= form.label :inv %>
+    <%= form.text_field :inv %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
