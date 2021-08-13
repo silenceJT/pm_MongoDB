@@ -10,6 +10,8 @@
     "@tailwindcss/typography": "^0.4.0",
     "autoprefixer": "^10.2.5",
     "babel-loader": "^8.2.2",
+    "chart.js": "^3.3.2",
+    "chartkick": "^4.0.4",
     "css-loader": "5.2.2",
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-import": "^14.0.1",

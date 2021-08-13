@@ -18,3 +18,7 @@ require("channels")
 //import  "/Users/jiataowu/Document/pm_MongoDB/app/javascript/stylesheets/application.scss"
 
 require("stylesheets/application.scss")
+
+//import "chartkick/chart.js"
+//import "chartkick"
+require("chartkick/chart.js")
