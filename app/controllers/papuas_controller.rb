@@ -24,7 +24,7 @@ class PapuasController < ApplicationController
     #gem full text search
     exc = Array.new()
     if params[:search_exc].present?
-      @papuas_1 = Papua.full_text_search(params[:search_exc], allow_empty_search: false, match: :all)
+      @papuas_1 = Papua.full_text_search(params[:search_exc], allow_empty_search: false, match: :any)
       @papuas_1.each do |p1|
         exc.push(p1.no)
       end
@@ -33,7 +33,16 @@ class PapuasController < ApplicationController
       @papuas_2 = Papua.all
     end
     
-    @papuas_3 = @papuas_2.full_text_search(params[:search_inc], allow_empty_search: false, match: :all)
+    if params[:search_inc].present?
+      if params[:search_inc].to_s.include?('or')
+        @papuas_3 = @papuas_2.full_text_search(params[:search_inc], allow_empty_search: false, match: :any)
+      else
+        @papuas_3 = @papuas_2.full_text_search(params[:search_inc], allow_empty_search: false, match: :all)
+      end
+    else
+      @papuas_3 = @papuas_2
+    end
+
     @papuas_results = @papuas_3
     @papuas_all = Papua.all
     @papuas = @papuas_3
