@@ -3,24 +3,8 @@ class PapuasController < ApplicationController
 
   # GET /papuas or /papuas.json
   def index
-    @data_1 = Array.new
-    @data_1 = [
-        {
-          name: "Fantasy & Sci Fi", 
-          data: [["2010", ["p, t, m"]]]
-        },
-        {
-          name: "Romance", 
-          data: [["2011", ["p, t, m, k"]]]
-        },
-        {
-          name: "Mystery/Crime", 
-          data: [["2012", ["p, t, m, k, s"]]]
-        }
-      ]
     @papuas = Papua.all
     
-
     #gem full text search
     exc = Array.new()
     if params[:search_exc].present?
@@ -68,6 +52,9 @@ class PapuasController < ApplicationController
     @sum_d = 0
     @lng = Array.new;
     @lat = Array.new;
+    @name = Array.new;
+    @family = Array.new;
+    @country = Array.new;
     
     @papuas_results.each do |p_r| 
       @sum_s += p_r.count_of_segments 
@@ -76,6 +63,9 @@ class PapuasController < ApplicationController
       #@sum_d += p_r.count_of_diphthongs
       @lng.push(p_r.longitude)
       @lat.push(p_r.latitude)
+      @name.push(p_r.language_name)
+      @family.push(p_r.language_family)
+      @country.push(p_r.country)
     end
 
     @avg_s = (@sum_s.to_f/@papuas_results.length).round(2)

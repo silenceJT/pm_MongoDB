@@ -48,57 +48,145 @@
 
   <div class="py-3">
 
-    <%= pie_chart [["Results", @papuas_results.length], ["Others", @papuas_all.length - @papuas_results.length]], label: @papuas_results.length, download: true %>
+    <%= pie_chart [["Results", @papuas_results.length], ["Others", @papuas_all.length - @papuas_results.length]], colors: ["#4264fb", "#fb4264"], label: @papuas_results.length, download: true %>
 
     <%= bar_chart [["Average of Segments",@avg_s, @avg_s], ["Average of Consonants", @avg_c, @avg_c], ["Average of Vowels", @avg_v, @avg_v]], download: true %>
 
   </div>
 
-  <!--div id='map' style='width: 100%; height: 500px;'></div>
+  <div class="py-3" id='map' style='width: 100%; height: 700px;'></div>
   <script>
     mapboxgl.accessToken = 'pk.eyJ1Ijoic2lsZW5jZWp0IiwiYSI6ImNrc2EwN3ZwNjB6NTcydXFxZ2N2bmRwNHcifQ.uxkpkzBwxIFOgqzEN_7bqA';
     const map = new mapboxgl.Map({
         container: 'map', // container ID
-        style: 'mapbox://styles/mapbox/streets-v11', // style URL
+        style: 'mapbox://styles/mapbox/light-v10', // style URL
         center: [141.65793, -4.20192], // starting position [lng, lat]
-        zoom: 2 // starting zoom
+        zoom: 5 // starting zoom
     });
 
     
-    var lng = new Array();
-    var lat = new Array();
+    var lng_test = <%= raw @lng %>;
+    var lat_test = <%= raw @lat %>;
+    var name_test = <%= raw @name %>;
+    var family_test = <%= raw @family %>;
+    var country_test = <%= raw @country %>;
 
-    
 
-    var lng_test = [141.65793, 136.13974];
-    var lat_test = [-4.20192, -3.19328];
-
-    /*
-    const m1 = new mapboxgl.Marker()
-                    .setLngLat([lng_test[0], lat_test[0]])
-                    .addTo(map);
-
-    const m2 = new mapboxgl.Marker()
-                    .setLngLat([lng_test[1], lat_test[1]])
-                    .addTo(map);
-
-    const m3 = new mapboxgl.Marker()
-                    .setLngLat([137.6289, -2.44717])
-                    .addTo(map);
-    */
-
-    
-    for (let i = 0; i < lng_test.length; i++) {
-      var no = i.toString();
-      const marker = "m" + no;
-      marker = new mapboxgl.Marker()
-                    .setLngLat([lng_test[i], lat_test[i]])
-                    .addTo(map);
+    //Create GeoJSON Object
+    var gj = {
+      "name":"MyFeatureType",
+      "type":"FeatureCollection",
+      "features":[]
     };
-    
+
+    // Get all location results
+    for (let i = 0; i < lng_test.length; i++) {
+      //var name = name_test[i]
+      // Create an empty feature to store loaction
+      gj.features.push({
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": []
+        },
+        "properties": {
+          "description": `<strong>${name_test[i]}</strong><p>${family_test[i]}</P>`,
+          "ethnicity": country_test[i]
+        }
+      });
+      // 
+      gj.features[i].geometry.coordinates.push(lng_test[i], lat_test[i]);
+    };
+
+    map.on('load', () => {
+      // Add a GeoJSON source with results points.
+      map.addSource('points', {
+        'type': 'geojson',
+        'data': gj
+      });
+      // Add a circle layer
+      map.addLayer({
+        'id': 'circle',
+        'type': 'circle',
+        'source': 'points',
+        'paint': {
+          'circle-color': [
+            'match',
+            ['get', 'ethnicity'],
+            'PNG',
+            '#fbb03b',
+            'IND',
+            '#e55e5e',
+            '#223b53'
+          ],
+          'circle-radius': 6,
+          'circle-stroke-width': 2,
+          'circle-stroke-color': '#223b53'
+        }
+      });
+
+      // Create a popup, but don't add it to the map yet.
+      const popup = new mapboxgl.Popup({
+        closeButton: false,
+        closeOnClick: false
+      });
+       
+      // Center the map on the coordinates of any clicked circle from the 'circle' layer.
+      map.on('click', 'circle', (e) => {
+        map.flyTo({
+          center: e.features[0].geometry.coordinates
+        });
+        map.getCanvas().style.cursor = 'pointer';
+
+        // Copy coordinates array.
+        const coordinates = e.features[0].geometry.coordinates.slice();
+        const description = e.features[0].properties.description;
+         
+        // Ensure that if the map is zoomed out such that multiple
+        // copies of the feature are visible, the popup appears
+        // over the copy being pointed to.
+        while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+          coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+        }
+
+        // Click and then add popup to map
+        new mapboxgl.Popup()
+          .setLngLat(coordinates)
+          .setHTML(description)
+          .addTo(map);
+      });
+       
+      // Change the cursor to a pointer when the it enters a feature in the 'circle' layer.
+      map.on('mouseenter', 'circle', (e) => {
+        //map.getCanvas().style.cursor = 'pointer';
+
+        // Copy coordinates array.
+        const coordinates = e.features[0].geometry.coordinates.slice();
+        const description = e.features[0].properties.description;
+         
+        // Ensure that if the map is zoomed out such that multiple
+        // copies of the feature are visible, the popup appears
+        // over the copy being pointed to.
+        while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+        coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+        }
+         
+        // Populate the popup and set its coordinates
+        // based on the feature found.
+        popup.setLngLat(coordinates).setHTML(description).addTo(map);
+      });
+       
+      // Change it back to a pointer when it leaves.
+      map.on('mouseleave', 'circle', () => {
+        map.getCanvas().style.cursor = '';
+        popup.remove();
+      });
+    });
+
+    console.log();
 
     
-  </script-->
+  </script>
 
   <div class="align-middle inline-block min-w-full ">
     <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
