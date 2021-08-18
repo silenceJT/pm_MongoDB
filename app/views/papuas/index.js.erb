@@ -1,3 +1,4 @@
-$("#papuas_table").html("<%= escape_javascript(render("papuas_table")) %>");
+$("#papuas_table").html("<%= escape_javascript(render("papuas")) %>");
 
-$("#paginator").html("<%= escape_javascript(paginate("papuas_table", :remote => true).to_s) %>");
+//works fine but slow
+$("#paginator").html("<%= escape_javascript(paginate(@papuas, :remote => true).to_s) %>");

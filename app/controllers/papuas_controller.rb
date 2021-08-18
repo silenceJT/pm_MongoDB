@@ -76,6 +76,7 @@ class PapuasController < ApplicationController
     respond_to do |format|
         format.html
         format.json { render json: @papuas }
+        format.js
         format.csv { send_data @papuas.to_csv }
         format.xls
     end

@@ -22,3 +22,5 @@ require("stylesheets/application.scss")
 //import "chartkick/chart.js"
 //import "chartkick"
 require("chartkick/chart.js")
+//= require jquery
+//= require jquery_ujs

@@ -9,9 +9,10 @@
     <!--input type="text" id="myInput" onkeyup="myFunction(7)" placeholder="Search Inventory" title="Type in inventories" class="focus:ring-indigo-500 focus:border-indigo-500 block w-1/4 shadow-sm sm:text-sm border-gray-300 rounded-md"-->
 
     
-
+    
     <%= render 'shared/searchbar' %>
-
+    
+    
     <%# if user_signed_in? && current_user.admin? %>
     <!--a href="<%= new_papua_path(@papua) %>">
       <span class="hidden sm:block">
@@ -27,8 +28,7 @@
     <%# end %>
   </div>
 
-  <div class="py-3">
-
+  <div class="flex justify-center">
     <div class="text-lg font-medium text-gray-900">
       <p>
         Results: <%= @papuas_results.length %>
@@ -37,21 +37,26 @@
         Total: <%= @papuas_all.length %>
       </p>
     </div>
+  </div>
 
+  <div id='map' style='width: 100%; height: 600px;'></div>
+
+  <div class="py-3">
+    
     <%= pie_chart [["Results", @papuas_results.length], ["Others", @papuas_all.length - @papuas_results.length]], colors: ["#4264fb", "#fb4264"], label: @papuas_results.length, download: true %>
 
     <%= bar_chart [["Average of Segments",@avg_s, @avg_s], ["Average of Consonants", @avg_c, @avg_c], ["Average of Vowels", @avg_v, @avg_v]], download: true %>
 
   </div>
 
-  <div class="py-3" id='map' style='width: 100%; height: 700px;'></div>
+  <!--div class="py-3" id='map' style='width: 1000px; height: 600px;'></div-->
   <script>
     mapboxgl.accessToken = 'pk.eyJ1Ijoic2lsZW5jZWp0IiwiYSI6ImNrc2EwN3ZwNjB6NTcydXFxZ2N2bmRwNHcifQ.uxkpkzBwxIFOgqzEN_7bqA';
     const map = new mapboxgl.Map({
         container: 'map', // container ID
         style: 'mapbox://styles/mapbox/light-v10', // style URL
         center: [141.65793, -4.20192], // starting position [lng, lat]
-        zoom: 5 // starting zoom
+        zoom: 4 // starting zoom
     });
 
     
@@ -173,45 +178,44 @@
       });
     });
 
-    console.log();
-
     
   </script>
 
-  <div class="align-middle inline-block min-w-full " id="papuas_table">
-    <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-      
-      <%= render 'papuas' %>
+  
+  <div class="py-5"><%= render 'papuas' %></div>  
 
-      <div class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
-        <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
-         <div>
+  <div id="paginator" class="bg-white py-3 flex items-center justify-end border-t border-gray-200">
+    <%= paginate @papuas, remote: true %>
+  </div>  
+   
+
+  <!--div class="bg-white py-3 flex items-center justify-end border-t border-gray-200">
+    <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+      <div>
           <p class="text-sm text-gray-700">
             Showing
-            <% if @papuas.length == 0 %>
-              <span class="font-medium"><%= @papuas.offset_value %></span>
+            <%# if @papuas.length == 0 %>
+              <span class="font-medium"><%#= @papuas.offset_value %></span>
               of
-              <span class="font-medium"> <%= @papuas.total_count %> </span>
+              <span class="font-medium"> <%#= @papuas.total_count %> </span>
               results
-              <% else %>
-              <span class="font-medium"><%= @papuas.offset_value + 1 %></span>
+              <%# else %>
+              <span class="font-medium"><%#= @papuas.offset_value + 1 %></span>
               to
-              <span class="font-medium"><%= @papuas.offset_value + @papuas.length %></span>
+              <span class="font-medium"><%#= @papuas.offset_value + @papuas.length %></span>
               of
               <span class="font-medium"> <%= @papuas.total_count %> </span>
               results
-            <% end %>  
+            <%# end %>  
           </p>
         </div>
 
         <div id="paginator">
-          <%= paginate @papuas %>
+          <%#= paginate @papuas, remote: true %>
         </div>
 
-       </div>
-      </div>
     </div>
-  </div>
+  </div-->
 
 <!--script>
 function myFunction(n) {

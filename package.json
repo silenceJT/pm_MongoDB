@@ -13,6 +13,7 @@
     "chart.js": "^3.3.2",
     "chartkick": "^4.0.4",
     "css-loader": "5.2.2",
+    "jquery": "^3.6.0",
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-import": "^14.0.1",
     "tailwindcss": "^2.1.1",
