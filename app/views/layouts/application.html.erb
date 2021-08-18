@@ -14,15 +14,15 @@
 
 
   <header class="w-full fixed">
-    <%= render "shared/nav" %>
-    <div class="ml-64">
-      <%= render "shared/flash_notice" %>
-    </div>
+    <%#= render "shared/nav" %>
+    <!--div class="ml-64">
+      <%#= render "shared/flash_notice" %>
+    </div-->
   </header>
 
   <!-- dashboard design -->
   <!--body class="flex flex-wrap bg-gray-50 w-full h-screen"-->
-  <body class="flex flex-wrap bg-gray-50 w-full h-screen">
+  <!--body class="flex flex-wrap bg-gray-50 w-full h-screen">
 
     <!-- only if logined in, show header -->
     <!--div class="w-64 bg-white rounded p-3 shadow-lg fixed top-0 bottom-0 mt-16">
@@ -31,19 +31,19 @@
     </div-->
 
     <!--main class="ml-72 flex-1 mt-16 p-4"-->
-    <main class="flex-1 mt-16 p-4">
-      <%= render "shared/flash_notice" %>
-      <%= content_for?(:content) ? yield(:content) : yield %>
+    <!--main class="flex-1 mt-16 p-4">
+      <%#= render "shared/flash_notice" %>
+      <%#= content_for?(:content) ? yield(:content) : yield %>
     </main>
-  </body>
+  </body-->
 
   <!-- ** render must use # to comments out, original one -->
-  <!--body>
+  <body>
     <%#= yield %> 
     <%#= render "shared/header" %>
-    
+    <%= render "shared/nav" %>
     <main class="px-4 lg:px-10">
-      <%#= content_for?(:content) ? yield(:content) : yield %>
+      <%= content_for?(:content) ? yield(:content) : yield %>
     </main>
   </body>
   <%#= content_for?(:content) ? yield(:content) : yield %>

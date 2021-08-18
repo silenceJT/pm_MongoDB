@@ -1,0 +1,3 @@
+$("#papuas_table").html("<%= escape_javascript(render("papuas_table")) %>");
+
+$("#paginator").html("<%= escape_javascript(paginate("papuas_table", :remote => true).to_s) %>");
