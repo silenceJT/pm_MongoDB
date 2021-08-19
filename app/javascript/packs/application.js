@@ -24,3 +24,11 @@ require("stylesheets/application.scss")
 require("chartkick/chart.js")
 //= require jquery
 //= require jquery_ujs
+
+$(function() {
+
+  $("#papuas_search input").keyup(function() {
+    $.get($("#papuas_search").attr("action"), $("#papuas_search").serialize(), null, "script");
+    return false;
+  });
+});

@@ -3,7 +3,7 @@
 <h1 class="py-2 text-3xl text-gary-900 font-bold">Papunesias</h1>
 
 
-
+<%= form_tag papuas_path, :method => 'get', :id => "papuas_search" do %>
 <div class="px-4 bg-white min-w-full ">
   <div class="items-center block w-full mt-2 text-center lg:flex lg:flex-row lg:flex-1 lg:mt-0 lg:text-left justify-between">
     <!--input type="text" id="myInput" onkeyup="myFunction(7)" placeholder="Search Inventory" title="Type in inventories" class="focus:ring-indigo-500 focus:border-indigo-500 block w-1/4 shadow-sm sm:text-sm border-gray-300 rounded-md"-->
@@ -50,7 +50,43 @@
   </div>
 
   <!--div class="py-3" id='map' style='width: 1000px; height: 600px;'></div-->
-  <script>
+  <%#= text_field_tag :search, params[:search] %>
+  <div class="py-5"><%= render 'papuas' %></div>  
+
+  <div id="paginator" class="bg-white py-3 flex items-center justify-end border-t border-gray-200">
+    <%= paginate @papuas, remote: true %>
+  </div>  
+   
+
+  <!--div class="bg-white py-3 flex items-center justify-end border-t border-gray-200">
+    <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+      <div>
+          <p class="text-sm text-gray-700">
+            Showing
+            <%# if @papuas.length == 0 %>
+              <span class="font-medium"><%#= @papuas.offset_value %></span>
+              of
+              <span class="font-medium"> <%#= @papuas.total_count %> </span>
+              results
+              <%# else %>
+              <span class="font-medium"><%#= @papuas.offset_value + 1 %></span>
+              to
+              <span class="font-medium"><%#= @papuas.offset_value + @papuas.length %></span>
+              of
+              <span class="font-medium"> <%= @papuas.total_count %> </span>
+              results
+            <%# end %>  
+          </p>
+        </div>
+
+        <div id="paginator">
+          <%#= paginate @papuas, remote: true %>
+        </div>
+
+    </div>
+  </div-->
+
+<script>
     mapboxgl.accessToken = 'pk.eyJ1Ijoic2lsZW5jZWp0IiwiYSI6ImNrc2EwN3ZwNjB6NTcydXFxZ2N2bmRwNHcifQ.uxkpkzBwxIFOgqzEN_7bqA';
     const map = new mapboxgl.Map({
         container: 'map', // container ID
@@ -178,72 +214,35 @@
       });
     });
 
+    /*
+    function myFunction(n) {
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase().replace(/\W/g, ' ').replace(/\s+/g, ' ').trim().split(' ');
+
+      table = document.getElementById("myTable");
+      tr = table.getElementsByTagName("tr");
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[n]; //7th Column
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          for(j = 0; j < filter.length; j++){
+            if (txtValue.toUpperCase().indexOf(filter[j]) > -1) {
+              tr[i].style.display = "";
+            }
+            else {
+              tr[i].style.display = "none";
+              break;
+            }
+          }
+          /*if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }       
+      }
+    }*/
     
   </script>
-
-  
-  <div class="py-5"><%= render 'papuas' %></div>  
-
-  <div id="paginator" class="bg-white py-3 flex items-center justify-end border-t border-gray-200">
-    <%= paginate @papuas, remote: true %>
-  </div>  
-   
-
-  <!--div class="bg-white py-3 flex items-center justify-end border-t border-gray-200">
-    <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
-      <div>
-          <p class="text-sm text-gray-700">
-            Showing
-            <%# if @papuas.length == 0 %>
-              <span class="font-medium"><%#= @papuas.offset_value %></span>
-              of
-              <span class="font-medium"> <%#= @papuas.total_count %> </span>
-              results
-              <%# else %>
-              <span class="font-medium"><%#= @papuas.offset_value + 1 %></span>
-              to
-              <span class="font-medium"><%#= @papuas.offset_value + @papuas.length %></span>
-              of
-              <span class="font-medium"> <%= @papuas.total_count %> </span>
-              results
-            <%# end %>  
-          </p>
-        </div>
-
-        <div id="paginator">
-          <%#= paginate @papuas, remote: true %>
-        </div>
-
-    </div>
-  </div-->
-
-<!--script>
-function myFunction(n) {
-  var input, filter, table, tr, td, i, txtValue;
-  input = document.getElementById("myInput");
-  filter = input.value.toUpperCase().replace(/\W/g, ' ').replace(/\s+/g, ' ').trim().split(' ');
-
-  table = document.getElementById("myTable");
-  tr = table.getElementsByTagName("tr");
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[n]; //7th Column
-    if (td) {
-      txtValue = td.textContent || td.innerText;
-      for(j = 0; j < filter.length; j++){
-        if (txtValue.toUpperCase().indexOf(filter[j]) > -1) {
-          tr[i].style.display = "";
-        }
-        else {
-          tr[i].style.display = "none";
-          break;
-        }
-      }
-      /*if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }*/
-    }       
-  }
-}
-</script-->
+<% end %>
