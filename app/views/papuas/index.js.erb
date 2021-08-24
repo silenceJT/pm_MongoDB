@@ -1,4 +1,7 @@
-$("#papuas_table").html("<%= escape_javascript(render("papuas")) %>");
+//$("#papuas_search").html("<%= escape_javascript(render("papuas")) %>");
+$("#papuas_table tbody").html("<%= escape_javascript(render("papuas")) %>");
 
 //works fine but slow
 $("#paginator").html("<%= escape_javascript(paginate(@papuas, :remote => true).to_s) %>");
+
+//$("#chart").html('#{escape_javascript(yield :charts_js)}');

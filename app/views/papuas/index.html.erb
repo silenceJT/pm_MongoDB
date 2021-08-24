@@ -41,7 +41,7 @@
 
   <div id='map' style='width: 100%; height: 600px;'></div>
 
-  <div class="py-3">
+  <div class="py-3" id="chart">
     
     <%= pie_chart [["Results", @papuas_results.length], ["Others", @papuas_all.length - @papuas_results.length]], colors: ["#4264fb", "#fb4264"], label: @papuas_results.length, download: true %>
 
@@ -50,8 +50,123 @@
   </div>
 
   <!--div class="py-3" id='map' style='width: 1000px; height: 600px;'></div-->
-  <%#= text_field_tag :search, params[:search] %>
-  <div class="py-5"><%= render 'papuas' %></div>  
+  <%#= text_field_tag :search_inc, params[:search_inc] %>
+  <!--input type="text" id="search_c" name="search_c"-->
+
+  <div class="align-middle inline-block min-w-full" id="papuas_table">
+  <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+      
+    <table id="myTable" class="min-w-full divide-y divide-gray-200">
+    <thead class="bg-gray-50 divide-y divide-gray-200">
+        <tr class="h-12">
+            <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              No
+            </th>
+
+            <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <p>Language</p>
+              <%#= text_field_tag :search_inc, params[:search_inc] %>
+              <!--input type="text" id="search_c" name="search_c" class="focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md"-->
+            </th>
+
+            <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Language Family
+            </th>
+
+            <th scope="col" class="px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              ISO
+            </th>
+
+            <th scope="col" class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Country
+            </th>
+
+            <!--th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Latitude
+            </th>
+
+            <th scope="col" class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              longitude
+            </th-->
+
+            <th scope="col" class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Inventory
+            </th>
+
+            <th scope="col" class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <p>C</p>
+              <!--input type="text" id="search_c" name="search_c" class="focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md w-12"-->
+            </th>
+
+            <th scope="col" class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <p>V</p>
+              <!--input type="text" id="search_v" name="search_v" class="focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md w-12"-->
+            </th>
+
+            <th scope="col" class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <p>Total</p>
+              <!--input type="text" id="search_cv" name="search_cv" class="focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md w-12"-->
+            </th>
+        </tr>
+        <tr>
+            <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              
+            </th>
+
+            <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <input type="text" id="search_language" name="search_language" class="focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md w-24 h-8">
+            </th>
+
+            <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <input type="text" id="search_family" name="search_family" class="focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md w-32 h-8">
+            </th>
+
+            <th scope="col" class="px-2 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <input type="text" id="search_iso" name="search_iso" class="focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md w-12 h-8">
+            </th>
+
+            <th scope="col" class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <input type="text" id="search_country" name="search_country" class="focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md w-24 h-8">
+            </th>
+
+            <!--th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Latitude
+            </th>
+
+            <th scope="col" class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              longitude
+            </th-->
+
+            <th scope="col" class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <!--input type="text" id="search_inv" name="search_inv" class="focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md w-40 h-8"-->
+            </th>
+
+            <th scope="col" class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              
+              <input type="text" id="search_c" name="search_c" class="focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md w-12 h-8">
+            </th>
+
+            <th scope="col" class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              
+              <input type="text" id="search_v" name="search_v" class="focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md w-12 h-8">
+            </th>
+
+            <th scope="col" class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              
+              <input type="text" id="search_cv" name="search_cv" class="focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md w-12 h-8">
+            </th>
+        </tr>
+    </thead>
+    <tbody class="bg-white divide-y divide-gray-200">
+      <%= render 'papuas' %>
+    </tbody>
+    
+</table>
+
+      
+    </div>
+</div>
+  <!--div id="papuas_table" class="py-5"><%#= render 'papuas' %></div-->  
 
   <div id="paginator" class="bg-white py-3 flex items-center justify-end border-t border-gray-200">
     <%= paginate @papuas, remote: true %>

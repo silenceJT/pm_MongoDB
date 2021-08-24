@@ -27,6 +27,38 @@ class PapuasController < ApplicationController
       @papuas_3 = @papuas_2
     end
 
+    if params[:search_language].present?
+      @papuas_3 = @papuas_3.where(:language_name => /#{params[:search_language]}/i)
+    end
+
+    if params[:search_family].present?
+      @papuas_3 = @papuas_3.where(:language_family => /#{params[:search_family]}/i)
+    end
+
+    if params[:search_iso].present?
+      @papuas_3 = @papuas_3.where(:iso => /#{params[:search_iso]}/i)
+    end
+
+    if params[:search_country].present?
+      @papuas_3 = @papuas_3.where(:country => /#{params[:search_country]}/i)
+    end
+
+    if params[:search_inv].present?
+      @papuas_3 = @papuas_3.where(:inv => /#{params[:search_inv]}/i)
+    end
+
+    if params[:search_c].present?
+      @papuas_3 = @papuas_3.where(:count_of_consonants => params[:search_c])
+    end
+
+    if params[:search_v].present?
+      @papuas_3 = @papuas_3.where(:count_of_vowels => params[:search_v])
+    end
+
+    if params[:search_cv].present?
+      @papuas_3 = @papuas_3.where(:count_of_segments => params[:search_cv])
+    end
+
     @papuas_results = @papuas_3
     @papuas_all = Papua.all
     @papuas = @papuas_3

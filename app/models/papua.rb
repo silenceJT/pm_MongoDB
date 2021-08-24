@@ -19,6 +19,10 @@ class Papua
 
   #search_in :no, :language, :language_family, :iso, :country, :latitude, :longitude, :inv
   search_in :inv
+  search_in :language_name, index: :_language_keywords
+  search_in :count_of_consonants, index: :_con_keywords
+  search_in :count_of_vowels, index: :_vow_keywords
+  search_in :count_of_segments, index: :_seg_keywords
 
 
   def self.to_csv(options = {})
