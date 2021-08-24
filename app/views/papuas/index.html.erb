@@ -2,6 +2,8 @@
 
 <h1 class="py-2 text-3xl text-gary-900 font-bold">Papunesias</h1>
 
+<!--div class="load-ajax" style="float: right; width: 150px; height: 20px; background-position: center;
+    background-repeat: no-repeat;">xxxxxxxxxxxx</div-->
 
 <%= form_tag papuas_path, :method => 'get', :id => "papuas_search" do %>
 <div class="px-4 bg-white min-w-full ">
@@ -28,11 +30,13 @@
     <%# end %>
   </div>
 
-  <div class="flex justify-center">
-    <div class="text-lg font-medium text-gray-900">
+  <div class="flex justify-center space-x-4 text-lg font-medium text-gray-900">
+    <div>
       <p>
         Results: <%= @papuas_results.length %>
       </p>
+    </div>
+    <div>
       <P>
         Total: <%= @papuas_all.length %>
       </p>
@@ -41,11 +45,9 @@
 
   <div id='map' style='width: 100%; height: 600px;'></div>
 
-  <div class="py-3" id="chart">
+  <div class="py-5 flex items-center justify-between" id="charts">
     
-    <%= pie_chart [["Results", @papuas_results.length], ["Others", @papuas_all.length - @papuas_results.length]], colors: ["#4264fb", "#fb4264"], label: @papuas_results.length, download: true %>
-
-    <%= bar_chart [["Average of Segments",@avg_s, @avg_s], ["Average of Consonants", @avg_c, @avg_c], ["Average of Vowels", @avg_v, @avg_v]], download: true %>
+    <%= render 'charts' %>
 
   </div>
 

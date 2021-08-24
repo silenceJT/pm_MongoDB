@@ -5,4 +5,4 @@ $("#page_entries_info").html("<%= escape_javascript(render("page_entries_info"))
 //works fine but slow
 $("#paginator").html("<%= escape_javascript(paginate(@papuas, :remote => true).to_s) %>");
 
-//$("#chart").html('#{escape_javascript(yield :charts_js)}');
+$("#charts").html("<%= escape_javascript(render("charts")) %>");

@@ -1,20 +1,22 @@
-<div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+<!--div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
     <div>
-        <p class="text-sm text-gray-700">
+        <p class="text-base text-gray-700">
             Showing
-            <% if @papuas.length == 0 %>
-              <span class="font-medium"><%= @papuas.offset_value %></span>
+            <%# if @papuas.length == 0 %>
+              <span class="font-medium"><%#= @papuas.offset_value %></span>
               of
-              <span class="font-medium"> <%= @papuas.total_count %> </span>
+              <span class="font-medium"> <%#= @papuas.total_count %> </span>
               results
-              <% else %>
-              <span class="font-medium"><%= @papuas.offset_value + 1 %></span>
+              <%# else %>
+              <span class="font-medium"><%#= @papuas.offset_value + 1 %></span>
               to
-              <span class="font-medium"><%= @papuas.offset_value + @papuas.length %></span>
+              <span class="font-medium"><%#= @papuas.offset_value + @papuas.length %></span>
               of
-              <span class="font-medium"> <%= @papuas.total_count %> </span>
+              <span class="font-medium"> <%#= @papuas.total_count %> </span>
               results
-            <% end %>  
+            <%# end %>  
           </p>
     </div>
-</div>
+</div-->
+
+<%= page_entries_info @papuas, entry_name: 'result' %>

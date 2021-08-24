@@ -26,6 +26,14 @@ require("chartkick/chart.js")
 //= require jquery_ujs
 
 $(function() {
+	$('.load-ajax').hide();
+    $(document).ajaxStart(function() {
+        $('.load-ajax').show();
+   });
+   $(document).ajaxStop(function() {
+        $('.load-ajax').hide();
+   });
+	
 	function delay(callback, ms) {
 	  var timer = 0;
 	  return function() {
