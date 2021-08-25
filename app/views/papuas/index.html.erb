@@ -55,6 +55,7 @@
   <%#= text_field_tag :search_inc, params[:search_inc] %>
   <!--input type="text" id="search_c" name="search_c"-->
 
+  
   <div class="align-middle inline-block min-w-full" id="papuas_table">
   <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
       
@@ -116,19 +117,19 @@
             </th>
 
             <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              <input type="text" id="search_language" name="search_language" class="focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md w-24 h-8">
+              <input type="text" id="search_language" name="search_language" class="focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md w-28">
             </th>
 
             <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              <input type="text" id="search_family" name="search_family" class="focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md w-32 h-8">
+              <input type="text" id="search_family" name="search_family" class="focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md w-32">
             </th>
 
             <th scope="col" class="px-2 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              <input type="text" id="search_iso" name="search_iso" class="focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md w-12 h-8">
+              <input type="text" id="search_iso" name="search_iso" class="focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md w-12">
             </th>
 
             <th scope="col" class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              <input type="text" id="search_country" name="search_country" class="focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md w-24 h-8">
+              <input type="text" id="search_country" name="search_country" class="focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md w-24">
             </th>
 
             <!--th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -144,18 +145,48 @@
             </th>
 
             <th scope="col" class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              
-              <input type="text" id="search_c" name="search_c" class="focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md w-12 h-8">
+              <div class="mt-1 relative rounded-md shadow-sm">
+                <div class="absolute inset-y-0 left-0 flex items-center">
+                  <select id="select_c" name="select_c" class="focus:ring-indigo-500 focus:border-indigo-500 h-full py-0 pl-2 pr-7 border-gray-300 bg-transparent text-gray-500 sm:text-sm rounded-l-md">
+                    <option value="gte"> >= </option>
+                    <option value="gt"> > </option>
+                    <option value="eq" selected> = </option>
+                    <option value="lt"> < </option>
+                    <option value="lte"> <= </option>
+                  </select>
+                </div>
+                <input type="text" id="search_c" name="search_c" class="focus:ring-indigo-500 focus:border-indigo-500 block pl-16 sm:text-sm border-gray-300 rounded-md w-28">
+              </div>
             </th>
 
             <th scope="col" class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              
-              <input type="text" id="search_v" name="search_v" class="focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md w-12 h-8">
+              <div class="mt-1 relative rounded-md shadow-sm">
+                <div class="absolute inset-y-0 left-0 flex items-center">
+                  <select id="select_v" name="select_v" class="focus:ring-indigo-500 focus:border-indigo-500 h-full py-0 pl-2 pr-7 border-gray-300 bg-transparent text-gray-500 sm:text-sm rounded-l-md">
+                    <option value="gte"> >= </option>
+                    <option value="gt"> > </option>
+                    <option value="eq" selected> = </option>
+                    <option value="lt"> < </option>
+                    <option value="lte"> <= </option>
+                  </select>
+                </div>
+                <input type="text" id="search_v" name="search_v" class="focus:ring-indigo-500 focus:border-indigo-500 block pl-16 sm:text-sm border-gray-300 rounded-md w-28">
+              </div>
             </th>
 
             <th scope="col" class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              
-              <input type="text" id="search_cv" name="search_cv" class="focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md w-12 h-8">
+              <div class="mt-1 relative rounded-md shadow-sm">
+                <div class="absolute inset-y-0 left-0 flex items-center">
+                  <select id="select_cv" name="select_cv" class="focus:ring-indigo-500 focus:border-indigo-500 h-full py-0 pl-2 pr-7 border-gray-300 bg-transparent text-gray-500 sm:text-sm rounded-l-md">
+                    <option value="gte"> >= </option>
+                    <option value="gt"> > </option>
+                    <option value="eq" selected> = </option>
+                    <option value="lt"> < </option>
+                    <option value="lte"> <= </option>
+                  </select>
+                </div>
+                <input type="text" id="search_cv" name="search_cv" class="focus:ring-indigo-500 focus:border-indigo-500 block pl-16 sm:text-sm border-gray-300 rounded-md w-28">
+              </div>
             </th>
         </tr>
     </thead>

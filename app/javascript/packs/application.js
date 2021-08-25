@@ -34,6 +34,7 @@ $(function() {
         $('.load-ajax').hide();
    });
 	
+	// Delay function for type in
 	function delay(callback, ms) {
 	  var timer = 0;
 	  return function() {
@@ -45,6 +46,13 @@ $(function() {
 	  };
 	}
 
+	// Select tag change will requery the table
+	$("#papuas_search #papuas_table select").change(function() {
+    	$.get($("#papuas_search").attr("action"), $("#papuas_search").serialize(), null, "script");
+    	return false;
+  	});
+
+	// Any input will requery the table
   	$("#papuas_search #papuas_table input").keyup(delay(function(e) {
     	$.get($("#papuas_search").attr("action"), $("#papuas_search").serialize(), null, "script");
     	return false;

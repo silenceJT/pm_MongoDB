@@ -48,15 +48,58 @@ class PapuasController < ApplicationController
     end
 
     if params[:search_c].present?
-      @papuas_3 = @papuas_3.where(:count_of_consonants => params[:search_c])
+      if params[:select_c].present?
+        case params[:select_c]
+        when "gte"
+          @papuas_3 = @papuas_3.where(:count_of_consonants.gte => params[:search_c])
+        when "gt"
+          @papuas_3 = @papuas_3.where(:count_of_consonants.gt => params[:search_c])
+        when "eq"
+          @papuas_3 = @papuas_3.where(:count_of_consonants => params[:search_c])
+        when "lt"
+          @papuas_3 = @papuas_3.where(:count_of_consonants.lt => params[:search_c])
+        else
+          @papuas_3 = @papuas_3.where(:count_of_consonants.lte => params[:search_c])
+        end
+      end
+
+      #@papuas_3 = @papuas_3.where(:count_of_consonants => params[:search_c])
     end
 
     if params[:search_v].present?
-      @papuas_3 = @papuas_3.where(:count_of_vowels => params[:search_v])
+      if params[:select_v].present?
+        case params[:select_v]
+        when "gte"
+          @papuas_3 = @papuas_3.where(:count_of_vowels.gte => params[:search_v])
+        when "gt"
+          @papuas_3 = @papuas_3.where(:count_of_vowels.gt => params[:search_v])
+        when "eq"
+          @papuas_3 = @papuas_3.where(:count_of_vowels => params[:search_v])
+        when "lt"
+          @papuas_3 = @papuas_3.where(:count_of_vowels.lt => params[:search_v])
+        else
+          @papuas_3 = @papuas_3.where(:count_of_vowels.lte => params[:search_v])
+        end
+      end
+      #@papuas_3 = @papuas_3.where(:count_of_vowels => params[:search_v])
     end
 
     if params[:search_cv].present?
-      @papuas_3 = @papuas_3.where(:count_of_segments => params[:search_cv])
+      if params[:select_cv].present?
+        case params[:select_cv]
+        when "gte"
+          @papuas_3 = @papuas_3.where(:count_of_segments.gte => params[:search_cv])
+        when "gt"
+          @papuas_3 = @papuas_3.where(:count_of_segments.gt => params[:search_cv])
+        when "eq"
+          @papuas_3 = @papuas_3.where(:count_of_segments => params[:search_cv])
+        when "lt"
+          @papuas_3 = @papuas_3.where(:count_of_segments.lt => params[:search_cv])
+        else
+          @papuas_3 = @papuas_3.where(:count_of_segments.lte => params[:search_cv])
+        end
+      end
+      #@papuas_3 = @papuas_3.where(:count_of_segments => params[:search_cv])
     end
 
     @papuas_results = @papuas_3

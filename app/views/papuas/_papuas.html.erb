@@ -1,11 +1,11 @@
 
         <% @papuas.each do |papua| %>
         <tr onclick="window.location.href='/papuas/<%= papua.id.to_s %>'" style="cursor:pointer">
-        <td class="px-4 py-4 whitespace-nowrap">
+        <td class="px-4 py-4 whitespace-normal">
             <div class="text-sm text-gray-900"><%= papua.no %></div>
         </td>
 
-        <td class="px-4 py-4 whitespace-nowrap">
+        <td class="px-4 py-4 whitespace-normal">
             <div class="flex items-center">
                 <!--div class="flex-shrink-0 h-10 w-10">
                     <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60" alt="">                   
@@ -20,14 +20,14 @@
                       <!--/div-->
             </div>
         </td>
-        <td class="px-4 py-4 whitespace-nowrap">
+        <td class="px-4 py-4 whitespace-normal">
           <div class="text-sm text-gray-500"><%= papua.language_family %></div>
           <!--div class="text-sm text-gray-500">Optimization</div-->
         </td>
-        <td class="px-2 py-4 whitespace-nowrap">
+        <td class="px-2 py-4 whitespace-normal">
           <div class="text-sm text-gray-500"><%= papua.iso %></div>
         </td>
-        <td class="px-3 py-4 whitespace-nowrap text-sm text-gray-500">
+        <td class="px-3 py-4 whitespace-normal text-sm text-gray-500">
           <%= papua.country %>
         </td>
         <!--td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">
@@ -36,16 +36,16 @@
         <td class="px-6 py-3 text-sm text-gray-500 ">
           <%= papua.longitude %>
         </td-->
-        <td class="px-3 py-4 whitespace-nowrap text-sm text-gray-500">
+        <td class="px-3 py-4 whitespace-normal text-sm text-gray-500">
           <%= papua.inv %>
         </td>
-        <td class="px-3 py-4 whitespace-nowrap text-sm text-gray-500">
+        <td class="px-3 py-4 whitespace-normal text-sm text-gray-500">
           <%= papua.count_of_consonants %>
         </td>
-        <td class="px-3 py-4 whitespace-nowrap text-sm text-gray-500">
+        <td class="px-3 py-4 whitespace-normal text-sm text-gray-500">
           <%= papua.count_of_vowels %>
         </td>
-        <td class="px-3 py-4 whitespace-nowrap text-sm text-gray-500">
+        <td class="px-3 py-4 whitespace-normal text-sm text-gray-500">
           <%= papua.count_of_segments %>
         </td>
         <!--td class="px-2 py-4 whitespace-nowrap text-right text-sm font-medium">
