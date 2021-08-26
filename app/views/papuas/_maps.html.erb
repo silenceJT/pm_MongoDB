@@ -1,0 +1,153 @@
+<style>
+	.legend {
+	background-color: #fff;
+	border-radius: 3px;
+	top: 250px;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+	font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+	padding: 10px;
+	position: absolute;
+	right: 100px;
+	z-index: 1;
+	}
+	 
+	.legend h4 {
+	margin: 0 0 10px;
+	}
+	 
+	.legend div span {
+	border-radius: 50%;
+	display: inline-block;
+	height: 10px;
+	margin-right: 5px;
+	width: 10px;
+	}
+</style>
+
+<script>
+    mapboxgl.accessToken = 'pk.eyJ1Ijoic2lsZW5jZWp0IiwiYSI6ImNrc2EwN3ZwNjB6NTcydXFxZ2N2bmRwNHcifQ.uxkpkzBwxIFOgqzEN_7bqA';
+    const map = new mapboxgl.Map({
+        container: 'map', // container ID
+        style: 'mapbox://styles/mapbox/light-v10', // style URL
+        center: [141.65793, -4.20192], // starting position [lng, lat]
+        zoom: 4 // starting zoom
+    });
+
+    var lng_test = <%= raw @lng %>;
+    var lat_test = <%= raw @lat %>;
+    var name_test = <%= raw @name %>;
+    var family_test = <%= raw @family %>;
+    var country_test = <%= raw @country %>;
+
+
+    //Create GeoJSON Object
+    var gj = {
+      "name":"MyFeatureType",
+      "type":"FeatureCollection",
+      "features":[]
+    };
+
+    // Get all location results
+    for (let i = 0; i < lng_test.length; i++) {
+      //var name = name_test[i]
+      // Create an empty feature to store loaction
+      gj.features.push({
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": []
+        },
+        "properties": {
+          "description": `<strong>${name_test[i]}</strong><p>${family_test[i]}</P>`,
+          "ethnicity": country_test[i]
+        }
+      });
+      // 
+      gj.features[i].geometry.coordinates.push(lng_test[i], lat_test[i]);
+    };
+
+    map.on('load', () => {
+      // Add a GeoJSON source with results points.
+      map.addSource('points', {
+        'type': 'geojson',
+        'data': gj
+      });
+      // Add a circle layer
+      map.addLayer({
+        'id': 'circle',
+        'type': 'circle',
+        'source': 'points',
+        'paint': {
+          'circle-color': [
+            'match',
+            ['get', 'ethnicity'],
+            'PNG',
+            '#fbb03b',
+            'IND',
+            '#e55e5e',
+            '#223b53'
+          ],
+          'circle-radius': 6,
+          'circle-stroke-width': 2,
+          'circle-stroke-color': '#223b53'
+        }
+      });
+
+      // Create a popup, but don't add it to the map yet.
+      const popup = new mapboxgl.Popup({
+        closeButton: false,
+        closeOnClick: false
+      });
+       
+      // Center the map on the coordinates of any clicked circle from the 'circle' layer.
+      map.on('click', 'circle', (e) => {
+        map.flyTo({
+          center: e.features[0].geometry.coordinates
+        });
+        map.getCanvas().style.cursor = 'pointer';
+
+        // Copy coordinates array.
+        const coordinates = e.features[0].geometry.coordinates.slice();
+        const description = e.features[0].properties.description;
+         
+        // Ensure that if the map is zoomed out such that multiple
+        // copies of the feature are visible, the popup appears
+        // over the copy being pointed to.
+        while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+          coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+        }
+
+        // Click and then add popup to map
+        new mapboxgl.Popup()
+          .setLngLat(coordinates)
+          .setHTML(description)
+          .addTo(map);
+      });
+       
+      // Change the cursor to a pointer when the it enters a feature in the 'circle' layer.
+      map.on('mouseenter', 'circle', (e) => {
+        //map.getCanvas().style.cursor = 'pointer';
+
+        // Copy coordinates array.
+        const coordinates = e.features[0].geometry.coordinates.slice();
+        const description = e.features[0].properties.description;
+         
+        // Ensure that if the map is zoomed out such that multiple
+        // copies of the feature are visible, the popup appears
+        // over the copy being pointed to.
+        while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+        coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+        }
+         
+        // Populate the popup and set its coordinates
+        // based on the feature found.
+        popup.setLngLat(coordinates).setHTML(description).addTo(map);
+      });
+       
+      // Change it back to a pointer when it leaves.
+      map.on('mouseleave', 'circle', () => {
+        map.getCanvas().style.cursor = '';
+        popup.remove();
+      });
+    });    
+</script>
