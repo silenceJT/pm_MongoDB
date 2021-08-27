@@ -18,8 +18,9 @@ class PapuasController < ApplicationController
     end
     
     if params[:search_inc].present?
-      if params[:search_inc].to_s.include?('or')
-        @papuas_3 = @papuas_2.full_text_search(params[:search_inc], allow_empty_search: false, match: :any)
+      if params[:search_inc].to_s.include?('B')
+        @papuas_3 = @papuas_2.where(:inv => /#{'B'}/)
+        @papuas_3 = @papuas_3.full_text_search(params[:search_inc], allow_empty_search: false, match: :all)
       else
         @papuas_3 = @papuas_2.full_text_search(params[:search_inc], allow_empty_search: false, match: :all)
       end
