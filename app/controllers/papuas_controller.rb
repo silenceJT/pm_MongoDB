@@ -106,8 +106,8 @@ class PapuasController < ApplicationController
     @papuas_results = @papuas_3
     @papuas_all = Papua.all
     @papuas = @papuas_3
-    @papuas = @papuas.order(no: 1)
-    @papuas = Kaminari.paginate_array(@papuas).page(params[:page]).per(15)
+    #@papuas = @papuas.order(no: 1)
+    @papuas_page = Kaminari.paginate_array(@papuas).page(params[:page]).per(15)
 
 
     #@papuas_2 = Papua.all.entries.without(@papuas_1)

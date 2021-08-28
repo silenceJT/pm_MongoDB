@@ -56,5 +56,5 @@ $(function() {
   	$("#papuas_search #papuas_table input").keyup(delay(function(e) {
     	$.get($("#papuas_search").attr("action"), $("#papuas_search").serialize(), null, "script");
     	return false;
-  	}, 500));
+  	}, 300));
 });
