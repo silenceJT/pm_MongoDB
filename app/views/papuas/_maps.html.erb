@@ -1,26 +1,27 @@
 <style>
 	.legend {
-	background-color: #fff;
-	border-radius: 3px;
-	top: 250px;
-	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-	font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
-	padding: 10px;
-	position: absolute;
-	right: 100px;
-	z-index: 1;
+		background-color: #fff;
+		border-radius: 3px;
+		top: 250px;
+		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+		font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+		padding: 10px;
+		position: absolute;
+		right: 100px;
+		z-index: 1;
 	}
 	 
 	.legend h4 {
-	margin: 0 0 10px;
+		margin: 0 0 2px;
 	}
 	 
 	.legend div span {
-	border-radius: 50%;
-	display: inline-block;
-	height: 10px;
-	margin-right: 5px;
-	width: 10px;
+		border-radius: 50%;
+		display: inline-block;
+		vertical-align: baseline;
+		height: 12px;
+		margin-right: 5px;
+		width: 12px;
 	}
 </style>
 
@@ -78,6 +79,7 @@
       gj_results.features[i].geometry.coordinates.push(lng_results[i], lat_results[i]);
     };
 
+    // Get all other rest locations
     for (let i = 0; i < lng_other.length; i++) {
       //var name = name_test[i]
       // Create an empty feature to store loaction
@@ -89,7 +91,8 @@
         },
         "properties": {
           "description": `<strong>${name_other[i]}</strong><p>${family_other[i]}</P>`,
-          "ethnicity": country_other[i]
+          "ethnicity": country_other[i],
+          "icon": "za-provincial-2"
         }
       });
       // 
@@ -98,11 +101,123 @@
 
     map.on('load', () => {
 
+      map.loadImage('/circle.png', (error, image) => {
+		if (error) throw error;
+		map.addImage('results-icon', image, { 'sdf': true });
+		map.addSource('points_1', {
+        	'type': 'geojson',
+        	'data': gj_results
+      	});
+		map.addLayer({
+			'id': 'circle_1',
+			'source': 'points_1',
+			//'source-layer': 'food_stores-8sw1vy',
+			'type': 'symbol',
+			'layout': {
+				'icon-image': 'results-icon',
+				'icon-size': 0.6,
+				'icon-allow-overlap': true
+			},
+			'paint': {
+				'icon-color': [
+				'match', // Use the 'match' expression: https://docs.mapbox.com/mapbox-gl-js/style-spec/#expressions-match
+				['get', 'ethnicity'], // Use the result 'STORE_TYPE' property
+				'PNG',
+	            '#fbb03b',
+	            'IND',
+	            '#e55e5e',
+	            '#223b53' // any other store type
+				]
+			}
+			});
+		});
+
+      map.loadImage('/school-JP.png', (error, image) => {
+		if (error) throw error;
+		map.addImage('other-icon', image, { 'sdf': true });
+		map.addSource('points_2', {
+        	'type': 'geojson',
+        	'data': gj_other
+      	});
+		map.addLayer({
+			'id': 'circle_2',
+			'source': 'points_2',
+			//'source-layer': 'food_stores-8sw1vy',
+			'type': 'symbol',
+			'layout': {
+				'icon-image': 'other-icon',
+				'icon-size': 1,
+				'icon-allow-overlap': true
+			},
+			'paint': {
+				'icon-color': [
+				'match', // Use the 'match' expression: https://docs.mapbox.com/mapbox-gl-js/style-spec/#expressions-match
+				['get', 'ethnicity'], // Use the result 'STORE_TYPE' property
+				'PNG',
+	            '#fbb03b',
+	            'IND',
+	            '#e55e5e',
+	            '#223b53' // any other store type
+				]
+			}
+			});
+		});
+
+      // map.addSource('points_2', {
+      //   'type': 'geojson',
+      //   'data': gj_other
+      // });
+
+      // add layer for the rest results first
+      // map.addLayer({
+      //   'id': 'circle_2',
+      //   'type': 'symbol',
+      //   'source': 'points_2',
+      //   'layout': {
+      //   	'icon-image': '{icon}',
+      //   	'icon-allow-overlap': true
+      //   },
+      //   'paint': {
+      //     'icon-color': [
+      //       'match',
+      //       ['get', 'ethnicity'],
+      //       'PNG',
+      //       '#fbb03b',
+      //       'IND',
+      //       '#e55e5e',
+      //       '#223b53'
+      //     ]
+      // 	}
+      // });
+      // map.addLayer({
+      //   'id': 'circle_2',
+      //   'type': 'symbol',
+      //   'source': 'points_2',
+      //   'paint': {
+      //     'circle-color': [
+      //       'match',
+      //       ['get', 'ethnicity'],
+      //       'PNG',
+      //       '#fbb03b',
+      //       'IND',
+      //       '#e55e5e',
+      //       '#223b53'
+      //     ],
+      //     'circle-radius': 3,
+      //     'circle-stroke-width': 0,
+      //     'circle-stroke-color': '#223b53',
+      //     'circle-opacity': 0.8,
+      //     'circle-stroke-opacity': 0.8
+      //   }
+      // });
+
+/*
+      // Add a GeoJSON source with results points.
       map.addSource('points_2', {
         'type': 'geojson',
         'data': gj_other
       });
-
+      // Add a circle layer
       map.addLayer({
         'id': 'circle_2',
         'type': 'circle',
@@ -118,39 +233,13 @@
             '#223b53'
           ],
           'circle-radius': 3,
-          'circle-stroke-width': 0,
+          'circle-stroke-width': 1,
           'circle-stroke-color': '#223b53',
           'circle-opacity': 0.8,
           'circle-stroke-opacity': 0.8
         }
       });
-
-      // Add a GeoJSON source with results points.
-      map.addSource('points_1', {
-        'type': 'geojson',
-        'data': gj_results
-      });
-      // Add a circle layer
-      map.addLayer({
-        'id': 'circle_1',
-        'type': 'circle',
-        'source': 'points_1',
-        'paint': {
-          'circle-color': [
-            'match',
-            ['get', 'ethnicity'],
-            'PNG',
-            '#fbb03b',
-            'IND',
-            '#e55e5e',
-            '#223b53'
-          ],
-          'circle-radius': 6,
-          'circle-stroke-width': 2,
-          'circle-stroke-color': '#223b53'
-        }
-      });
-
+*/
       
 
       // Create a popup, but don't add it to the map yet.
