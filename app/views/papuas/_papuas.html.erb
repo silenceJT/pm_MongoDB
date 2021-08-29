@@ -53,5 +53,68 @@
         </td-->
       </tr>
       <% end %>
-    <!-- More items... -->
+    
+    <tr>
+      <td align="center" colspan="9" class="px-4 py-4 text-lg text-gray-700 font-medium">
+        The rest 
+        <span class="font-semibold text-blue-700 text-2xl"> <%= @papuas_other.length %> </span>
+        languages
+      </td>
+    </tr>
+
+    <% @papuas_other.each do |papua| %>
+      
+        <tr onclick="window.location.href='/papuas/<%= papua.id.to_s %>'" style="cursor:pointer">
+        <td class="px-4 py-4 whitespace-normal bg-blue-50">
+            <div class="text-sm text-gray-900"><%= papua.no %></div>
+        </td>
+
+        <td class="px-4 py-4 whitespace-normal bg-blue-50">
+            <div class="flex items-center">
+                <!--div class="flex-shrink-0 h-10 w-10">
+                    <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60" alt="">                   
+                </div-->
+                <!--div class="ml-4"-->
+                <div class="text-sm font-medium text-gray-900">
+                    <%= papua.language_name %>
+                </div>
+                      <!--div class="text-sm text-gray-500">
+                        jane.cooper@example.com
+                      </div-->
+                      <!--/div-->
+            </div>
+        </td>
+        <td class="px-4 py-4 whitespace-normal bg-blue-50">
+          <div class="text-sm text-gray-500"><%= papua.language_family %></div>
+          <!--div class="text-sm text-gray-500">Optimization</div-->
+        </td>
+        <td class="px-2 py-4 whitespace-normal bg-blue-50">
+          <div class="text-sm text-gray-500"><%= papua.iso %></div>
+        </td>
+        <td class="px-3 py-4 whitespace-normal text-sm text-gray-500 bg-blue-50">
+          <%= papua.country %>
+        </td>
+        <!--td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">
+          <%= papua.latitude %>
+        </td>
+        <td class="px-6 py-3 text-sm text-gray-500 ">
+          <%= papua.longitude %>
+        </td-->
+        <td class="px-3 py-4 whitespace-normal text-sm text-gray-500 bg-blue-50">
+          <%= papua.inv %>
+        </td>
+        <td class="px-3 py-4 whitespace-normal text-sm text-gray-500 bg-blue-50">
+          <%= papua.count_of_consonants %>
+        </td>
+        <td class="px-3 py-4 whitespace-normal text-sm text-gray-500 bg-blue-50">
+          <%= papua.count_of_vowels %>
+        </td>
+        <td class="px-3 py-4 whitespace-normal text-sm text-gray-500 bg-blue-50">
+          <%= papua.count_of_segments %>
+        </td>
+        <!--td class="px-2 py-4 whitespace-nowrap text-right text-sm font-medium">
+          <%#= link_to 'Edit', edit_product_path(product), class: "text-indigo-600 hover:text-indigo-900" %>
+        </td-->
+      </tr>
+      <% end %>
     

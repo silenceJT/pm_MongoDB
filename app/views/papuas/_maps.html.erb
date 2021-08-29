@@ -29,54 +29,112 @@
     const map = new mapboxgl.Map({
         container: 'map', // container ID
         style: 'mapbox://styles/mapbox/light-v10', // style URL
-        center: [141.65793, -4.20192], // starting position [lng, lat]
-        zoom: 4 // starting zoom
+        center: [140.44268, -4.50417], // starting position [lng, lat]
+        zoom: 4.75 // starting zoom
     });
 
-    var lng_test = <%= raw @lng %>;
-    var lat_test = <%= raw @lat %>;
-    var name_test = <%= raw @name %>;
-    var family_test = <%= raw @family %>;
-    var country_test = <%= raw @country %>;
+    var lng_results = <%= raw @lng_results %>;
+    var lat_results = <%= raw @lat_results %>;
+    var name_results = <%= raw @name_results %>;
+    var family_results = <%= raw @family_results %>;
+    var country_results = <%= raw @country_results %>;
+
+    var lng_other = <%= raw @lng_other %>;
+    var lat_other = <%= raw @lat_other %>;
+    var name_other = <%= raw @name_other %>;
+    var family_other = <%= raw @family_other %>;
+    var country_other = <%= raw @country_other %>;
 
 
     //Create GeoJSON Object
-    var gj = {
+    var gj_results = {
+      "name":"MyFeatureType",
+      "type":"FeatureCollection",
+      "features":[]
+    };
+
+    var gj_other = {
       "name":"MyFeatureType",
       "type":"FeatureCollection",
       "features":[]
     };
 
     // Get all location results
-    for (let i = 0; i < lng_test.length; i++) {
+    for (let i = 0; i < lng_results.length; i++) {
       //var name = name_test[i]
       // Create an empty feature to store loaction
-      gj.features.push({
+      gj_results.features.push({
         "type": "Feature",
         "geometry": {
           "type": "Point",
           "coordinates": []
         },
         "properties": {
-          "description": `<strong>${name_test[i]}</strong><p>${family_test[i]}</P>`,
-          "ethnicity": country_test[i]
+          "description": `<strong>${name_results[i]}</strong><p>${family_results[i]}</P>`,
+          "ethnicity": country_results[i]
         }
       });
       // 
-      gj.features[i].geometry.coordinates.push(lng_test[i], lat_test[i]);
+      gj_results.features[i].geometry.coordinates.push(lng_results[i], lat_results[i]);
+    };
+
+    for (let i = 0; i < lng_other.length; i++) {
+      //var name = name_test[i]
+      // Create an empty feature to store loaction
+      gj_other.features.push({
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": []
+        },
+        "properties": {
+          "description": `<strong>${name_other[i]}</strong><p>${family_other[i]}</P>`,
+          "ethnicity": country_other[i]
+        }
+      });
+      // 
+      gj_other.features[i].geometry.coordinates.push(lng_other[i], lat_other[i]);
     };
 
     map.on('load', () => {
-      // Add a GeoJSON source with results points.
-      map.addSource('points', {
+
+      map.addSource('points_2', {
         'type': 'geojson',
-        'data': gj
+        'data': gj_other
+      });
+
+      map.addLayer({
+        'id': 'circle_2',
+        'type': 'circle',
+        'source': 'points_2',
+        'paint': {
+          'circle-color': [
+            'match',
+            ['get', 'ethnicity'],
+            'PNG',
+            '#fbb03b',
+            'IND',
+            '#e55e5e',
+            '#223b53'
+          ],
+          'circle-radius': 3,
+          'circle-stroke-width': 0,
+          'circle-stroke-color': '#223b53',
+          'circle-opacity': 0.8,
+          'circle-stroke-opacity': 0.8
+        }
+      });
+
+      // Add a GeoJSON source with results points.
+      map.addSource('points_1', {
+        'type': 'geojson',
+        'data': gj_results
       });
       // Add a circle layer
       map.addLayer({
-        'id': 'circle',
+        'id': 'circle_1',
         'type': 'circle',
-        'source': 'points',
+        'source': 'points_1',
         'paint': {
           'circle-color': [
             'match',
@@ -93,6 +151,8 @@
         }
       });
 
+      
+
       // Create a popup, but don't add it to the map yet.
       const popup = new mapboxgl.Popup({
         closeButton: false,
@@ -100,7 +160,31 @@
       });
        
       // Center the map on the coordinates of any clicked circle from the 'circle' layer.
-      map.on('click', 'circle', (e) => {
+      map.on('click', 'circle_1', (e) => {
+        map.flyTo({
+          center: e.features[0].geometry.coordinates
+        });
+        map.getCanvas().style.cursor = 'pointer';
+
+        // Copy coordinates array.
+        const coordinates = e.features[0].geometry.coordinates.slice();
+        const description = e.features[0].properties.description;
+         
+        // Ensure that if the map is zoomed out such that multiple
+        // copies of the feature are visible, the popup appears
+        // over the copy being pointed to.
+        while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+          coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+        }
+
+        // Click and then add popup to map
+        new mapboxgl.Popup()
+          .setLngLat(coordinates)
+          .setHTML(description)
+          .addTo(map);
+      });
+
+      map.on('click', 'circle_2', (e) => {
         map.flyTo({
           center: e.features[0].geometry.coordinates
         });
@@ -125,7 +209,26 @@
       });
        
       // Change the cursor to a pointer when the it enters a feature in the 'circle' layer.
-      map.on('mouseenter', 'circle', (e) => {
+      map.on('mouseenter', 'circle_1', (e) => {
+        //map.getCanvas().style.cursor = 'pointer';
+
+        // Copy coordinates array.
+        const coordinates = e.features[0].geometry.coordinates.slice();
+        const description = e.features[0].properties.description;
+         
+        // Ensure that if the map is zoomed out such that multiple
+        // copies of the feature are visible, the popup appears
+        // over the copy being pointed to.
+        while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+        coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+        }
+         
+        // Populate the popup and set its coordinates
+        // based on the feature found.
+        popup.setLngLat(coordinates).setHTML(description).addTo(map);
+      });
+
+      map.on('mouseenter', 'circle_2', (e) => {
         //map.getCanvas().style.cursor = 'pointer';
 
         // Copy coordinates array.
@@ -145,7 +248,12 @@
       });
        
       // Change it back to a pointer when it leaves.
-      map.on('mouseleave', 'circle', () => {
+      map.on('mouseleave', 'circle_1', () => {
+        map.getCanvas().style.cursor = '';
+        popup.remove();
+      });
+
+      map.on('mouseleave', 'circle_2', () => {
         map.getCanvas().style.cursor = '';
         popup.remove();
       });

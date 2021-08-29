@@ -108,6 +108,12 @@ class PapuasController < ApplicationController
     @papuas = @papuas_3
     #@papuas = @papuas.order(no: 1)
     @papuas_page = Kaminari.paginate_array(@papuas).page(params[:page]).per(15)
+    
+    other = Array.new()
+    @papuas_3.each do |p3|
+      other.push(p3.no)
+    end
+    @papuas_other = Papua.not_in(:no => other)
 
 
     #@papuas_2 = Papua.all.entries.without(@papuas_1)
@@ -126,22 +132,35 @@ class PapuasController < ApplicationController
     @sum_c = 0
     @sum_v = 0
     @sum_d = 0
-    @lng = Array.new;
-    @lat = Array.new;
-    @name = Array.new;
-    @family = Array.new;
-    @country = Array.new;
+    @lng_results = Array.new;
+    @lat_results = Array.new;
+    @name_results = Array.new;
+    @family_results = Array.new;
+    @country_results = Array.new;
+    @lng_other = Array.new;
+    @lat_other = Array.new;
+    @name_other = Array.new;
+    @family_other = Array.new;
+    @country_other = Array.new;
     
     @papuas_results.each do |p_r| 
       @sum_s += p_r.count_of_segments 
       @sum_c += p_r.count_of_consonants
       @sum_v += p_r.count_of_vowels
       #@sum_d += p_r.count_of_diphthongs
-      @lng.push(p_r.longitude)
-      @lat.push(p_r.latitude)
-      @name.push(p_r.language_name)
-      @family.push(p_r.language_family)
-      @country.push(p_r.country)
+      @lng_results.push(p_r.longitude)
+      @lat_results.push(p_r.latitude)
+      @name_results.push(p_r.language_name)
+      @family_results.push(p_r.language_family)
+      @country_results.push(p_r.country)
+    end
+
+    @papuas_other.each do |p_o| 
+      @lng_other.push(p_o.longitude)
+      @lat_other.push(p_o.latitude)
+      @name_other.push(p_o.language_name)
+      @family_other.push(p_o.language_family)
+      @country_other.push(p_o.country)
     end
 
     @avg_s = (@sum_s.to_f/@papuas_results.length).round(2)

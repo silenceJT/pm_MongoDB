@@ -1,22 +1,26 @@
-<!--div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+<div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
     <div>
         <p class="text-base text-gray-700">
             Showing
-            <%# if @papuas.length == 0 %>
-              <span class="font-medium"><%#= @papuas.offset_value %></span>
+            <%# if @papuas_page.length == 0 %>
+              <!--span class="font-medium"><%#= @papuas_page.offset_value %></span>
               of
-              <span class="font-medium"> <%#= @papuas.total_count %> </span>
+              <span class="font-medium"> <%#= @papuas_page.total_count %> </span>
               results
               <%# else %>
-              <span class="font-medium"><%#= @papuas.offset_value + 1 %></span>
+              <span class="font-medium"><%#= @papuas_page.offset_value + 1 %></span>
               to
-              <span class="font-medium"><%#= @papuas.offset_value + @papuas.length %></span>
+              <span class="font-medium"><%#= @papuas_page.offset_value + @papuas_page.length %></span>
               of
-              <span class="font-medium"> <%#= @papuas.total_count %> </span>
-              results
-            <%# end %>  
+              <span class="font-medium"> <%#= @papuas_page.total_count %> </span-->
+              
+            <%# end %> 
+            <span class="font-semibold text-lg"> <%= @papuas_page.total_count %> </span>
+              results and rest 
+            <span class="font-semibold text-lg"> <%= @papuas_other.length %> </span>
+              languages in blue rows
           </p>
     </div>
-</div-->
+</div>
 
-<%= page_entries_info @papuas_page, entry_name: 'result' %>
+<%#= page_entries_info @papuas_page, entry_name: 'result' %>
