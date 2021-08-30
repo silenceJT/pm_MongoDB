@@ -45,7 +45,7 @@ class PapuasController < ApplicationController
     end
 
     if params[:search_inv].present?
-      @papuas_3 = @papuas_3.where(:inv => /#{params[:search_inv]}/i)
+      @papuas_3 = @papuas_3.where(:inv => /#{params[:search_inv]}/)
     end
 
     if params[:search_c].present?

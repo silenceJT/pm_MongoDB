@@ -44,7 +44,7 @@ Mongoid::Search.setup do |config|
   config.strip_symbols = /[._:;'\"`,?|+={}()!@#%^&*<>~\$\-\\\/\[\]]/
 
   # Strip accents regex to be replaced. These sybols will be removed after strip_symbols replacing
-  config.strip_accents = /[^\s\p{Alnum}]/
+  #config.strip_accents = /[^\s\p{Alnum}]/
 
   # Minimum word size. Words smaller than it won't be indexed
   config.minimum_word_size = 1
