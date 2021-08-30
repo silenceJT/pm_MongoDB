@@ -25,7 +25,8 @@ require("chartkick/chart.js")
 //= require jquery
 //= require jquery_ujs
 
-$(function() {
+$(document).ready(function() {
+	
 	$('.load-ajax').hide();
     $(document).ajaxStart(function() {
         $('.load-ajax').show();
@@ -52,9 +53,19 @@ $(function() {
     	return false;
   	});
 
+  	// $(document).on("change", ".#papuas_search #papuas_table select",function() {
+   //  	$.get($("#papuas_search").attr("action"), $("#papuas_search").serialize(), null, "script");
+   //  	return false;
+  	// });
+
 	// Any input will requery the table
   	$("#papuas_search #papuas_table input").keyup(delay(function(e) {
     	$.get($("#papuas_search").attr("action"), $("#papuas_search").serialize(), null, "script");
     	return false;
   	}, 500));
+
+  	// $(document).on("keyup", ".#papuas_search #papuas_table input", delay(function(e) {
+   //  	$.get($("#papuas_search").attr("action"), $("#papuas_search").serialize(), null, "script");
+   //  	return false;
+  	// }, 500));
 });
