@@ -7,6 +7,7 @@ class PapuasController < ApplicationController
     
     #gem full text search
     exc = Array.new()
+    inv_search = Array.new()
     if params[:search_exc].present?
       @papuas_1 = Papua.full_text_search(params[:search_exc], allow_empty_search: false, match: :any)
       @papuas_1.each do |p1|
@@ -44,8 +45,26 @@ class PapuasController < ApplicationController
       @papuas_3 = @papuas_3.where(:country => /#{params[:search_country]}/i)
     end
 
+    inv_no = Array.new()
+
     if params[:search_inv].present?
-      @papuas_3 = @papuas_3.where(:inv => /#{params[:search_inv]}/)
+      inv_search = params[:search_inv].split(" ")
+      inv_search.each do |inv|
+        @papuas_3 = @papuas_3.where(:inv => /#{inv}/)
+        @papuas_3.each do |p3|
+          inv_no.push(p3.no)
+        end
+      end
+      counts = Hash.new(0)
+      inv_no_final = Array.new()
+      inv_no.each { 
+        |item| counts[item] += 1 
+        if counts[item] == inv_search.size
+          inv_no_final.push(item)
+        end
+      }
+      @papuas_3 = @papuas_3.in(:no => inv_no_final)
+      #@papuas_3 = @papuas_3.where(:inv => /#{params[:search_inv]}/)
     end
 
     if params[:search_c].present?
