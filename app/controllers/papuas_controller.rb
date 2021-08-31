@@ -63,24 +63,24 @@ class PapuasController < ApplicationController
           @papuas_neg.each do |pn|
             inv_neg.push(pn.no)
           end
-        else
-          pos_search.push(inv)
-          @papuas_pos = @papuas_3.where(:inv => /#{inv}/)
-          @papuas_pos.each do |pp|
-            inv_pos.push(pp.no)
-          end
+        # else
+        #   pos_search.push(inv)
+        #   @papuas_pos = @papuas_3.where(:inv => /#{inv}/)
+        #   @papuas_pos.each do |pp|
+        #     inv_pos.push(pp.no)
+        #   end
         end
       end
       counts_pos = Hash.new(0)
       counts_neg = Hash.new(0)
-      if inv_pos.any?
-        inv_pos.each { 
-          |item| counts_pos[item] += 1 
-          if counts_pos[item] == inv_search.size
-            inv_pos_final.push(item)
-          end
-        }
-      end
+      # if inv_pos.any?
+      #   inv_pos.each { 
+      #     |item| counts_pos[item] += 1 
+      #     if counts_pos[item] == inv_search.size
+      #       inv_pos_final.push(item)
+      #     end
+      #   }
+      # end
       if inv_neg.any?
         inv_neg.each { 
           |item| counts_neg[item] += 1 
@@ -95,9 +95,28 @@ class PapuasController < ApplicationController
       #   final_no = inv_pos_final & (all_no - inv_neg_final)
       # end
       @papuas_n = @papuas_3.not_in(:no => inv_neg_final)
-      @papuas_3 = @papuas_n.full_text_search(pos_search, allow_empty_search: false, match: :all)
-      #@papuas_3 = @papuas_3.in(:no => final_no)
-      #@papuas_3 = @papuas_3.where(:inv => /#{params[:search_inv]}/)
+
+      inv_search.each do |inv|
+        next if inv.start_with?('-')
+        @papuas_pos = @papuas_n.where(:inv => /#{inv}/)
+        @papuas_pos.each do |pp|
+          inv_pos.push(pp.no)
+        end
+      end
+      if inv_pos.any?
+        inv_pos.each { 
+          |item| counts_pos[item] += 1 
+          if counts_pos[item] == inv_search.size
+            inv_pos_final.push(item)
+          end
+        }
+      end
+      #@papuas_3 = @papuas_n.full_text_search(pos_search, allow_empty_search: false, match: :all)
+      if inv_pos_final.empty?
+        @papuas_3 = @papuas_n
+      else
+        @papuas_3 = @papuas_3.in(:no => inv_pos_final)
+      end
     end
 
     if params[:search_c].present?
