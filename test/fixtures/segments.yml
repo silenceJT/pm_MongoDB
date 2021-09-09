@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  'no': 1
+  ipa: MyString
+  sequence: MyString
+  category: MyString
+  place: MyString
+
+two:
+  'no': 1
+  ipa: MyString
+  sequence: MyString
+  category: MyString
+  place: MyString

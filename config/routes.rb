@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :segments
   resources :papuas
   devise_for :users
   #get 'home/index'

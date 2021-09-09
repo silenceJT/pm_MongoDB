@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>No:</strong>
+  <%= @segment.no %>
+</p>
+
+<p>
+  <strong>Ipa:</strong>
+  <%= @segment.ipa %>
+</p>
+
+<p>
+  <strong>Sequence:</strong>
+  <%= @segment.sequence %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @segment.category %>
+</p>
+
+<p>
+  <strong>Place:</strong>
+  <%= @segment.place %>
+</p>
+
+<%= link_to 'Edit', edit_segment_path(@segment) %> |
+<%= link_to 'Back', segments_path %>

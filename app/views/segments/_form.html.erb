@@ -1,0 +1,42 @@
+<%= form_with(model: segment) do |form| %>
+  <% if segment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(segment.errors.count, "error") %> prohibited this segment from being saved:</h2>
+
+      <ul>
+        <% segment.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :no %>
+    <%= form.number_field :no %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ipa %>
+    <%= form.text_field :ipa %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sequence %>
+    <%= form.text_field :sequence %>
+  </div>
+
+  <div class="field">
+    <%= form.label :category %>
+    <%= form.text_field :category %>
+  </div>
+
+  <div class="field">
+    <%= form.label :place %>
+    <%= form.text_field :place %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
