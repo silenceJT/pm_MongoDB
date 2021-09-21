@@ -8,6 +8,15 @@ class SegmentsController < ApplicationController
 
   # GET /segments/1 or /segments/1.json
   def show
+    seg = @segment.ipa.to_s
+    other = Array.new()
+    #@segment.ipa.to_s
+    @papuas = Papua.all.where(:inv => /#{seg}/)
+    @papuas = @papuas.order(no: 1)
+    @papuas.each do |p|
+      other.push(p.no)
+    end
+    @papuas_other = Papua.not_in(:no => other)
   end
 
   # GET /segments/new

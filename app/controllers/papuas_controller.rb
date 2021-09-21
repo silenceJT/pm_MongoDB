@@ -6,42 +6,42 @@ class PapuasController < ApplicationController
     @papuas = Papua.all
     
     #gem full text search
-    exc = Array.new()
-    if params[:search_exc].present?
-      @papuas_1 = Papua.full_text_search(params[:search_exc], allow_empty_search: false, match: :any)
-      @papuas_1.each do |p1|
-        exc.push(p1.no)
-      end
-      @papuas_2 = Papua.not_in(:no => exc)
-    else
-      @papuas_2 = Papua.all
-    end
+    # exc = Array.new()
+    # if params[:search_exc].present?
+    #   @papuas_1 = Papua.full_text_search(params[:search_exc], allow_empty_search: false, match: :any)
+    #   @papuas_1.each do |p1|
+    #     exc.push(p1.no)
+    #   end
+    #   @papuas_2 = Papua.not_in(:no => exc)
+    # else
+    #   @papuas_2 = Papua.all
+    # end
     
-    if params[:search_inc].present?
-      if params[:search_inc].to_s.include?('B')
-        @papuas_3 = @papuas_2.where(:inv => /#{'B'}/)
-        @papuas_3 = @papuas_3.full_text_search(params[:search_inc], allow_empty_search: false, match: :all)
-      else
-        @papuas_3 = @papuas_2.full_text_search(params[:search_inc], allow_empty_search: false, match: :all)
-      end
-    else
-      @papuas_3 = @papuas_2
-    end
+    # if params[:search_inc].present?
+    #   if params[:search_inc].to_s.include?('B')
+    #     @papuas_3 = @papuas_2.where(:inv => /#{'B'}/)
+    #     @papuas_3 = @papuas_3.full_text_search(params[:search_inc], allow_empty_search: false, match: :all)
+    #   else
+    #     @papuas_3 = @papuas_2.full_text_search(params[:search_inc], allow_empty_search: false, match: :all)
+    #   end
+    # else
+    #   @papuas_3 = @papuas_2
+    # end
 
     if params[:search_language].present?
-      @papuas_3 = @papuas_3.where(:language_name => /#{params[:search_language]}/i)
+      @papuas = @papuas.where(:language_name => /#{params[:search_language]}/i)
     end
 
     if params[:search_family].present?
-      @papuas_3 = @papuas_3.where(:language_family => /#{params[:search_family]}/i)
+      @papuas = @papuas.where(:language_family => /#{params[:search_family]}/i)
     end
 
     if params[:search_iso].present?
-      @papuas_3 = @papuas_3.where(:iso => /#{params[:search_iso]}/i)
+      @papuas = @papuas.where(:iso => /#{params[:search_iso]}/i)
     end
 
     if params[:search_country].present?
-      @papuas_3 = @papuas_3.where(:country => /#{params[:search_country]}/i)
+      @papuas = @papuas.where(:country => /#{params[:search_country]}/i)
     end
 
     inv_search = Array.new()
@@ -59,7 +59,7 @@ class PapuasController < ApplicationController
         if inv.start_with?('-')
           inv_sliced = Array.new()
           inv_sliced = inv.slice!(0)
-          @papuas_neg = @papuas_3.where(:inv => /#{inv}/)
+          @papuas_neg = @papuas.where(:inv => /#{inv}/)
           @papuas_neg.each do |pn|
             inv_neg.push(pn.no)
           end
@@ -94,7 +94,7 @@ class PapuasController < ApplicationController
       # else
       #   final_no = inv_pos_final & (all_no - inv_neg_final)
       # end
-      @papuas_n = @papuas_3.not_in(:no => inv_neg_final)
+      @papuas_n = @papuas.not_in(:no => inv_neg_final)
 
       inv_search.each do |inv|
         next if inv.start_with?('-')
@@ -113,9 +113,9 @@ class PapuasController < ApplicationController
       end
       #@papuas_3 = @papuas_n.full_text_search(pos_search, allow_empty_search: false, match: :all)
       if inv_pos_final.empty?
-        @papuas_3 = @papuas_n
+        @papuas = @papuas_n
       else
-        @papuas_3 = @papuas_3.in(:no => inv_pos_final)
+        @papuas = @papuas.in(:no => inv_pos_final)
       end
     end
 
@@ -123,15 +123,15 @@ class PapuasController < ApplicationController
       if params[:select_c].present?
         case params[:select_c]
         when "gte"
-          @papuas_3 = @papuas_3.where(:count_of_consonants.gte => params[:search_c])
+          @papuas = @papuas.where(:count_of_consonants.gte => params[:search_c])
         when "gt"
-          @papuas_3 = @papuas_3.where(:count_of_consonants.gt => params[:search_c])
+          @papuas = @papuas.where(:count_of_consonants.gt => params[:search_c])
         when "eq"
-          @papuas_3 = @papuas_3.where(:count_of_consonants => params[:search_c])
+          @papuas = @papuas.where(:count_of_consonants => params[:search_c])
         when "lt"
-          @papuas_3 = @papuas_3.where(:count_of_consonants.lt => params[:search_c])
+          @papuas = @papuas.where(:count_of_consonants.lt => params[:search_c])
         else
-          @papuas_3 = @papuas_3.where(:count_of_consonants.lte => params[:search_c])
+          @papuas = @papuas.where(:count_of_consonants.lte => params[:search_c])
         end
       end
 
@@ -142,15 +142,15 @@ class PapuasController < ApplicationController
       if params[:select_v].present?
         case params[:select_v]
         when "gte"
-          @papuas_3 = @papuas_3.where(:count_of_vowels.gte => params[:search_v])
+          @papuas = @papuas.where(:count_of_vowels.gte => params[:search_v])
         when "gt"
-          @papuas_3 = @papuas_3.where(:count_of_vowels.gt => params[:search_v])
+          @papuas = @papuas.where(:count_of_vowels.gt => params[:search_v])
         when "eq"
-          @papuas_3 = @papuas_3.where(:count_of_vowels => params[:search_v])
+          @papuas = @papuas.where(:count_of_vowels => params[:search_v])
         when "lt"
-          @papuas_3 = @papuas_3.where(:count_of_vowels.lt => params[:search_v])
+          @papuas = @papuas.where(:count_of_vowels.lt => params[:search_v])
         else
-          @papuas_3 = @papuas_3.where(:count_of_vowels.lte => params[:search_v])
+          @papuas = @papuas.where(:count_of_vowels.lte => params[:search_v])
         end
       end
       #@papuas_3 = @papuas_3.where(:count_of_vowels => params[:search_v])
@@ -160,32 +160,32 @@ class PapuasController < ApplicationController
       if params[:select_cv].present?
         case params[:select_cv]
         when "gte"
-          @papuas_3 = @papuas_3.where(:count_of_segments.gte => params[:search_cv])
+          @papuas = @papuas.where(:count_of_segments.gte => params[:search_cv])
         when "gt"
-          @papuas_3 = @papuas_3.where(:count_of_segments.gt => params[:search_cv])
+          @papuas = @papuas.where(:count_of_segments.gt => params[:search_cv])
         when "eq"
-          @papuas_3 = @papuas_3.where(:count_of_segments => params[:search_cv])
+          @papuas = @papuas.where(:count_of_segments => params[:search_cv])
         when "lt"
-          @papuas_3 = @papuas_3.where(:count_of_segments.lt => params[:search_cv])
+          @papuas = @papuas.where(:count_of_segments.lt => params[:search_cv])
         else
-          @papuas_3 = @papuas_3.where(:count_of_segments.lte => params[:search_cv])
+          @papuas = @papuas.where(:count_of_segments.lte => params[:search_cv])
         end
       end
       #@papuas_3 = @papuas_3.where(:count_of_segments => params[:search_cv])
     end
 
-    @papuas_results = @papuas_3
+    @papuas_results = @papuas
     @papuas_all = Papua.all
-    if @papuas_3.exists?
-      @papuas = @papuas_3
+    if @papuas.exists?
+      @papuas = @papuas
     else
       @papuas = Papua.all
     end
-    #@papuas = @papuas.order(no: 1)
+    @papuas = @papuas.order(no: 1)
     @papuas_page = Kaminari.paginate_array(@papuas).page(params[:page]).per(15)
     
     other = Array.new()
-    @papuas_3.each do |p3|
+    @papuas.each do |p3|
       other.push(p3.no)
     end
     @papuas_other = Papua.not_in(:no => other)
