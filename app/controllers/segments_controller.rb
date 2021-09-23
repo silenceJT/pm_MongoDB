@@ -4,6 +4,15 @@ class SegmentsController < ApplicationController
   # GET /segments or /segments.json
   def index
     @segments = Segment.all
+    @seg_list = Array.new()
+    @papuas = Papua.all
+    @papuas.each do |pap|
+      pap.consonants.split("\,").each do |p_i|
+        unless @seg_list.to_s.include?(p_i)
+          @seg_list.push(p_i)
+        end
+      end
+    end
   end
 
   # GET /segments/1 or /segments/1.json
