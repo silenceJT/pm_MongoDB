@@ -7,9 +7,9 @@ class SegmentsController < ApplicationController
     @seg_list = Array.new()
     @papuas = Papua.all
     @papuas.each do |pap|
-      pap.consonants.split("\,").each do |p_i|
-        unless @seg_list.to_s.include?(p_i)
-          @seg_list.push(p_i)
+      pap.consonants.split("\,").each do |p_c|
+        unless @seg_list.to_s.include?(p_c)
+          @seg_list.push(p_c)
         end
       end
     end

@@ -12,6 +12,8 @@ class Papua
   field :longitude, type: String
   field :inv, type: String
   field :consonants, type: String
+  field :vowels, type: String
+  field :diphthongs, type: String
   field :count_of_segments, type: Integer
   field :count_of_consonants, type: Integer
   field :count_of_vowels, type: Integer

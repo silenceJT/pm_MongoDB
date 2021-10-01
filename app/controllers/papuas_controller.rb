@@ -5,29 +5,6 @@ class PapuasController < ApplicationController
   def index
     @papuas = Papua.all
     
-    #gem full text search
-    # exc = Array.new()
-    # if params[:search_exc].present?
-    #   @papuas_1 = Papua.full_text_search(params[:search_exc], allow_empty_search: false, match: :any)
-    #   @papuas_1.each do |p1|
-    #     exc.push(p1.no)
-    #   end
-    #   @papuas_2 = Papua.not_in(:no => exc)
-    # else
-    #   @papuas_2 = Papua.all
-    # end
-    
-    # if params[:search_inc].present?
-    #   if params[:search_inc].to_s.include?('B')
-    #     @papuas_3 = @papuas_2.where(:inv => /#{'B'}/)
-    #     @papuas_3 = @papuas_3.full_text_search(params[:search_inc], allow_empty_search: false, match: :all)
-    #   else
-    #     @papuas_3 = @papuas_2.full_text_search(params[:search_inc], allow_empty_search: false, match: :all)
-    #   end
-    # else
-    #   @papuas_3 = @papuas_2
-    # end
-
     if params[:search_language].present?
       @papuas = @papuas.where(:language_name => /#{params[:search_language]}/i)
     end
@@ -50,7 +27,6 @@ class PapuasController < ApplicationController
     inv_pos_final = Array.new()
     inv_neg_final = Array.new()
     final_no = Array.new()
-    all_no = Array(1..290)
     pos_search = Array.new()
 
     if params[:search_inv].present?
@@ -175,7 +151,7 @@ class PapuasController < ApplicationController
     end
 
     @papuas_results = @papuas
-    @papuas_all = Papua.all
+    @papuas_all_size = Papua.all.size
     if @papuas.exists?
       @papuas = @papuas
     else
@@ -190,18 +166,6 @@ class PapuasController < ApplicationController
     end
     @papuas_other = Papua.not_in(:no => other)
 
-
-    #@papuas_2 = Papua.all.entries.without(@papuas_1)
-    #@papuas = @papuas_2.full_text_search(params[:search_inc], allow_empty_search: false, match: :all)
-    #@papuas = Papua.full_text_search(params[:search_inc], allow_empty_search: true, match: :all)
-    
-
-    #mongoDB text search
-    #@papuas = Papua.text_search(params[:search_inc])
-    #@papuas_results = @papuas
-    #@papuas_all = Papua.all
-    #@papuas = @papuas.order(no: 1)
-    #@papuas = Kaminari.paginate_array(@papuas).page(params[:page]).per(15)
 
     @sum_s = 0
     @sum_c = 0
@@ -255,6 +219,15 @@ class PapuasController < ApplicationController
 
   # GET /papuas/1 or /papuas/1.json
   def show
+    seg_list = Segment.all
+    @seg_no = Hash.new(0)
+    for p_c in @papua.consonants.split("\,") do
+      for seg in seg_list.entries do
+        if seg.ipa === p_c.strip
+          @seg_no[p_c] = seg.id
+        end
+      end
+    end
   end
 
   # GET /papuas/new

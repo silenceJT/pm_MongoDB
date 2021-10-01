@@ -1,3 +1,3 @@
-<%= pie_chart [["Results", @papuas_results.length], ["Others", @papuas_all.length - @papuas_results.length]], colors: ["#4264fb", "#fb4264"], label: @papuas_results.length, download: true, width: "50%" %>
+<%= pie_chart [["Results", @papuas_results.size], ["Others", @papuas_all_size - @papuas_results.size]], colors: ["#4264fb", "#fb4264"], label: @papuas_results.size, download: true, width: "50%" %>
 
 <%= bar_chart [["Average of Segments",@avg_s, @avg_s], ["Average of Consonants", @avg_c, @avg_c], ["Average of Vowels", @avg_v, @avg_v]], download: true, width: "50%" %>
