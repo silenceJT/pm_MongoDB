@@ -1,17 +1,14 @@
 <style>
-  .map {
-    z-index: -1;
-  }
 	.legend {
 		background-color: #fff;
 		border-radius: 3px;
-		top: 250px;
+		top: 50px;
 		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 		font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
 		padding: 10px;
 		position: absolute;
-		right: 100px;
-		z-index: -1;
+		right: 50px;
+		z-index: 1;
 	}
 	 
 	.legend h4 {
@@ -27,6 +24,17 @@
 		width: 12px;
 	}
 </style>
+
+<div id="state-legend" class="legend">
+    <h4>Results</h4>
+    <div><span style="background-color: #fbb03b" class="circle"></span>PNG</div>
+    <div><span style="background-color: #e55e5e" class="circle"></span>IND</div>
+    <div><span style="background-color: #223b53" class="circle"></span>Solomon Islands</div>
+    <h4 style="margin-top: 14px ">The Rest</h4>
+    <div><span><img class="img" src="/school-JP_PNG.svg"></img></span>PNG</div>
+    <div><span><img class="img" src="/school-JP_IND.svg"></img></span>IND</div>
+    <div><span><img class="img" src="/school-JP_Solo.svg"></img></span>Solomon Islands</div>
+  </div>
 
 <script>
     mapboxgl.accessToken = 'pk.eyJ1Ijoic2lsZW5jZWp0IiwiYSI6ImNrc2EwN3ZwNjB6NTcydXFxZ2N2bmRwNHcifQ.uxkpkzBwxIFOgqzEN_7bqA';

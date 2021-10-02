@@ -1,18 +1,16 @@
-<style>
+<!-- <style>
 	#chart-a {
-		z-index: -1;
+		z-index: 0;
 		position: static;
 	}
 	#chart-b {
-		z-index: -1;
+		z-index: 0;
 		position: static;
 	}
-</style>
+</style> -->
 
-<div class="charts py-5 flex items-center justify-between float-none" id="charts">
 
 <%= pie_chart [["Results", @papuas_results.size], ["Others", @papuas_all_size - @papuas_results.size]], colors: ["#4264fb", "#fb4264"], label: @papuas_results.size, download: true, width: "50%", id: "chart-a" %>
 
 <%= bar_chart [["Average of Segments",@avg_s, @avg_s], ["Average of Consonants", @avg_c, @avg_c], ["Average of Vowels", @avg_v, @avg_v]], download: true, width: "50%", id: "chart-b" %>
 
-</div>
