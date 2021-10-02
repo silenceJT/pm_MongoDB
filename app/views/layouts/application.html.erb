@@ -14,10 +14,7 @@
 
 
   <header class="w-full fixed">
-    <%#= render "shared/nav" %>
-    <!--div class="ml-64">
-      <%#= render "shared/flash_notice" %>
-    </div-->
+
   </header>
 
   <!-- dashboard design -->
@@ -36,15 +33,18 @@
       <%#= content_for?(:content) ? yield(:content) : yield %>
     </main>
   </body-->
-
+  <!--div class="w-full fixed">
+    <%#= render "shared/nav" %>
+  </div-->
   <!-- ** render must use # to comments out, original one -->
   <body>
-    <%#= yield %> 
-    <%#= render "shared/header" %>
-    <%= render "shared/nav" %>
-    <main class="px-4 lg:px-10">
+    <!-- <div class="fixed w-full"-->
+      <%= render "shared/nav" %>
+    <!--/div> -->
+    
+    <div class="px-4 lg:px-10 pt-16">
       <%= content_for?(:content) ? yield(:content) : yield %>
-    </main>
+    </div>
   </body>
   <%#= content_for?(:content) ? yield(:content) : yield %>
 

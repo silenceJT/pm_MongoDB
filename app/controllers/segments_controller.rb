@@ -1,4 +1,6 @@
 class SegmentsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :verify_email
   before_action :set_segment, only: %i[ show edit update destroy ]
 
   # GET /segments or /segments.json
@@ -83,5 +85,9 @@ class SegmentsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def segment_params
       params.require(:segment).permit(:no, :ipa, :sequence, :category, :place)
+    end
+
+    def verify_email
+      (redirect_to(root_path) unless current_user.email.include?('jt'))
     end
 end

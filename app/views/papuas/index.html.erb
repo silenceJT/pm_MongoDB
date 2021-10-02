@@ -6,7 +6,7 @@
     background-repeat: no-repeat;">xxxxxxxxxxxx</div-->
 
 <%= form_tag papuas_path, :method => 'get', :id => "papuas_search" do %>
-<div class="px-4 bg-white min-w-full ">
+<div class="bg-white min-w-full ">
   <div class="items-center block w-full mt-2 text-center lg:flex lg:flex-row lg:flex-1 lg:mt-0 lg:text-left justify-between">
     <!--input type="text" id="myInput" onkeyup="myFunction(7)" placeholder="Search Inventory" title="Type in inventories" class="focus:ring-indigo-500 focus:border-indigo-500 block w-1/4 shadow-sm sm:text-sm border-gray-300 rounded-md"-->
 
@@ -44,7 +44,7 @@
   </div>
 
   <!--div id='map' style='width: 100%; height: 600px;'></div-->
-  <div id='map' style='width: 100%; height: 600px;'>
+  <div class="" id='map' style='width: 100%; height: 600px;'>
     <%= render 'maps' %>
   </div>
 
@@ -59,7 +59,7 @@
     <div><span><img class="img" src="/school-JP_Solo.svg"></img></span>Solomon Islands</div>
   </div>
 
-  <div class="py-5 flex items-center justify-between" id="charts">
+  <div class="py-5 flex items-center justify-between float-none" id="charts">
     
     <%= render 'charts' %>
 
@@ -165,8 +165,8 @@
             </th>
 
             <th scope="col" class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              <div class="mt-1 relative rounded-md shadow-sm">
-                <div class="absolute inset-y-0 left-0 flex items-center">
+              <div class="flex rounded-md shadow-sm">
+                <span class="inline-flex items-center">
                   <select id="select_c" name="select_c" class="focus:ring-indigo-500 focus:border-indigo-500 h-full py-0 pl-2 pr-7 border-gray-300 bg-transparent text-gray-500 sm:text-sm rounded-l-md">
                     <option value="gte"> >= </option>
                     <option value="gt"> > </option>
@@ -174,14 +174,14 @@
                     <option value="lt"> < </option>
                     <option value="lte"> <= </option>
                   </select>
-                </div>
-                <input type="text" id="search_c" name="search_c" class="focus:ring-indigo-500 focus:border-indigo-500 block pl-16 sm:text-sm border-gray-300 rounded-md w-28">
+                </span>
+                <input type="text" id="search_c" name="search_c" class="focus:ring-indigo-500 focus:border-indigo-500 block sm:text-sm border-gray-300 rounded-none rounded-r-md w-14">
               </div>
             </th>
 
             <th scope="col" class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              <div class="mt-1 relative rounded-md shadow-sm">
-                <div class="absolute inset-y-0 left-0 flex items-center">
+              <div class="flex rounded-md shadow-sm">
+                <span class="inline-flex items-center">
                   <select id="select_v" name="select_v" class="focus:ring-indigo-500 focus:border-indigo-500 h-full py-0 pl-2 pr-7 border-gray-300 bg-transparent text-gray-500 sm:text-sm rounded-l-md">
                     <option value="gte"> >= </option>
                     <option value="gt"> > </option>
@@ -189,14 +189,14 @@
                     <option value="lt"> < </option>
                     <option value="lte"> <= </option>
                   </select>
-                </div>
-                <input type="text" id="search_v" name="search_v" class="focus:ring-indigo-500 focus:border-indigo-500 block pl-16 sm:text-sm border-gray-300 rounded-md w-28">
+                </span>
+                <input type="text" id="search_v" name="search_v" class="focus:ring-indigo-500 focus:border-indigo-500 block sm:text-sm border-gray-300 rounded-none rounded-r-md w-14">
               </div>
             </th>
 
             <th scope="col" class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              <div class="mt-1 relative rounded-md shadow-sm">
-                <div class="absolute inset-y-0 left-0 flex items-center">
+              <div class="flex rounded-md shadow-sm">
+                <span class="inline-flex items-center">
                   <select id="select_cv" name="select_cv" class="focus:ring-indigo-500 focus:border-indigo-500 h-full py-0 pl-2 pr-7 border-gray-300 bg-transparent text-gray-500 sm:text-sm rounded-l-md">
                     <option value="gte"> >= </option>
                     <option value="gt"> > </option>
@@ -204,8 +204,8 @@
                     <option value="lt"> < </option>
                     <option value="lte"> <= </option>
                   </select>
-                </div>
-                <input type="text" id="search_cv" name="search_cv" class="focus:ring-indigo-500 focus:border-indigo-500 block pl-16 sm:text-sm border-gray-300 rounded-md w-28">
+                </span>
+                <input type="text" id="search_cv" name="search_cv" class="focus:ring-indigo-500 focus:border-indigo-500 block sm:text-sm border-gray-300 rounded-none rounded-r-md w-14">
               </div>
             </th>
         </tr>

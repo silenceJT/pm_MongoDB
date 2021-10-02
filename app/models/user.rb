@@ -1,6 +1,6 @@
 class User
   include Mongoid::Document
-  store_in collection: "User", database: "SPS"
+  store_in collection: "User", database: "Papua"
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -40,6 +40,8 @@ class User
   field :last_name,   type: String  
   field :name,        type: String    
   field :admin,       type: Mongoid::Boolean, default: false
+
+  validates :email, presence: true
 
   #t.timestamps null: false
 end

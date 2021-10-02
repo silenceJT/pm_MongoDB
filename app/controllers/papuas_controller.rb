@@ -1,5 +1,7 @@
 class PapuasController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_papua, only: %i[ show edit update destroy ]
+  before_action :verify_email
 
   # GET /papuas or /papuas.json
   def index
@@ -285,6 +287,10 @@ class PapuasController < ApplicationController
     # Only allow a list of trusted parameters through.
     def papua_params
       params.require(:papua).permit(:language, :language_family, :iso, :country, :latitude, :longitude, :inv)
+    end
+
+    def verify_email
+      (redirect_to(root_path) unless current_user.email.include?('jt'))
     end
 
   protected
