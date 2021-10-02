@@ -290,7 +290,10 @@ class PapuasController < ApplicationController
     end
 
     def verify_email
-      (redirect_to(root_path) unless current_user.email.include?('jt'))
+      #(redirect_to(root_path) unless current_user.email.include?('jt'))
+      #add whitelist for users
+      whitelist = ["jessewjt@gmail.com", "abc"]
+      (redirect_to(root_path) unless whitelist.include?(current_user.email))
     end
 
   protected
