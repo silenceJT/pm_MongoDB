@@ -6,7 +6,7 @@
     background-repeat: no-repeat;">xxxxxxxxxxxx</div-->
 
 <%= form_tag papuas_path, :method => 'get', :id => "papuas_search" do %>
-<div class="bg-white min-w-full ">
+<div class="min-w-full ">
   <div class="items-center block w-full mt-2 text-center lg:flex lg:flex-row lg:flex-1 lg:mt-0 lg:text-left justify-between">
     <!--input type="text" id="myInput" onkeyup="myFunction(7)" placeholder="Search Inventory" title="Type in inventories" class="focus:ring-indigo-500 focus:border-indigo-500 block w-1/4 shadow-sm sm:text-sm border-gray-300 rounded-md"-->
 
@@ -44,7 +44,7 @@
   </div>
 
   <!--div id='map' style='width: 100%; height: 600px;'></div-->
-  <div class="" id='map' style='width: 100%; height: 600px;'>
+  <div class="map" id='map' style='width: 100%; height: 600px;'>
     <%= render 'maps' %>
   </div>
 
@@ -59,11 +59,11 @@
     <div><span><img class="img" src="/school-JP_Solo.svg"></img></span>Solomon Islands</div>
   </div>
 
-  <div class="py-5 flex items-center justify-between float-none" id="charts">
+  <!--div class="charts py-5 flex items-center justify-between float-none" id="charts"-->
     
     <%= render 'charts' %>
 
-  </div>
+  <!--/div-->
 
   <!--div class="py-3" id='map' style='width: 1000px; height: 600px;'></div-->
   <%#= text_field_tag :search_inc, params[:search_inc] %>
