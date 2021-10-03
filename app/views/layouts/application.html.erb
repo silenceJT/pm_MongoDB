@@ -40,9 +40,12 @@
   <body>
     <!-- <div class="fixed w-full"-->
       <%= render "shared/nav" %>
+      <div class="pt-16">
+        <%= render "shared/flash_notice" %>
+      </div>
     <!--/div> -->
     
-    <div class="px-4 lg:px-10 pt-16">
+    <div class="px-4 lg:px-10">
       <%= content_for?(:content) ? yield(:content) : yield %>
     </div>
   </body>

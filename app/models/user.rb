@@ -41,7 +41,7 @@ class User
   field :name,        type: String    
   field :admin,       type: Mongoid::Boolean, default: false
 
-  validates :email, presence: true
+  #validates :email, presence: true
 
   #t.timestamps null: false
 end
