@@ -41,9 +41,6 @@ class User
   #field :name,        type: String    
   field :admin,       type: Mongoid::Boolean, default: false
 
-  validates :email, presence: {message: "Email cant be empty"}
-  validates :password, presence: {message: "Password cant be empty"}
-  validates :password, length: {minimum: 6, message: "Password should not less than 6 characters"}
 
   #t.timestamps null: false
 end

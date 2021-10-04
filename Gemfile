@@ -21,7 +21,7 @@ gem 'jbuilder', '~> 2.7'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'devise', '~> 4.7', '>= 4.7.3'
 
-gem 'mongoid', '~> 7.0.5'
+gem 'mongoid'
 
 gem 'kaminari-mongoid'
 gem 'kaminari-actionview'
