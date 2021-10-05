@@ -11,8 +11,10 @@
 </p>
 
 <p>
-  <strong>Iso:</strong>
-  <a href="https://iso639-3.sil.org/code/<%= @papua.iso.to_s %>" target="_blank" class="text-blue-600"><%= @papua.iso %></a>
+  <strong>ISO:</strong>
+  <span class="px-4 inline-flex text-sm leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+    <a href="https://iso639-3.sil.org/code/<%= @papua.iso.to_s %>" target="_blank" class="text-blue-600"><%= @papua.iso %></a>
+  </span>
 </p>
 
 <p>
@@ -31,25 +33,27 @@
 </p>
 
 <p>
-  <strong>Inv:</strong>
+  <strong>Inventories(<%= @papua.inv.split(",").size %>):</strong>
   <%= @papua.inv %>
 </p>
 
 <p>
-  <strong>Consonants:</strong>
+  <strong>Consonants(<%= @papua.consonants.split(",").size %>):</strong>
   <% @seg_no.each do |k,v| %>
-    <a href="/segments/<%= v.to_s %>" target="_blank" class="text-blue-600"><%= "#{k} " %></a>
+    <span class="px-4 inline-flex text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+      <a href="/segments/<%= v.to_s %>" target="_blank" class=""><%= "#{k}" %></a>
+    </span>
   <% end %>
 </p>
 
 <p>
-  <strong>Vowels:</strong>
+  <strong>Vowels(<%= @papua.vowels.split(",").size %>):</strong>
   <%= @papua.vowels %>
 </p>
 
-<% if @papua.diphthongs.length > 0 %>
+<% if @papua.diphthongs.size > 0 %>
   <p>
-    <strong>Diphthongs:</strong>
+    <strong>Diphthongs(<%= @papua.diphthongs.split(",").size %>):</strong>
     <%= @papua.diphthongs %>
   </p>
 <% end %>
