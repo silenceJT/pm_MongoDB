@@ -88,7 +88,7 @@ class SegmentsController < ApplicationController
     end
 
     def verify_email
-      whitelist = ["jessewjt@gmail.com", "abc"]
+      whitelist = ["jessewjt@gmail.com", "j.hajek@unimelb.edu.au", "timothy.brickell@unimelb.edu.au"]
       (redirect_to(root_path) unless whitelist.include?(current_user.email))
     end
 end
