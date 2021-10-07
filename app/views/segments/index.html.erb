@@ -3,105 +3,118 @@
 
 <h1 class="py-2 text-3xl text-gary-900 font-bold">Segments</h1>
 
-<%#= @seg_list %>
-
-<div class="align-middle inline-block min-w-full" id="papuas_table">
+<div class="align-middle inline-block min-w-full" id="segments_table">
   <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-      
+
     <table id="myTable" class="min-w-full divide-y divide-gray-200">
-    <thead class="bg-gray-50 divide-y divide-gray-200">
+      <thead class="bg-gray-50 divide-y divide-gray-200">
         <tr class="h-12">
-            <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              No
-            </th>
+          <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            No
+          </th>
 
-            <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              <div class="flex flex-auto items-center">
-                <p>ipa</p>
-                <input type="text" id="myInput" onkeyup="myFunction(1)" class="focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md ml-2 w-16">
-              </div>
-            </th>
+          <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <div class="flex flex-auto items-center">
+              <p>ipa</p>
+              <input type="text" id="search1" onkeyup="myFunction(1)" class="focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md ml-2 w-16">
+            </div>
+          </th>
 
-            <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              <div class="flex flex-auto items-center">
-                sequence
-                <input type="text" id="myInput" onkeyup="myFunction(2)" class="focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md ml-2 w-36">
-              </div>
-            </th>
+          <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <div class="flex flex-auto items-center">
+              sequence
+              <input type="text" id="search2" onkeyup="myFunction(2)" class="focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md ml-2 w-36">
+            </div>
+          </th>
 
-            <th scope="col" class="px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              <div class="flex flex-auto items-center">
-                category
-                <input type="text" id="myInput" onkeyup="myFunction(3)" class="focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md ml-2 w-36">
-              </div>
-            </th>
+          <th scope="col" class="px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <div class="flex flex-auto items-center">
+              category
+              <input type="text" id="search3" onkeyup="myFunction(3)" class="focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md ml-2 w-36">
+            </div>
+          </th>
 
-            <th scope="col" class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              <div class="flex flex-auto items-center">
-                place
-                <input type="text" id="myInput" onkeyup="myFunction(4)" class="focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md ml-2 w-36">
-              </div>
-            </th>
+          <th scope="col" class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <div class="flex flex-auto items-center">
+              place
+              <input type="text" id="search4" onkeyup="myFunction(4)" class="focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md ml-2 w-36">
+            </div>
+          </th>
         </tr>
-    </thead>
-    <tbody class="bg-white divide-y divide-gray-200">
+      </thead>
+      <tbody class="bg-white divide-y divide-gray-200">
         <% @segments.each do |segment| %>
         <tr onclick="window.location.href='/segments/<%= segment.id.to_s %>'" style="cursor:pointer">
-        <td class="px-4 py-4 whitespace-normal">
+          <td class="px-4 py-4 whitespace-normal">
             <div class="text-sm text-gray-900"><%= segment.no %></div>
-        </td>
+          </td>
 
-        <td class="px-4 py-4 whitespace-normal">
+          <td class="px-4 py-4 whitespace-normal">
             <div class="flex items-center">
-                <div class="text-sm font-medium text-gray-900"><%= segment.ipa %></div> 
+              <div class="text-sm font-medium text-gray-900"><%= segment.ipa %></div> 
             </div>
-        </td>
-        <td class="px-4 py-4 whitespace-normal">
-          <div class="text-sm text-gray-500"><%= segment.sequence %></div>
-        </td>
-        <td class="px-2 py-4 whitespace-normal">
-          <div class="text-sm text-gray-500"><%= segment.category %></div>
-        </td>
-        <td class="px-3 py-4 whitespace-normal text-sm text-gray-500">
-          <%= segment.place %>
-        </td>
-      </tr>
-      <% end %>
-    </tbody>
-    
+          </td>
+          <td class="px-4 py-4 whitespace-normal">
+            <div class="text-sm text-gray-500"><%= segment.sequence %></div>
+          </td>
+          <td class="px-2 py-4 whitespace-normal">
+            <div class="text-sm text-gray-500"><%= segment.category %></div>
+          </td>
+          <td class="px-3 py-4 whitespace-normal text-sm text-gray-500">
+            <%= segment.place %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+
     </table>
-    </div>
   </div>
+</div>
 
-  <script>
-    
-    function myFunction(n) {
-      var input, filter, table, tr, td, i, txtValue;
-      input = document.getElementById("myInput");
-      filter = input.value.toUpperCase().replace(/\W/g, ' ').replace(/\s+/g, ' ').trim().split(' ');
+<script>
 
-      table = document.getElementById("myTable");
-      tr = table.getElementsByTagName("tr");
-      for (i = 0; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName("td")[n]; //7th Column
-        if (td) {
-          txtValue = td.textContent || td.innerText;
-          for(j = 0; j < filter.length; j++){
-            if (txtValue.toUpperCase().indexOf(filter[j]) > -1) {
-              tr[i].style.display = "";
-            }
-            else {
-              tr[i].style.display = "none";
-              break;
-            }
-          }
-          if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            tr[i].style.display = "";
-          } else {
-            tr[i].style.display = "none";
-          }
-        }       
-      }
-    }
-    
+  // source: https://forum.jquery.com/topic/filter-table-by-multiple-user-text-inputs-separated-by-a-comma
+
+  var $rows = $('#myTable tr').not(':first');
+  var filters = { col1: '', col2: '', col3: '', col4: ''};
+  $('#search1').keyup(function() {
+    var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+    filters.col1 = val;
+    applyFilters();
+  });
+  $('#search2').keyup(function() {
+    var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+    filters.col2 = val;
+    applyFilters();
+  });
+  $('#search3').keyup(function() {
+    var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+    filters.col3 = val;
+    applyFilters();
+  });
+  $('#search4').keyup(function() {
+    var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+    filters.col4 = val;
+    applyFilters();
+  });
+  function applyFilters() {
+    $rows.show();
+    $rows.filter(function() {
+      var text = $(this).find('td:nth-child(2)').text().replace(/\s+/g, ' ').toLowerCase();
+      return !~text.indexOf(filters.col1);
+    }).hide();
+    $rows.filter(function() {
+      var text = $(this).find('td:nth-child(3)').text().replace(/\s+/g, ' ').toLowerCase();
+      return !~text.indexOf(filters.col2);
+    }).hide();
+    $rows.filter(function() {
+      var text = $(this).find('td:nth-child(4)').text().replace(/\s+/g, ' ').toLowerCase();
+      return !~text.indexOf(filters.col3);
+    }).hide();
+    $rows.filter(function() {
+      var text = $(this).find('td:nth-child(5)').text().replace(/\s+/g, ' ').toLowerCase();
+      return !~text.indexOf(filters.col4);
+    }).hide();
+  };
+
 </script>
