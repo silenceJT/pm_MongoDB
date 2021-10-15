@@ -104,6 +104,8 @@
           Consonants(<%= @papua.consonants.split(",").size %>)
         </dt>
         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%#= @papua.consonants %>
+
           <% @seg_no.each do |k,v| %>
             <span class="px-4 inline-flex text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
               <a href="/segments/<%= v.to_s %>" target="_blank" class=""><%= "#{k}" %></a>

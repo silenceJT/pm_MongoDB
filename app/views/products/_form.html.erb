@@ -1,15 +1,15 @@
 <%= form_with(model: product, local: true) do |form| %>
-  <% if product.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+<% if product.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
 
-      <ul>
-        <% product.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <ul>
+    <% product.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
 
   <!--
   This example requires Tailwind CSS v2.0+ 
@@ -28,17 +28,17 @@
   ```
 -->
 
-  <div class="hidden sm:block" aria-hidden="true">
-    <div class="py-5">
-      <div class="border-t border-gray-200"></div>
-    </div>
+<div class="hidden sm:block" aria-hidden="true">
+  <div class="py-5">
+    <div class="border-t border-gray-200"></div>
   </div>
+</div>
 
-  <div class="p-3 mt-10 sm:mt-0">
-    <div class="md:grid md:grid-cols-5 md:gap-6">
-      <div class="md:col-span-1">
-        <div class="px-4 sm:px-0">
-          <h3 class="text-lg font-medium leading-6 text-gray-900">Product Information</h3>
+<div class="p-3 mt-10 sm:mt-0">
+  <div class="md:grid md:grid-cols-5 md:gap-6">
+    <div class="md:col-span-1">
+      <div class="px-4 sm:px-0">
+        <h3 class="text-lg font-medium leading-6 text-gray-900">Product Information</h3>
           <!--p class="mt-1 text-sm text-gray-600">
             Use a permanent address where you can receive mail.
           </p-->
@@ -46,161 +46,161 @@
       </div>
       <div class="mt-5 md:mt-0 md:col-span-4">
         <!--form action="#" method="POST"-->
-          <div class="shadow overflow-hidden sm:rounded-md">
-            <div class="px-4 py-5 bg-white sm:p-6">
-              <div class="grid grid-cols-6 gap-6">
-                <div class="col-span-6 sm:col-span-3">
-                  <%= form.label :product_name, "Product name", class: "block text-sm font-medium text-gray-700" %>
-                  <%= form.text_field :product_name, class: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
-                </div>
-
-                <div class="col-span-6 sm:col-span-3">
-                  <%= form.label :color, "Color", class: "block text-sm font-medium text-gray-700" %>
-                  <%= form.text_field :color, class: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
-                </div>
-
-                <div class="col-span-6 sm:col-span-3">
-                  <%= form.label :brand, "Brand", class: "block text-sm font-medium text-gray-700" %>
-                  <%#= form.text_field :brand, class: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
-                  <%= form.select :brand, Product::BRAND, {}, {class: "mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"} %>
-                </div>
-
-                <div class="col-span-6 sm:col-span-3">
-                  <%= form.label :category, "Category", class: "block text-sm font-medium text-gray-700" %>
-                  <%= form.select :category, Product::CATEGORY, {}, {class: "mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"} %>
-                </div>
-
-                <div class="col-span-6">
-                  <%= form.label :description, "Description", class: "block text-sm font-medium text-gray-700" %>
-                  <div class="mt-1">
-                    <%= form.text_area :description, rows: 6, class: "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border-gray-300 rounded-md" %>
-                  </div>
-                  <p class="mt-2 text-sm text-gray-500">
-                    Brief description for the product. URLs are hyperlinked.
-                  </p>
-                </div>
-
-                <div class="col-span-6 sm:col-span-6 lg:col-span-2">
-                  <%= form.label :ean, "EAN", class: "block text-sm font-medium text-gray-700" %>
-                  <%= form.text_field :ean, class: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
-                </div>
-
-                <div class="col-span-6 sm:col-span-3 lg:col-span-2">
-                  <%= form.label :vender_sku, "Vender SKU", class: "block text-sm font-medium text-gray-700" %>
-                  <%= form.text_field :vender_sku, class: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
-                </div>
-
-                <div class="col-span-6 sm:col-span-3 lg:col-span-2">
-                  <%= form.label :sps_sku, "SPS SKU", class: "block text-sm font-medium text-gray-700" %>
-                  <%= form.text_field :sps_sku, class: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
-                </div>
-
-                <div class="col-span-6 sm:col-span-6 lg:col-span-2 mt-1">
-                  <%= form.label :fob_usd, "FOB USD", class: "block text-sm font-medium text-gray-700" %>
-                  <div class="mt-1 relative rounded-md shadow-sm">
-                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <span class="text-gray-500 sm:text-sm">
-                        $
-                      </span>
-                    </div>
-                    <%= form.text_field :fob_usd, class: "focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md" %>
-                  </div>
-                </div>
-
-                <div class="col-span-6 sm:col-span-3 lg:col-span-2 mt-1">
-                  <%= form.label :fob_aud, "FOB AUD", class: "block text-sm font-medium text-gray-700" %>
-                  <div class="mt-1 relative rounded-md shadow-sm">
-                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <span class="text-gray-500 sm:text-sm">
-                        $
-                      </span>
-                    </div>
-                    <%= form.text_field :fob_aud, class: "focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md" %>
-                  </div>
-                </div>
-
-                <div class="col-span-6 sm:col-span-3 lg:col-span-2 mt-1">
-                  <%= form.label :retail_price, "Retail Price", class: "block text-sm font-medium text-gray-700" %>
-                  <div class="mt-1 relative rounded-md shadow-sm">
-                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <span class="text-gray-500 sm:text-sm">
-                        $
-                      </span>
-                    </div>
-                    <%= form.text_field :retail_price, class: "focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md" %>
-                  </div>
-                </div>
-
-                <div class="col-span-6 sm:col-span-3 lg:col-span-3 mt-1">
-                  <%= form.label :margin_rate, "Margin rate", class: "block text-sm font-medium text-gray-700" %>
-                  <%= form.text_field :margin_rate, class: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
-                </div>
-
-                <div class="col-span-6 sm:col-span-3 lg:col-span-3 mt-1">
-                  <%= form.label :channel_buy_price_egst, "Channel buy price (excl GST)", class: "block text-sm font-medium text-gray-700" %>
-                  <div class="mt-1 relative rounded-md shadow-sm">
-                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <span class="text-gray-500 sm:text-sm">
-                        $
-                      </span>
-                    </div>
-                    <%= form.text_field :channel_buy_price_egst, class: "focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md" %>
-                  </div>
-                </div>
-
-                <div class="col-span-6 sm:col-span-3 lg:col-span-3 mt-1">
-                  <%= form.label :channel_mkt_rebate_egst, "Channel MKT rebate (excl GST)", class: "block text-sm font-medium text-gray-700" %>
-                  <div class="mt-1 relative rounded-md shadow-sm">
-                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <span class="text-gray-500 sm:text-sm">
-                        $
-                      </span>
-                    </div>
-                    <%= form.text_field :channel_mkt_rebate_egst, class: "focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md" %>
-                  </div>
-                </div>
-
-                <div class="col-span-6 sm:col-span-3 lg:col-span-3 mt-1">
-                  <%= form.label :total_profit, "Total profit", class: "block text-sm font-medium text-gray-700" %>
-                  <div class="mt-1 relative rounded-md shadow-sm">
-                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <span class="text-gray-500 sm:text-sm">
-                        $
-                      </span>
-                    </div>
-                    <%= form.text_field :total_profit, class: "focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md" %>
-                  </div>
-                </div>
-
+        <div class="shadow overflow-hidden sm:rounded-md">
+          <div class="px-4 py-5 bg-white sm:p-6">
+            <div class="grid grid-cols-6 gap-6">
+              <div class="col-span-6 sm:col-span-3">
+                <%= form.label :product_name, "Product name", class: "block text-sm font-medium text-gray-700" %>
+                <%= form.text_field :product_name, class: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
               </div>
+
+              <div class="col-span-6 sm:col-span-3">
+                <%= form.label :color, "Color", class: "block text-sm font-medium text-gray-700" %>
+                <%= form.text_field :color, class: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+              </div>
+
+              <div class="col-span-6 sm:col-span-3">
+                <%= form.label :brand, "Brand", class: "block text-sm font-medium text-gray-700" %>
+                <%#= form.text_field :brand, class: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+                <%= form.select :brand, Product::BRAND, {}, {class: "mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"} %>
+              </div>
+
+              <div class="col-span-6 sm:col-span-3">
+                <%= form.label :category, "Category", class: "block text-sm font-medium text-gray-700" %>
+                <%= form.select :category, Product::CATEGORY, {}, {class: "mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"} %>
+              </div>
+
+              <div class="col-span-6">
+                <%= form.label :description, "Description", class: "block text-sm font-medium text-gray-700" %>
+                <div class="mt-1">
+                  <%= form.text_area :description, rows: 6, class: "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border-gray-300 rounded-md" %>
+                </div>
+                <p class="mt-2 text-sm text-gray-500">
+                  Brief description for the product. URLs are hyperlinked.
+                </p>
+              </div>
+
+              <div class="col-span-6 sm:col-span-6 lg:col-span-2">
+                <%= form.label :ean, "EAN", class: "block text-sm font-medium text-gray-700" %>
+                <%= form.text_field :ean, class: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+              </div>
+
+              <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+                <%= form.label :vender_sku, "Vender SKU", class: "block text-sm font-medium text-gray-700" %>
+                <%= form.text_field :vender_sku, class: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+              </div>
+
+              <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+                <%= form.label :sps_sku, "SPS SKU", class: "block text-sm font-medium text-gray-700" %>
+                <%= form.text_field :sps_sku, class: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+              </div>
+
+              <div class="col-span-6 sm:col-span-6 lg:col-span-2 mt-1">
+                <%= form.label :fob_usd, "FOB USD", class: "block text-sm font-medium text-gray-700" %>
+                <div class="mt-1 relative rounded-md shadow-sm">
+                  <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <span class="text-gray-500 sm:text-sm">
+                      $
+                    </span>
+                  </div>
+                  <%= form.text_field :fob_usd, class: "focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md" %>
+                </div>
+              </div>
+
+              <div class="col-span-6 sm:col-span-3 lg:col-span-2 mt-1">
+                <%= form.label :fob_aud, "FOB AUD", class: "block text-sm font-medium text-gray-700" %>
+                <div class="mt-1 relative rounded-md shadow-sm">
+                  <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <span class="text-gray-500 sm:text-sm">
+                      $
+                    </span>
+                  </div>
+                  <%= form.text_field :fob_aud, class: "focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md" %>
+                </div>
+              </div>
+
+              <div class="col-span-6 sm:col-span-3 lg:col-span-2 mt-1">
+                <%= form.label :retail_price, "Retail Price", class: "block text-sm font-medium text-gray-700" %>
+                <div class="mt-1 relative rounded-md shadow-sm">
+                  <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <span class="text-gray-500 sm:text-sm">
+                      $
+                    </span>
+                  </div>
+                  <%= form.text_field :retail_price, class: "focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md" %>
+                </div>
+              </div>
+
+              <div class="col-span-6 sm:col-span-3 lg:col-span-3 mt-1">
+                <%= form.label :margin_rate, "Margin rate", class: "block text-sm font-medium text-gray-700" %>
+                <%= form.text_field :margin_rate, class: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+              </div>
+
+              <div class="col-span-6 sm:col-span-3 lg:col-span-3 mt-1">
+                <%= form.label :channel_buy_price_egst, "Channel buy price (excl GST)", class: "block text-sm font-medium text-gray-700" %>
+                <div class="mt-1 relative rounded-md shadow-sm">
+                  <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <span class="text-gray-500 sm:text-sm">
+                      $
+                    </span>
+                  </div>
+                  <%= form.text_field :channel_buy_price_egst, class: "focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md" %>
+                </div>
+              </div>
+
+              <div class="col-span-6 sm:col-span-3 lg:col-span-3 mt-1">
+                <%= form.label :channel_mkt_rebate_egst, "Channel MKT rebate (excl GST)", class: "block text-sm font-medium text-gray-700" %>
+                <div class="mt-1 relative rounded-md shadow-sm">
+                  <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <span class="text-gray-500 sm:text-sm">
+                      $
+                    </span>
+                  </div>
+                  <%= form.text_field :channel_mkt_rebate_egst, class: "focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md" %>
+                </div>
+              </div>
+
+              <div class="col-span-6 sm:col-span-3 lg:col-span-3 mt-1">
+                <%= form.label :total_profit, "Total profit", class: "block text-sm font-medium text-gray-700" %>
+                <div class="mt-1 relative rounded-md shadow-sm">
+                  <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <span class="text-gray-500 sm:text-sm">
+                      $
+                    </span>
+                  </div>
+                  <%= form.text_field :total_profit, class: "focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md" %>
+                </div>
+              </div>
+
             </div>
+          </div>
             <!--div class="actions px-4 py-3 bg-gray-50 text-right sm:px-6">
               <%= form.submit class: "btn inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
             </div>
           </div-->
-        <!--/form-->
-      </div>
-    </div>
-  </div>
-
-  <div class="hidden sm:block" aria-hidden="true">
-    <div class="py-5">
-      <div class="border-t border-gray-200"></div>
-    </div>
-  </div>
-
-  <div class="mt-10 sm:mt-0">
-    <div class="md:grid md:grid-cols-5 md:gap-6">
-      <div class="md:col-span-1">
-        <div class="px-4 sm:px-0">
-          <h3 class="text-lg font-medium leading-6 text-gray-900">Certificates</h3>
-          <p class="mt-1 text-sm text-gray-600">
-            Decide which certification it has passed.
-          </p>
+          <!--/form-->
         </div>
       </div>
-      <div class="mt-5 md:mt-0 md:col-span-4">
-        <!--form action="#" method="POST"-->
+    </div>
+
+    <div class="hidden sm:block" aria-hidden="true">
+      <div class="py-5">
+        <div class="border-t border-gray-200"></div>
+      </div>
+    </div>
+
+    <div class="mt-10 sm:mt-0">
+      <div class="md:grid md:grid-cols-5 md:gap-6">
+        <div class="md:col-span-1">
+          <div class="px-4 sm:px-0">
+            <h3 class="text-lg font-medium leading-6 text-gray-900">Certificates</h3>
+            <p class="mt-1 text-sm text-gray-600">
+              Decide which certification it has passed.
+            </p>
+          </div>
+        </div>
+        <div class="mt-5 md:mt-0 md:col-span-4">
+          <!--form action="#" method="POST"-->
           <div class="shadow overflow-hidden sm:rounded-md">
             <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
               <fieldset>
@@ -260,10 +260,10 @@
               <%= form.submit class: "btn inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ml-3" %>
             </div>
           </div>
-        <!--/form-->
+          <!--/form-->
+        </div>
       </div>
     </div>
-  </div>
 
 
   <!--div class="field">
@@ -364,4 +364,4 @@
   <div class="actions">
     <%= form.submit class: "btn inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
   </div-->
-<% end %>
+  <% end %>

@@ -221,10 +221,11 @@ class PapuasController < ApplicationController
 
   # GET /papuas/1 or /papuas/1.json
   def show
-    seg_list = Segment.all
+    @papua.inv = @papua.consonants + ", " + @papua.vowels
+    @seg_list = Segment.all
     @seg_no = Hash.new(0)
     for p_c in @papua.consonants.split("\,") do
-      for seg in seg_list.entries do
+      for seg in @seg_list.entries do
         if seg.ipa === p_c.strip
           @seg_no[p_c] = seg.id
         end
@@ -286,7 +287,7 @@ class PapuasController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def papua_params
-      params.require(:papua).permit(:language, :language_family, :iso, :country, :latitude, :longitude, :inv)
+      params.require(:papua).permit(:language, :language_family, :iso, :country, :latitude, :longitude, :inv, :consonants, :vowels, :diphthongs)
     end
 
     def verify_email
