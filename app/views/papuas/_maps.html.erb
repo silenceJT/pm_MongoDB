@@ -1,14 +1,14 @@
 
 
 <div id="state-legend" class="legend">
-    <h4>Results</h4>
-    <div><span style="background-color: #fbb03b" class="circle"></span>PNG</div>
-    <div><span style="background-color: #e55e5e" class="circle"></span>IND</div>
-    <div><span style="background-color: #223b53" class="circle"></span>Solomon Islands</div>
-    <h4 style="margin-top: 14px ">The Rest</h4>
-    <div><span><img class="img" src="/school-JP_PNG.svg"></img></span>PNG</div>
-    <div><span><img class="img" src="/school-JP_IND.svg"></img></span>IND</div>
-    <div><span><img class="img" src="/school-JP_Solo.svg"></img></span>Solomon Islands</div>
+    <!-- <h4>Results</h4> -->
+    <!--div><span style="background-color: #fbb03b" class="circle"></span>PNG</div-->
+    <div><span style="background-color: #e55e5e" class="circle"></span>Results</div>
+    <!-- <div><span style="background-color: #223b53" class="circle"></span>Solomon Islands</div> -->
+    <!-- <h4 style="margin-top: 14px ">The Rest</h4> -->
+    <!-- <div><span><img class="img" src="/school-JP_PNG.svg"></img></span>PNG</div> -->
+    <div><span><img class="img" src="/school-JP_IND.svg"></img></span>The Rest</div>
+    <!-- <div><span><img class="img" src="/school-JP_Solo.svg"></img></span>Solomon Islands</div> -->
   </div>
 
 <script>
@@ -109,10 +109,10 @@
 				'match', // Use the 'match' expression: https://docs.mapbox.com/mapbox-gl-js/style-spec/#expressions-match
 				['get', 'ethnicity'], // Use the result 'STORE_TYPE' property
 				'PNG',
-	            '#fbb03b',
+	            '#e55e5e',
 	            'IND',
 	            '#e55e5e',
-	            '#223b53' // any other store type
+	            '#e55e5e' // any other store type
 				]
 			}
 			});
@@ -140,10 +140,10 @@
 				'match', // Use the 'match' expression: https://docs.mapbox.com/mapbox-gl-js/style-spec/#expressions-match
 				['get', 'ethnicity'], // Use the result 'STORE_TYPE' property
 				'PNG',
-	            '#fbb03b',
+	            '#e55e5e',
 	            'IND',
 	            '#e55e5e',
-	            '#223b53' // any other store type
+	            '#e55e5e' // any other store type
 				],
 				'icon-opacity': 0.5
 			}
