@@ -5,7 +5,7 @@
   <div class="lg:flex lg:items-center lg:justify-between">
     <div class="flex-1 min-w-0 px-4 py-5 sm:px-6">
       <h3 class="text-lg leading-6 font-medium text-gray-900">
-         Language Information
+         <span class="px-1 py-1 inline-flex leading-5 font-semibold rounded-md bg-gray-200 text-gray-800">NO.<%= @papua.no %></span> Language Information
       </h3>
     </div>
     <div class="mt-5 flex lg:mt-0 lg:ml-4">
@@ -102,14 +102,21 @@
       <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
         <dt class="text-sm font-medium text-gray-500">
           Consonants(<%= @papua.consonants.split(",").size %>)
+          <p class="mt-1 max-w-2xl text-xs text-gray-400">
+            <span class="text-red-400">Red</span> symbol means the consonants are not in Segment list
+          </p>
         </dt>
         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-          <%#= @papua.consonants %>
-
-          <% @seg_no.each do |k,v| %>
-            <span class="px-4 inline-flex text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-              <a href="/segments/<%= v.to_s %>" target="_blank" class=""><%= "#{k}" %></a>
-            </span>
+          <% @seg_hash.each do |k,v| %>
+            <% if "#{v}".exclude?("none") %>
+              <span class="px-4 inline-flex text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                <a href="/segments/<%= v %>" target="_blank" class=""><%= "#{k}" %></a>
+              </span>
+            <% else %>
+              <span class="px-4 inline-flex text-sm leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                <%= "#{k}" %>
+              </span>
+            <% end %> 
           <% end %>
         </dd>
       </div>
@@ -129,6 +136,24 @@
         </dt>
         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
           <%= @papua.diphthongs %>
+        </dd>
+      </div>
+
+      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          Bibliography Source
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= @papua.source %>
+        </dd>
+      </div>
+
+      <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          Notes
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= @papua.notes %>
         </dd>
       </div>
 

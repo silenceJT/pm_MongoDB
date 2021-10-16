@@ -2,6 +2,8 @@ class PapuasController < ApplicationController
   before_action :authenticate_user!
   before_action :set_papua, only: %i[ show edit update destroy ]
   before_action :verify_email
+  before_action :sync, only: %i[ index show edit ]
+  after_action :sync, only: %i[ update destroy ]
 
   # GET /papuas or /papuas.json
   def index
@@ -221,16 +223,34 @@ class PapuasController < ApplicationController
 
   # GET /papuas/1 or /papuas/1.json
   def show
-    @papua.inv = @papua.consonants + ", " + @papua.vowels
-    @seg_list = Segment.all
-    @seg_no = Hash.new(0)
+    seg_list = Segment.all
+    @seg_hash = Hash.new()
+    @seg_array = Array.new()
     for p_c in @papua.consonants.split("\,") do
-      for seg in @seg_list.entries do
-        if seg.ipa === p_c.strip
-          @seg_no[p_c] = seg.id
+      for seg in seg_list.entries do
+        con = p_c.strip
+        if seg.ipa === con
+          @seg_hash[con] = seg.id.to_s
+          break
+        else
+          @seg_hash[con] = "none"
         end
       end
     end
+
+    # cons = @papua.consonants.split("\,")
+    
+    # for i in 0..cons.size-1 do
+    #   for j in 0..seg_list.entries.size-1 do
+    #     ipa = seg_list.entries[j].ipa
+    #     con = cons[i].strip
+    #     if con === ipa
+    #       @seg_hash[con] = seg_list.entries[j].id.to_s
+    #     else
+    #       @seg_hash[con] = "none"
+    #     end
+    #   end
+    # end
   end
 
   # GET /papuas/new
@@ -287,7 +307,7 @@ class PapuasController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def papua_params
-      params.require(:papua).permit(:language, :language_family, :iso, :country, :latitude, :longitude, :inv, :consonants, :vowels, :diphthongs)
+      params.require(:papua).permit(:language, :language_family, :iso, :country, :latitude, :longitude, :inv, :consonants, :vowels, :diphthongs, :source, :notes)
     end
 
     def verify_email
@@ -296,6 +316,17 @@ class PapuasController < ApplicationController
       whitelist = ["jessewjt@gmail.com", "j.hajek@unimelb.edu.au", "timothy.brickell@unimelb.edu.au"]
       (redirect_to(root_path) unless whitelist.include?(current_user.email))
     end
+
+    def sync
+      Papua.each do |papua|
+        papua.inv = papua.consonants + ", " + papua.vowels
+        papua.count_of_consonants = papua.consonants.split(",").size
+        papua.count_of_vowels = papua.vowels.split(",").size
+        papua.count_of_segments = papua.count_of_consonants + papua.count_of_vowels
+        papua.save
+    end
+
+  end
 
   protected
 

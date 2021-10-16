@@ -18,6 +18,8 @@ class Papua
   field :count_of_consonants, type: Integer
   field :count_of_vowels, type: Integer
   field :count_of_diphthongs, type: Integer
+  field :source, type: String
+  field :notes, type: String
 
 
   #search_in :no, :language, :language_family, :iso, :country, :latitude, :longitude, :inv
@@ -27,6 +29,13 @@ class Papua
   #search_in :count_of_vowels, index: :_vow_keywords
   #search_in :count_of_segments, index: :_seg_keywords
 
+  # Papua.each do |papua|
+  #   papua.inv = papua.consonants + ", " + papua.vowels
+  #   papua.count_of_consonants = papua.consonants.split(",").size
+  #   papua.count_of_vowels = papua.vowels.split(",").size
+  #   papua.count_of_segments = papua.count_of_consonants + papua.count_of_vowels
+  #   papua.save
+  # end
 
   def self.to_csv(options = {})
       CSV.generate(options) do |csv|
