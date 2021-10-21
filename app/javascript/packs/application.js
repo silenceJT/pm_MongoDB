@@ -27,8 +27,8 @@ require("chartkick/chart.js")
 
 $(document).ready(function() {
 	
-	$('.load-ajax').hide();
-    $(document).ajaxStart(function() {
+   $('.load-ajax').hide();
+   $(document).ajaxStart(function() {
         $('.load-ajax').show();
    });
    $(document).ajaxStop(function() {
@@ -60,9 +60,11 @@ $(document).ready(function() {
   	// }, 500));
 
   //sort table
-  $(function() {
-  	$("#myTable").tablesorter();
-	});
+  //$(function() {
+  	$("#myTable1").tablesorter(); //results
+  	$("#myTable2").tablesorter(); //rest
+  	$("#myTable3").tablesorter(); //segments
+	//});
   
     
 });
