@@ -161,9 +161,7 @@ class PapuasController < ApplicationController
     else
       @papuas = Papua.all
     end
-    @papuas = @papuas.order_by(no: 1)
-    #@sort_string = params[:sort].concat(": " + params[:direction])
-    #@papuas = @papuas.order_by(@sort_string)
+    @papuas = @papuas.order(no: 1)
     @papuas_page = Kaminari.paginate_array(@papuas).page(params[:page]).per(15)
     
     other = Array.new()
@@ -177,36 +175,36 @@ class PapuasController < ApplicationController
     @sum_c = 0
     @sum_v = 0
     @sum_d = 0
-    @lng_results = Array.new;
-    @lat_results = Array.new;
-    @name_results = Array.new;
-    @family_results = Array.new;
-    @country_results = Array.new;
-    @lng_other = Array.new;
-    @lat_other = Array.new;
-    @name_other = Array.new;
-    @family_other = Array.new;
-    @country_other = Array.new;
+    # @lng_results = Array.new;
+    # @lat_results = Array.new;
+    # @name_results = Array.new;
+    # @family_results = Array.new;
+    # @country_results = Array.new;
+    # @lng_other = Array.new;
+    # @lat_other = Array.new;
+    # @name_other = Array.new;
+    # @family_other = Array.new;
+    # @country_other = Array.new;
     
     @papuas_results.each do |p_r| 
       @sum_s += p_r.count_of_segments 
       @sum_c += p_r.count_of_consonants
       @sum_v += p_r.count_of_vowels
       #@sum_d += p_r.count_of_diphthongs
-      @lng_results.push(p_r.longitude)
-      @lat_results.push(p_r.latitude)
-      @name_results.push(p_r.language_name)
-      @family_results.push(p_r.language_family)
-      @country_results.push(p_r.country)
+      # @lng_results.push(p_r.longitude)
+      # @lat_results.push(p_r.latitude)
+      # @name_results.push(p_r.language_name)
+      # @family_results.push(p_r.language_family)
+      # @country_results.push(p_r.country)
     end
 
-    @papuas_other.each do |p_o| 
-      @lng_other.push(p_o.longitude)
-      @lat_other.push(p_o.latitude)
-      @name_other.push(p_o.language_name)
-      @family_other.push(p_o.language_family)
-      @country_other.push(p_o.country)
-    end
+    # @papuas_other.each do |p_o| 
+    #   @lng_other.push(p_o.longitude)
+    #   @lat_other.push(p_o.latitude)
+    #   @name_other.push(p_o.language_name)
+    #   @family_other.push(p_o.language_family)
+    #   @country_other.push(p_o.country)
+    # end
 
     @avg_s = (@sum_s.to_f/@papuas_results.length).round(2)
     @avg_c = (@sum_c.to_f/@papuas_results.length).round(2)

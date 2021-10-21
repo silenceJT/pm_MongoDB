@@ -7,8 +7,4 @@ class Segment
   field :category, type: String
   field :place, type: String
 
-  Segment.each do |seg|
-  	seg.no = seg.no.to_i
-  	seg.save
-  end
 end

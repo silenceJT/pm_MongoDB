@@ -20,17 +20,64 @@
         zoom: 4.75 // starting zoom
     });
 
-    var lng_results = <%= raw @lng_results %>;
-    var lat_results = <%= raw @lat_results %>;
-    var name_results = <%= raw @name_results %>;
-    var family_results = <%= raw @family_results %>;
-    var country_results = <%= raw @country_results %>;
+    
+    var lng_results = [];
+    var lat_results = [];
+    var name_results = [];
+    var family_results = [];
+    var country_results = [];
+    var lng_other = [];
+    var lat_other = [];
+    var name_other = [];    
+    var family_other = [];
+    var country_other = [];
 
-    var lng_other = <%= raw @lng_other %>;
-    var lat_other = <%= raw @lat_other %>;
-    var name_other = <%= raw @name_other %>;
-    var family_other = <%= raw @family_other %>;
-    var country_other = <%= raw @country_other %>;
+    // var papuas_results = <%#= @papuas_results.entries %>;
+    // var papuas_other = <%#= @papuas_other.entries %>;
+
+    // for (i = 0; i < papuas_results.lenght; i++) {
+    //   lng_results.push(papuas_results[0].longitude);
+    //   lat_results.push(papuas_results[0].latitude);
+    //   name_results.push(papuas_results[0].language_name);
+    //   family_results.push(papuas_results[0].language_family);
+    //   country_results.push(papuas_results[0].country);
+    // }
+
+    // for (i = 0; i < papuas_other.lenght; i++) {
+    //   lng_other.push(papuas_other[0].longitude);
+    //   lat_other.push(papuas_other[0].latitude);
+    //   name_other.push(papuas_other[0].language_name);
+    //   family_other.push(papuas_other[0].language_family);
+    //   country_other.push(papuas_other[0].country);
+    // }
+    
+    <% papuas_results.each do |p_r| %>
+      lng_results.push("<%= p_r.longitude %>")
+      lat_results.push("<%= p_r.latitude %>")
+      name_results.push("<%= p_r.language_name %>")
+      family_results.push("<%= p_r.language_family %>")
+      country_results.push("<%= p_r.country %>")
+    <% end %>
+
+    <% papuas_other.each do |p_o| %>
+      lng_other.push("<%= p_o.longitude %>")
+      lat_other.push("<%= p_o.latitude %>")
+      name_other.push("<%= p_o.language_name %>")
+      family_other.push("<%= p_o.language_family %>")
+      country_other.push("<%= p_o.country %>")
+    <% end %>
+
+    // var lng_results = <%= raw @lng_results %>;
+    // var lat_results = <%= raw @lat_results %>;
+    // var name_results = <%= raw @name_results %>;
+    // var family_results = <%= raw @family_results %>;
+    // var country_results = <%= raw @country_results %>;
+
+    // var lng_other = <%= raw @lng_other %>;
+    // var lat_other = <%= raw @lat_other %>;
+    // var name_other = <%= raw @name_other %>;
+    // var family_other = <%= raw @family_other %>;
+    // var country_other = <%= raw @country_other %>;
 
 
     //Create GeoJSON Object
