@@ -58,5 +58,11 @@ $(document).ready(function() {
    //  	$.get($("#papuas_search").attr("action"), $("#papuas_search").serialize(), null, "script");
    //  	return false;
   	// }, 500));
+
+  //sort table
+  $(function() {
+  	$("#myTable").tablesorter();
+	});
+  
     
 });

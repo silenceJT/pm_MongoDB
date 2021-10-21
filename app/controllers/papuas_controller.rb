@@ -161,7 +161,9 @@ class PapuasController < ApplicationController
     else
       @papuas = Papua.all
     end
-    @papuas = @papuas.order(no: 1)
+    @papuas = @papuas.order_by(no: 1)
+    #@sort_string = params[:sort].concat(": " + params[:direction])
+    #@papuas = @papuas.order_by(@sort_string)
     @papuas_page = Kaminari.paginate_array(@papuas).page(params[:page]).per(15)
     
     other = Array.new()
