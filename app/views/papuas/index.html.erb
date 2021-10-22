@@ -66,16 +66,50 @@
     <!--div id="paginator"><%#= paginate @papuas, remote: true %></div-->
   </div>
 
-<!-- result table   -->
-<%= render 'papuas', papuas: @papuas %>
+  <!-- queries displayed and will be stored in a page -->
 
-<div class="text-center px-4 py-6 text-lg text-gray-700 font-medium">
-  The rest 
-  <span class="font-semibold text-blue-700 text-2xl"> <%= @papuas_other.size %> </span>
-  languages
-</div>
+  <div class="text-red-800 text-lg mb-5" id="search_history">
+    <p>Search:</p>
+    <ul>
+      <li>Language: <%= params[:search_language] %></li>      
+      <li>Language Family: <%= params[:search_family] %></li>
+      <li>ISO: <%= params[:search_iso] %></li>
+      <li>Country: <%= params[:search_country] %></li>
+      <li>Inventory: <%= params[:search_inv] %></li>
+      <li>Consonant: 
+        <% if params[:search_c].present? %>
+          <%= compare_symbol(params[:select_c]) %> 
+          <%= params[:search_c] %>
+        <% end %>
+      </li>
+      <li>Vowel: 
+        <% if params[:search_v].present? %>
+          <%= compare_symbol(params[:select_v]) %> 
+          <%= params[:search_v] %>
+        <% end %>
+        </li>
+      <li>Total: 
+        <% if params[:search_cv].present? %>
+          <%= compare_symbol(params[:select_cv]) %> 
+          <%= params[:search_cv] %>
+        <% end %>  
+      </li>
+    </ul>
+    <p class="text-blue-700">Result: <%= @papuas.size %>/<%= @papuas_all_size %> = <%= @result_ratio %>%</p>
+    <p class="text-blue-700">Time: <%= Time.now %></p>
 
-<%= render 'papuas_rest', papuas: @papuas_other %>
+  </div>
+
+  <!-- result table   -->
+  <%= render 'papuas', papuas: @papuas %>
+
+  <div class="text-center px-4 py-6 text-lg text-gray-700 font-medium">
+    The rest 
+    <span class="font-semibold text-blue-700 text-2xl"> <%= @papuas_other.size %> </span>
+    languages
+  </div>
+
+  <%= render 'papuas_rest', papuas: @papuas_other %>
 
 <!-- <div class="align-middle inline-block min-w-full" id="rest_table">
   <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">

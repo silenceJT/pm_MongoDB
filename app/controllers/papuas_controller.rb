@@ -101,11 +101,10 @@ class PapuasController < ApplicationController
         # }
       end
       #@papuas_3 = @papuas_n.full_text_search(pos_search, allow_empty_search: false, match: :all)
-      if inv_pos_final.empty?
-        @papuas = @papuas_n
-      else
-        @papuas = @papuas_n.in(:no => inv_pos_final)
-      end
+      
+      # final results returned into @papuas
+      @papuas = @papuas_pos.in(:no => inv_pos_final) 
+      
     end
 
     if params[:search_c].present?
@@ -165,6 +164,7 @@ class PapuasController < ApplicationController
 
     @papuas_results = @papuas
     @papuas_all_size = Papua.all.size
+    @result_ratio = (@papuas_results.size.to_f * 100 / @papuas_all_size).round(2)
     # if @papuas.exists?
     #   @papuas = @papuas
     # else

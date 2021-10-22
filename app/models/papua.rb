@@ -7,7 +7,9 @@ class Papua
   field :language_name, type: String
   field :language_family, type: String
   field :iso, type: String
+  field :area, type: String
   field :country, type: String
+  field :region, type: String
   field :latitude, type: String
   field :longitude, type: String
   field :inv, type: String
