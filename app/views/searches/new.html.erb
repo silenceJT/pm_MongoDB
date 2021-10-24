@@ -1,0 +1,47 @@
+<%= form_for @search do |f| %>
+  <div class="field">
+    <%= f.label :language_name, "Language" %><br />
+    <%= f.text_field :language_name %>
+  </div>
+  <div class="field">
+    <%= f.label :language_family, "Language Family" %><br />
+    <%= f.text_field :language_family %>
+    <%#= f.collection_select :category_id, Category.order(:name), :id, :name, include_blank: true %>
+  </div>
+  <div class="field">
+    <%= f.label :iso, "ISO" %><br />
+    <%= f.text_field :iso %>
+  </div>
+  <div class="field">
+    <%= f.label :area, "Area" %><br />
+    <%= f.text_field :area %>
+  </div>
+  <div class="field">
+    <%= f.label :country, "Country" %><br />
+    <%= f.text_field :country %>
+  </div>
+  <div class="field">
+    <%= f.label :region, "Region" %><br />
+    <%= f.text_field :region %>
+  </div>
+  <div class="field">
+    <%= f.label :inv, "Inventory" %><br />
+    <%= f.text_field :inv %>
+  </div>
+  <div class="field">
+    <%= f.label :c_compare, "Consonant" %>
+    <%= f.select :c_compare, Search::COMPARE, {}, {class: ""} %>
+    <%= f.text_field :c_size %>
+  </div>
+  <div class="field">
+    <%= f.label :v_compare, "Vowels" %>
+    <%= f.select :v_compare, Search::COMPARE, {}, {class: ""} %>
+    <%= f.text_field :v_size %>
+  </div>
+  <div class="field">
+    <%= f.label :total_compare, "Total" %>
+    <%= f.select :total_compare, Search::COMPARE, {}, {class: ""} %>
+    <%= f.text_field :total_size %>
+  </div>
+  <div class="actions"><%= f.submit "Search" %></div>
+<% end %>

@@ -19,4 +19,9 @@ module ApplicationHelper
 			return "<="
 		end
 	end
+
+	def self.fulltext_search(str)
+		
+
+	end
 end

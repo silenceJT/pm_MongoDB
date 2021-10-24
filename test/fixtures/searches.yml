@@ -1,0 +1,25 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  language_name: MyString
+  language_family: MyString
+  iso: MyString
+  area: MyString
+  country: MyString
+  region: MyString
+  inv: MyString
+  c_size: 1
+  v_size: 1
+  total_size: 1
+
+two:
+  language_name: MyString
+  language_family: MyString
+  iso: MyString
+  area: MyString
+  country: MyString
+  region: MyString
+  inv: MyString
+  c_size: 1
+  v_size: 1
+  total_size: 1

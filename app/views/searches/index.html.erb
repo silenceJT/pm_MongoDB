@@ -1,0 +1,37 @@
+<table id="myTable" class="">
+  <thead class="">
+    <tr>
+      <th>Language</th>
+      <th>Language Family</th>
+      <th>ISO</th>
+      <th>Area</th>
+      <th>Country</th>
+      <th>Region</th>
+      <th>Inventory</th>
+      <th>C</th>
+      <th>V</th>
+      <th>Total</th>
+      <th>Result</th>
+      <th>Time</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @searches.each do |search| %>
+      <tr onclick="window.location.href='/searches/<%= search.id.to_s %>'" style="cursor:pointer">
+        <td><%= search.language_name %></td>
+        <td><%= search.language_family %></td>
+        <td><%= search.iso %></td>
+        <td><%= search.area %></td>
+        <td><%= search.country %></td>
+        <td><%= search.region %></td>
+        <td><%= search.inv %></td>
+        <td><%= search.c_compare %> <%= search.c_size %></td>
+        <td><%= search.v_compare %> <%= search.v_size %></td>
+        <td><%= search.total_compare %> <%= search.total_size %></td>
+        <td><%= search.papuas.size %>/<%= Papua.all.size %> = <%= search.result %> </td>
+        <td><%= search.created_at.localtime %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
