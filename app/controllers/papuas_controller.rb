@@ -25,88 +25,6 @@ class PapuasController < ApplicationController
       @papuas = @papuas.where(:country => /#{params[:search_country]}/i)
     end
 
-    inv_search = Array.new()
-    inv_pos = Array.new()
-    inv_pos_count = 0
-    inv_neg = Array.new()
-    inv_pos_final = Array.new()
-    inv_neg_final = Array.new()
-    final_no = Array.new()
-    pos_search = Array.new()
-
-    if params[:search_inv].present?
-      inv_search = params[:search_inv].split(" ")
-      inv_search.each do |inv|
-        if inv.start_with?('-')
-          inv_sliced = Array.new()
-          inv_sliced = inv.slice!(0)
-          @papuas_neg = @papuas.where(:inv => /#{inv}/)
-          @papuas_neg.each do |pn|
-            inv_neg.push(pn.no)
-          end
-        # else
-        #   pos_search.push(inv)
-        #   @papuas_pos = @papuas_3.where(:inv => /#{inv}/)
-        #   @papuas_pos.each do |pp|
-        #     inv_pos.push(pp.no)
-        #   end
-        end
-      end
-      counts_pos = Hash.new(0)
-      counts_neg = Hash.new(0)
-      # if inv_pos.any?
-      #   inv_pos.each { 
-      #     |item| counts_pos[item] += 1 
-      #     if counts_pos[item] == inv_search.size
-      #       inv_pos_final.push(item)
-      #     end
-      #   }
-      # end
-      if inv_neg.any?
-        inv_neg.each { 
-          |item| counts_neg[item] += 1 
-          if counts_neg[item] > 0
-            inv_neg_final.push(item)
-          end
-        }
-      end
-      # if inv_pos_final.empty?
-      #   final_no = all_no - inv_neg_final
-      # else
-      #   final_no = inv_pos_final & (all_no - inv_neg_final)
-      # end
-      @papuas_n = @papuas.not_in(:no => inv_neg_final)
-
-      inv_search = params[:search_inv].split(" ")
-      inv_search.each do |inv|
-        next if inv.start_with?('-')
-        inv_pos_count += 1
-        @papuas_pos = @papuas_n.where(:inv => /#{inv}/)
-        @papuas_pos.each do |pp|
-          inv_pos.push(pp.no)
-        end
-      end
-      if inv_pos.any?
-        inv_pos.each { 
-          |item| counts_pos[item] += 1 
-          if counts_pos[item] == inv_pos_count
-            inv_pos_final.push(item)
-          end
-        }
-        # inv_pos.each { 
-        #   |item|
-        #   if counts_pos[item] == inv_pos_count
-        #     inv_pos_final.push(item)
-        #   end
-        # }
-      end
-      #@papuas_3 = @papuas_n.full_text_search(pos_search, allow_empty_search: false, match: :all)
-      
-      # final results returned into @papuas
-      @papuas = @papuas_pos.in(:no => inv_pos_final) 
-      
-    end
-
     if params[:search_c].present?
       if params[:select_c].present?
         case params[:select_c]
@@ -161,6 +79,87 @@ class PapuasController < ApplicationController
       end
       #@papuas_3 = @papuas_3.where(:count_of_segments => params[:search_cv])
     end
+
+    inv_search = Array.new()
+    inv_pos = Array.new()
+    inv_pos_count = 0
+    inv_neg = Array.new()
+    inv_pos_final = Array.new()
+    inv_neg_final = Array.new()
+    final_no = Array.new()
+    pos_search = Array.new()
+
+    if params[:search_inv].present?
+      inv_search = params[:search_inv].split(" ")
+      inv_search.each do |inv|
+        if inv.start_with?('-')
+          inv_sliced = Array.new()
+          inv_sliced = inv.slice!(0)
+          @papuas_neg = @papuas.where(:inv => /#{inv}/)
+          @papuas_neg.each do |pn|
+            inv_neg.push(pn.no)
+          end
+        # else
+        #   pos_search.push(inv)
+        #   @papuas_pos = @papuas_3.where(:inv => /#{inv}/)
+        #   @papuas_pos.each do |pp|
+        #     inv_pos.push(pp.no)
+        #   end
+        end
+      end
+      counts_pos = Hash.new(0)
+      counts_neg = Hash.new(0)
+      # if inv_pos.any?
+      #   inv_pos.each { 
+      #     |item| counts_pos[item] += 1 
+      #     if counts_pos[item] == inv_search.size
+      #       inv_pos_final.push(item)
+      #     end
+      #   }
+      # end
+      if inv_neg.any?
+        inv_neg.each { 
+          |item| counts_neg[item] += 1 
+          if counts_neg[item] > 0
+            inv_neg_final.push(item)
+          end
+        }
+        @papuas_n = @papuas.not_in(:no => inv_neg_final)
+      else
+        @papuas_n = @papuas.in(:no => inv_neg_final)
+      end
+      
+      
+
+      inv_search = params[:search_inv].split(" ")
+      inv_search.each do |inv|
+        next if inv.start_with?('-')
+        inv_pos_count += 1
+        @papuas_pos = @papuas_n.where(:inv => /#{inv}/)
+        @papuas_pos.each do |pp|
+          inv_pos.push(pp.no)
+        end
+      end
+
+      if inv_pos.any?
+        inv_pos.each { 
+          |item| counts_pos[item] += 1 
+          if counts_pos[item] == inv_pos_count
+            inv_pos_final.push(item)
+          end
+        }
+        @papuas = @papuas_pos.in(:no => inv_pos_final)
+      else
+        @papuas = @papuas_n
+      end
+      #@papuas_3 = @papuas_n.full_text_search(pos_search, allow_empty_search: false, match: :all)
+      
+      # final results returned into @papuas
+       
+      
+    end
+
+    
 
     @papuas_results = @papuas
     @papuas_all_size = Papua.all.size
