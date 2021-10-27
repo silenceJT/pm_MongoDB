@@ -64,6 +64,7 @@ $(document).ready(function() {
   	$("#myTable1").tablesorter(); //results
   	$("#myTable2").tablesorter(); //rest
   	$("#myTable3").tablesorter(); //segments
+  	$("#myTable4").tablesorter(); //search histories
 	//});
   
     

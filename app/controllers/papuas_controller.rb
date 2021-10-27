@@ -2,12 +2,14 @@ class PapuasController < ApplicationController
   before_action :authenticate_user!
   before_action :set_papua, only: %i[ show edit update destroy ]
   before_action :verify_email
-  before_action :sync, only: %i[ index show edit ]
-  after_action :sync, only: %i[ update destroy ]
+  #before_action :sync, only: %i[ index show edit ]
+  #after_action :sync, only: %i[ update destroy ]
+  after_action :sync_result, only: %i[ create ]
 
   # GET /papuas or /papuas.json
   def index
     @papuas = Papua.all
+<<<<<<< HEAD
     
     if params[:search_language].present?
       @papuas = @papuas.where(:language_name => /#{params[:search_language]}/i)
@@ -160,15 +162,12 @@ class PapuasController < ApplicationController
     end
 
     
+=======
+>>>>>>> advanced-search
 
     @papuas_results = @papuas
     @papuas_all_size = Papua.all.size
-    @result_ratio = (@papuas_results.size.to_f * 100 / @papuas_all_size).round(2)
-    # if @papuas.exists?
-    #   @papuas = @papuas
-    # else
-    #   @papuas = Papua.all
-    # end
+    
     @papuas = @papuas.order(no: 1)
     @papuas_page = Kaminari.paginate_array(@papuas).page(params[:page]).per(15)
     
@@ -183,36 +182,14 @@ class PapuasController < ApplicationController
     @sum_c = 0
     @sum_v = 0
     @sum_d = 0
-    # @lng_results = Array.new;
-    # @lat_results = Array.new;
-    # @name_results = Array.new;
-    # @family_results = Array.new;
-    # @country_results = Array.new;
-    # @lng_other = Array.new;
-    # @lat_other = Array.new;
-    # @name_other = Array.new;
-    # @family_other = Array.new;
-    # @country_other = Array.new;
     
     @papuas_results.each do |p_r| 
       @sum_s += p_r.count_of_segments 
       @sum_c += p_r.count_of_consonants
       @sum_v += p_r.count_of_vowels
-      #@sum_d += p_r.count_of_diphthongs
-      # @lng_results.push(p_r.longitude)
-      # @lat_results.push(p_r.latitude)
-      # @name_results.push(p_r.language_name)
-      # @family_results.push(p_r.language_family)
-      # @country_results.push(p_r.country)
     end
 
-    # @papuas_other.each do |p_o| 
-    #   @lng_other.push(p_o.longitude)
-    #   @lat_other.push(p_o.latitude)
-    #   @name_other.push(p_o.language_name)
-    #   @family_other.push(p_o.language_family)
-    #   @country_other.push(p_o.country)
-    # end
+   
 
     @avg_s = (@sum_s.to_f/@papuas_results.length).round(2)
     @avg_c = (@sum_c.to_f/@papuas_results.length).round(2)
@@ -224,13 +201,19 @@ class PapuasController < ApplicationController
         format.json { render json: @papuas }
         format.js
         format.csv { send_data @papuas.to_csv }
-        format.xls
+        format.xls { send_data papuas.to_csv }
     end
 
   end
 
   # GET /papuas/1 or /papuas/1.json
   def show
+    @papua.inv = @papua.consonants + ", " + @papua.vowels
+    @papua.count_of_consonants = @papua.consonants.split(",").size
+    @papua.count_of_vowels = @papua.vowels.split(",").size
+    @papua.count_of_segments = @papua.count_of_consonants + @papua.count_of_vowels
+    @papua.save
+
     seg_list = Segment.all
     @seg_hash = Hash.new()
     @seg_array = Array.new()
@@ -268,11 +251,21 @@ class PapuasController < ApplicationController
 
   # GET /papuas/1/edit
   def edit
+    @papua.inv = @papua.consonants + ", " + @papua.vowels
+    @papua.count_of_consonants = @papua.consonants.split(",").size
+    @papua.count_of_vowels = @papua.vowels.split(",").size
+    @papua.count_of_segments = @papua.count_of_consonants + @papua.count_of_vowels
+    @papua.save
   end
 
   # POST /papuas or /papuas.json
   def create
     @papua = Papua.new(papua_params)
+    @papua.no = Papua.all.size + 1
+    @papua.inv = @papua.consonants + ", " + @papua.vowels
+    @papua.count_of_consonants = @papua.consonants.split(",").size
+    @papua.count_of_vowels = @papua.vowels.split(",").size
+    @papua.count_of_segments = @papua.count_of_consonants + @papua.count_of_vowels
 
     respond_to do |format|
       if @papua.save
@@ -315,7 +308,7 @@ class PapuasController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def papua_params
-      params.require(:papua).permit(:language_name, :language_family, :iso, :country, :latitude, :longitude, :inv, :consonants, :vowels, :diphthongs, :source, :notes)
+      params.require(:papua).permit(:language_name, :language_family, :iso, :area, :country, :region, :latitude, :longitude, :inv, :consonants, :vowels, :diphthongs, :source, :notes)
     end
 
     def verify_email
@@ -325,15 +318,21 @@ class PapuasController < ApplicationController
       (redirect_to(root_path) unless whitelist.include?(current_user.email))
     end
 
-    def sync
-      Papua.each do |papua|
-        papua.inv = papua.consonants + ", " + papua.vowels
-        papua.count_of_consonants = papua.consonants.split(",").size
-        papua.count_of_vowels = papua.vowels.split(",").size
-        papua.count_of_segments = papua.count_of_consonants + papua.count_of_vowels
-        papua.save
-    end
+    # def sync
+    #   Papua.each do |papua|
+    #     papua.inv = papua.consonants + ", " + papua.vowels
+    #     papua.count_of_consonants = papua.consonants.split(",").size
+    #     papua.count_of_vowels = papua.vowels.split(",").size
+    #     papua.count_of_segments = papua.count_of_consonants + papua.count_of_vowels
+    #     papua.save
+    #   end
+    # end
 
+    def sync_result
+      Search.each do |search|
+        search.result = ((search.papuas.size.to_f * 100 / Papua.all.size).round(2)).to_s + "%"
+        search.save
+    end
   end
 
   protected

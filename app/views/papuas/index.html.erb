@@ -16,22 +16,12 @@
     <%#= render 'shared/searchbar' %>
     
     
-    <%# if user_signed_in? && current_user.admin? %>
-    <!--a href="<%= new_papua_path(@papua) %>">
-      <span class="hidden sm:block">
-        <button type="button" class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-          <svg xmlns="http://www.w3.org/2000/svg" class="-ml-1 mr-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-          </svg>
-          New Language
-        </button>  
-      </span>
-    </a-->
-    <%#= link_to 'New Product', new_product_path, class: "inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
-    <%# end %>
+    
+    <%#= link_to 'New Product', new_papua_path, class: "inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+    
   </div>
 
-  <div class="flex justify-center space-x-4 text-lg font-medium text-gray-900">
+  <!-- <div class="flex justify-center space-x-4 text-lg font-medium text-gray-900">
     <div>
       <p>
         Results: <%= @papuas_results.size %>
@@ -42,7 +32,7 @@
         Total: <%= @papuas_all_size %>
       </p>
     </div>
-  </div>
+  </div> -->
 
   <!--div id='map' style='width: 100%; height: 600px;'></div-->
   <div class="map" id='map' style='width: 100%; height: 600px;'>
@@ -56,49 +46,41 @@
 
   </div>
 
-  <!--div class="py-3" id='map' style='width: 1000px; height: 600px;'></div-->
-  <%#= text_field_tag :search_inc, params[:search_inc] %>
-  <!--input type="text" id="search_c" name="search_c"-->
 
-  <div class="mt-3 bg-white py-3 flex items-center justify-between border-t border-gray-200">
-    <div id="page_entries_info"><%= render 'page_entries_info' %></div>
-    <%= render 'shared/searchbar' %>
-    <!--div id="paginator"><%#= paginate @papuas, remote: true %></div-->
+  <!-- <div class="mt-3 bg-white py-3 flex items-center justify-between border-t border-gray-200">
+    <div id="page_entries_info">
+      <%#= render 'page_entries_info', papuas: @search.papuas, papuas_other: @search.papuas_other %>
+    </div>
+    <%#= render 'shared/searchbar' %>
+  </div> -->
+
+  <div class="py-4 flex items-center justify-between">
+    <div class="flex">
+      <!-- advanced search -->
+      <%= link_to "Advanced Search", new_search_path, class: "items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 text-center w-48" %>
+
+      <!-- add new language -->
+      <% if user_signed_in? && current_user.admin? %>
+        <a href="<%= new_papua_path(@papua) %>">
+          <span class="hidden sm:block">
+            <button type="button" class="ml-3 inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+              <svg xmlns="http://www.w3.org/2000/svg" class="-ml-1 mr-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              New Language
+            </button>  
+          </span>
+        </a>
+      <% end %> 
+    </div>
+
+    <div class="">
+      <%= link_to "Download all Papunesias: Excel", 
+        papuas_path({:format => "xls"}),
+        download: 'Papunesias.xls', class: "inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500" %>
+    </div>
   </div>
 
-  <!-- queries displayed and will be stored in a page -->
-
-  <div class="text-red-800 text-lg mb-5" id="search_history">
-    <p>Search:</p>
-    <ul>
-      <li>Language: <%= params[:search_language] %></li>      
-      <li>Language Family: <%= params[:search_family] %></li>
-      <li>ISO: <%= params[:search_iso] %></li>
-      <li>Country: <%= params[:search_country] %></li>
-      <li>Inventory: <%= params[:search_inv] %></li>
-      <li>Consonant: 
-        <% if params[:search_c].present? %>
-          <%= compare_symbol(params[:select_c]) %> 
-          <%= params[:search_c] %>
-        <% end %>
-      </li>
-      <li>Vowel: 
-        <% if params[:search_v].present? %>
-          <%= compare_symbol(params[:select_v]) %> 
-          <%= params[:search_v] %>
-        <% end %>
-        </li>
-      <li>Total: 
-        <% if params[:search_cv].present? %>
-          <%= compare_symbol(params[:select_cv]) %> 
-          <%= params[:search_cv] %>
-        <% end %>  
-      </li>
-    </ul>
-    <p class="text-blue-700">Result: <%= @papuas.size %>/<%= @papuas_all_size %> = <%= @result_ratio %>%</p>
-    <p class="text-blue-700">Time: <%= Time.now %></p>
-
-  </div>
 
   <!-- result table   -->
   <%= render 'papuas', papuas: @papuas %>

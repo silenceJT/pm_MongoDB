@@ -7,13 +7,14 @@ xmlns:html="http://www.w3.org/TR/REC-html40">
 <Worksheet ss:Name="Sheet1">
   <Table>
     <Row>
+      <Cell><Data ss:Type="String">Result: <%= @search.papuas.size %> </Data></Cell>
+    </Row>
+    <Row>
       <Cell><Data ss:Type="String">No.</Data></Cell>
       <Cell><Data ss:Type="String">Language</Data></Cell>
       <Cell><Data ss:Type="String">Language Family</Data></Cell>
       <Cell><Data ss:Type="String">ISO</Data></Cell>
-      <Cell><Data ss:Type="String">Area</Data></Cell>
       <Cell><Data ss:Type="String">Country</Data></Cell>
-      <Cell><Data ss:Type="String">Region</Data></Cell>
       <Cell><Data ss:Type="String">Latitude</Data></Cell>
       <Cell><Data ss:Type="String">Longitude</Data></Cell>
       <Cell><Data ss:Type="String">Inventories</Data></Cell>
@@ -23,15 +24,33 @@ xmlns:html="http://www.w3.org/TR/REC-html40">
       <Cell><Data ss:Type="String">Source</Data></Cell>
       <Cell><Data ss:Type="String">Notes</Data></Cell>
     </Row>
-    <% @papuas.each do |papua| %>
+    <% @search.papuas.each do |papua| %>
     <Row>
       <Cell><Data ss:Type="String"><%= papua.no %></Data></Cell>
       <Cell><Data ss:Type="String"><%= papua.language_name %></Data></Cell>
       <Cell><Data ss:Type="String"><%= papua.language_family %></Data></Cell>
       <Cell><Data ss:Type="String"><%= papua.iso %></Data></Cell>
-      <Cell><Data ss:Type="String"><%= papua.area %></Data></Cell>
       <Cell><Data ss:Type="String"><%= papua.country %></Data></Cell>
-      <Cell><Data ss:Type="String"><%= papua.region %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= papua.latitude %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= papua.longitude %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= papua.inv %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= papua.consonants %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= papua.vowels %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= papua.diphthongs %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= papua.source %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= papua.notes %></Data></Cell>
+    </Row>
+    <% end %>
+    <Row>
+      <Cell><Data ss:Type="String">Rest: <%= @search.papuas_other.size %> </Data></Cell>
+    </Row>
+    <% @search.papuas_other.each do |papua| %>
+    <Row>
+      <Cell><Data ss:Type="String"><%= papua.no %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= papua.language_name %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= papua.language_family %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= papua.iso %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= papua.country %></Data></Cell>
       <Cell><Data ss:Type="String"><%= papua.latitude %></Data></Cell>
       <Cell><Data ss:Type="String"><%= papua.longitude %></Data></Cell>
       <Cell><Data ss:Type="String"><%= papua.inv %></Data></Cell>

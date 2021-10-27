@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:x="urn:schemas-microsoft-com:office:excel"
+xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+xmlns:html="http://www.w3.org/TR/REC-html40">
+<Worksheet ss:Name="Sheet1">
+  <Table>
+    <Row>
+      <Cell><Data ss:Type="String">Language</Data></Cell>
+      <Cell><Data ss:Type="String">Language Family</Data></Cell>
+      <Cell><Data ss:Type="String">ISO</Data></Cell>
+      <Cell><Data ss:Type="String">Area</Data></Cell>
+      <Cell><Data ss:Type="String">Country</Data></Cell>
+      <Cell><Data ss:Type="String">Region</Data></Cell>
+      <Cell><Data ss:Type="String">Inventory</Data></Cell>
+      <Cell><Data ss:Type="String">C</Data></Cell>
+      <Cell><Data ss:Type="String">V</Data></Cell>
+      <Cell><Data ss:Type="String">Total</Data></Cell>
+      <Cell><Data ss:Type="String">Result</Data></Cell>
+      <Cell><Data ss:Type="String">Time</Data></Cell>
+      <Cell><Data ss:Type="String">Created By</Data></Cell>
+    </Row>
+    <% @searches.each do |search| %>
+    <Row>
+      <Cell><Data ss:Type="String"><%= search.language_name %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= search.language_family %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= search.iso %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= search.area %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= search.country %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= search.region %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= search.inv %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= search.c_compare if search.c_size.present? %> <%= search.c_size %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= search.v_compare if search.v_size.present? %> <%= search.c_size %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= search.total_compare if search.total_size.present? %> <%= search.c_size %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= search.papuas.size %>/<%= Papua.all.size %> = <%= search.result %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= search.created_at.localtime %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= email_to_name(current_user.email) %></Data></Cell>
+    </Row>
+    <% end %>
+  </Table>
+</Worksheet>
+</Workbook>
