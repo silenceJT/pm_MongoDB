@@ -2,8 +2,9 @@ class PapuasController < ApplicationController
   before_action :authenticate_user!
   before_action :set_papua, only: %i[ show edit update destroy ]
   before_action :verify_email
-  before_action :sync, only: %i[ index show edit ]
-  after_action :sync, only: %i[ update destroy ]
+  #before_action :sync, only: %i[ index show edit ]
+  #after_action :sync, only: %i[ update destroy ]
+  after_action :sync_result, only: %i[ create ]
 
   # GET /papuas or /papuas.json
   def index
@@ -11,7 +12,6 @@ class PapuasController < ApplicationController
 
     @papuas_results = @papuas
     @papuas_all_size = Papua.all.size
-    @result_ratio = (@papuas_results.size.to_f * 100 / @papuas_all_size).round(2)
     
     @papuas = @papuas.order(no: 1)
     @papuas_page = Kaminari.paginate_array(@papuas).page(params[:page]).per(15)
@@ -46,13 +46,19 @@ class PapuasController < ApplicationController
         format.json { render json: @papuas }
         format.js
         format.csv { send_data @papuas.to_csv }
-        format.xls
+        format.xls { send_data papuas.to_csv }
     end
 
   end
 
   # GET /papuas/1 or /papuas/1.json
   def show
+    @papua.inv = @papua.consonants + ", " + @papua.vowels
+    @papua.count_of_consonants = @papua.consonants.split(",").size
+    @papua.count_of_vowels = @papua.vowels.split(",").size
+    @papua.count_of_segments = @papua.count_of_consonants + @papua.count_of_vowels
+    @papua.save
+
     seg_list = Segment.all
     @seg_hash = Hash.new()
     @seg_array = Array.new()
@@ -90,11 +96,21 @@ class PapuasController < ApplicationController
 
   # GET /papuas/1/edit
   def edit
+    @papua.inv = @papua.consonants + ", " + @papua.vowels
+    @papua.count_of_consonants = @papua.consonants.split(",").size
+    @papua.count_of_vowels = @papua.vowels.split(",").size
+    @papua.count_of_segments = @papua.count_of_consonants + @papua.count_of_vowels
+    @papua.save
   end
 
   # POST /papuas or /papuas.json
   def create
     @papua = Papua.new(papua_params)
+    @papua.no = Papua.all.size + 1
+    @papua.inv = @papua.consonants + ", " + @papua.vowels
+    @papua.count_of_consonants = @papua.consonants.split(",").size
+    @papua.count_of_vowels = @papua.vowels.split(",").size
+    @papua.count_of_segments = @papua.count_of_consonants + @papua.count_of_vowels
 
     respond_to do |format|
       if @papua.save
@@ -147,15 +163,21 @@ class PapuasController < ApplicationController
       (redirect_to(root_path) unless whitelist.include?(current_user.email))
     end
 
-    def sync
-      Papua.each do |papua|
-        papua.inv = papua.consonants + ", " + papua.vowels
-        papua.count_of_consonants = papua.consonants.split(",").size
-        papua.count_of_vowels = papua.vowels.split(",").size
-        papua.count_of_segments = papua.count_of_consonants + papua.count_of_vowels
-        papua.save
-    end
+    # def sync
+    #   Papua.each do |papua|
+    #     papua.inv = papua.consonants + ", " + papua.vowels
+    #     papua.count_of_consonants = papua.consonants.split(",").size
+    #     papua.count_of_vowels = papua.vowels.split(",").size
+    #     papua.count_of_segments = papua.count_of_consonants + papua.count_of_vowels
+    #     papua.save
+    #   end
+    # end
 
+    def sync_result
+      Search.each do |search|
+        search.result = ((search.papuas.size.to_f * 100 / Papua.all.size).round(2)).to_s + "%"
+        search.save
+    end
   end
 
   protected

@@ -16,6 +16,7 @@ class Search
   field :total_compare, type: String
   field :total_size, type: Integer
   field :result, type: String
+  field :created_by, type: String
 
   COMPARE = %w{ >= > = < <= }
 
@@ -31,9 +32,9 @@ class Search
     @papuas_other = Papua.not_in(:no => other)
   end
 
-  def result
-    @result = (@papuas.size.to_f * 100 / Papua.all.size).round(2)
-  end
+  # def result
+  #   @result = (@papuas.size.to_f * 100 / Papua.all.size).round(2)
+  # end
 
   def find_papuas
     papuas = Papua.all
@@ -116,19 +117,35 @@ class Search
       # extract no from results
       include_array.each do |inc_item|
         include_no = []
-        papuas_inc = papuas.where(:inv => /#{inc_item}/)
-        papuas_inc.each do |p_inc|
-          include_no.push(p_inc.no)
+        papuas.each do |papua|
+          for p_inv in papua.inv.split("\,") do
+            p_inv_striped = p_inv.strip
+            if p_inv_striped == inc_item
+              include_no.push(papua.no)
+            end
+          end
         end
+        # papuas_inc = papuas.where(:inv => /#{inc_item}/)
+        # papuas_inc.each do |p_inc|
+        #   include_no.push(p_inc.no)
+        # end
         combined_inc = combined_inc & include_no
       end
 
       exclude_array.each do |exc_item|
         exclude_no = []
-        papuas_exc = papuas.where(:inv => /#{exc_item}/)
-        papuas_exc.each do |p_exc|
-          exclude_no.push(p_exc.no)
+        papuas.each do |papua|
+          for p_inv in papua.inv.split("\,") do
+            p_inv_striped = p_inv.strip
+            if p_inv_striped == exc_item
+              exclude_no.push(papua.no)
+            end
+          end
         end
+        # papuas_exc = papuas.where(:inv => /#{exc_item}/)
+        # papuas_exc.each do |p_exc|
+        #   exclude_no.push(p_exc.no)
+        # end
         combined_exc = combined_exc | exclude_no
       end
 

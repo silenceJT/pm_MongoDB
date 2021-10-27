@@ -20,8 +20,15 @@ module ApplicationHelper
 		end
 	end
 
-	def self.fulltext_search(str)
-		
+	def email_to_name(email)
+		case email
+		when "jessewjt@gmail.com"
+			return "Jiatao"
+		when "j.hajek@unimelb.edu.au"
+			return "JH"
+		when "timothy.brickell@unimelb.edu.au"
+			return "Tim"
+		end
 
 	end
 end
