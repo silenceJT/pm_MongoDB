@@ -46,7 +46,7 @@ class PapuasController < ApplicationController
         format.json { render json: @papuas }
         format.js
         format.csv { send_data @papuas.to_csv }
-        format.xls { send_data papuas.to_csv }
+        format.xls
     end
 
   end
