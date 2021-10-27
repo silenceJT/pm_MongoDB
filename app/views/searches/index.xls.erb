@@ -35,7 +35,7 @@ xmlns:html="http://www.w3.org/TR/REC-html40">
       <Cell><Data ss:Type="String"><%= search.total_compare if search.total_size.present? %> <%= search.c_size %></Data></Cell>
       <Cell><Data ss:Type="String"><%= search.papuas.size %>/<%= Papua.all.size %> = <%= search.result %></Data></Cell>
       <Cell><Data ss:Type="String"><%= search.created_at.localtime %></Data></Cell>
-      <Cell><Data ss:Type="String"><%= email_to_name(current_user.email) %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= email_to_name(search.created_by) %></Data></Cell>
     </Row>
     <% end %>
   </Table>

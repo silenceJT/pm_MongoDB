@@ -42,7 +42,7 @@
             <!-- <td><%#= search.papuas.size %>/<%#= Papua.all.size %> = <%#= ((search.papuas.size.to_f * 100 / Papua.all.size).round(2)).to_s + "%" %></td> -->
             <td class="px-4 py-4 whitespace-normal text-sm text-gray-900"><%= search.papuas.size %>/<%= Papua.all.size %> = <%= search.result %></td>
             <td class="px-4 py-4 whitespace-normal text-sm text-gray-900"><%= search.created_at.localtime %></td>
-            <td class="px-4 py-4 whitespace-normal text-sm text-gray-900"><%= email_to_name(current_user.email) %></td>
+            <td class="px-4 py-4 whitespace-normal text-sm text-gray-900"><%= email_to_name(search.created_by) %></td>
             <td class="px-4 py-4 whitespace-normal text-sm text-gray-900">
               <%= link_to 'Delete', search, method: :delete, class: "inline-flex items-center px-2 py-1 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500" %>
             </td>

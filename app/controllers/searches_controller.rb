@@ -19,6 +19,7 @@ class SearchesController < ApplicationController
 	def create
 		@search = Search.new(search_params)
 		@search.result = ((@search.papuas.size.to_f * 100 / Papua.all.size).round(2)).to_s + "%"
+		@search.created_by = current_user.email
 		respond_to do |format|
       if @search.save
         format.html { redirect_to @search, notice: "Search was successfully created." }
