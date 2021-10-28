@@ -59,12 +59,12 @@
             </div>
           </td>
           <td class="px-4 py-4 whitespace-normal">
-            <div class="text-sm text-gray-500"><%= segment.sequence %></div>
+            <div class="text-sm text-gray-500 lowercase"><%= segment.sequence %></div>
           </td>
           <td class="px-2 py-4 whitespace-normal">
-            <div class="text-sm text-gray-500"><%= segment.category %></div>
+            <div class="text-sm text-gray-500 lowercase"><%= segment.category %></div>
           </td>
-          <td class="px-3 py-4 whitespace-normal text-sm text-gray-500">
+          <td class="px-3 py-4 whitespace-normal text-sm text-gray-500 lowercase">
             <%= segment.place %>
           </td>
         </tr>
@@ -79,7 +79,7 @@
 
   // source: https://forum.jquery.com/topic/filter-table-by-multiple-user-text-inputs-separated-by-a-comma
 
-  var $rows = $('#myTable tr').not(':first');
+  var $rows = $('#myTable3 tr').not(':first');
   var filters = { col1: '', col2: '', col3: '', col4: ''};
   $('#search1').keyup(function() {
     var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
