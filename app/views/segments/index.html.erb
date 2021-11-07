@@ -40,7 +40,7 @@
 
           <th scope="col" class="hover:bg-gray-100 cursor-pointer px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
             <div class="flex flex-auto items-center">
-              Vocing
+              Voicing
               <input type="text" id="search4" class="focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md ml-2 w-36">
             </div>
           </th>
@@ -117,8 +117,8 @@
     var $rows = $('#myTable3 tr').not(':first');
     var filters = { col1: '', col2: '', col3: '', col4: '', col5: '', col6: '', col7: ''};
     $('#search1').keyup(function() {
-      var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
-      filters.col1 = val;
+      var val = $.trim($(this).val()).replace(/ +/g, ' ');
+      filters.col1 = val.replace(/g/, 'ɡ');
       applyFilters();
     });
     $('#search2').keyup(function() {
@@ -155,7 +155,7 @@
     function applyFilters() {
       $rows.show();
       $rows.filter(function() {
-        var text = $(this).find('td:nth-child(2)').text().replace(/\s+/g, ' ').toLowerCase();
+        var text = $(this).find('td:nth-child(2)').text().replace(/\s+/g, ' ');
         return !~text.indexOf(filters.col1);
       }).hide();
       $rows.filter(function() {
