@@ -27,13 +27,13 @@ require("chartkick/chart.js")
 
 $(document).ready(function() {
 	
-   $('.load-ajax').hide();
-   $(document).ajaxStart(function() {
-        $('.load-ajax').show();
-   });
-   $(document).ajaxStop(function() {
-        $('.load-ajax').hide();
-   });
+   // $('.load-ajax').hide();
+   // $(document).ajaxStart(function() {
+   //      $('.load-ajax').show();
+   // });
+   // $(document).ajaxStop(function() {
+   //      $('.load-ajax').hide();
+   // });
 	
 	// Delay function for type in
 	function delay(callback, ms) {

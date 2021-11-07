@@ -21,7 +21,18 @@ class SegmentsController < ApplicationController
   def show
     seg = @segment.ipa.to_s
     other = Array.new()
-    papuas = Papua.all.where(:inv => /#{seg}/)
+    include_seg_no = []
+    #papuas = Papua.all.where(:inv => /#{seg}/) 模糊搜索
+    Papua.each do |papua|
+      for p_inv in papua.inv.split("\,") do
+        p_inv_striped = p_inv.strip
+        if p_inv_striped === seg
+          include_seg_no.push(papua.no)
+        end
+      end
+    end
+
+    papuas = Papua.in(:no => include_seg_no)
 
     papuas = papuas.where(:language_name => /#{params[:language_name]}/i) if params[:language_name].present?
     papuas = papuas.where(:language_family => /#{params[:language_family]}/i) if params[:language_family].present?
@@ -99,6 +110,9 @@ class SegmentsController < ApplicationController
 
       # extract no from results
       include_array.each do |inc_item|
+        if inc_item.include?('g')
+          inc_item['g'] = 'ɡ'
+        end
         include_no = []
         papuas.each do |papua|
           for p_inv in papua.inv.split("\,") do
@@ -116,6 +130,9 @@ class SegmentsController < ApplicationController
       end
 
       exclude_array.each do |exc_item|
+        if exc_item.include?('g')
+          exc_item['g'] = 'ɡ'
+        end
         exclude_no = []
         papuas.each do |papua|
           for p_inv in papua.inv.split("\,") do
@@ -199,7 +216,7 @@ class SegmentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def segment_params
-      params.require(:segment).permit(:no, :ipa, :sequence, :category, :place)
+      params.require(:segment).permit(:no, :ipa, :cvd, :plain_vs_non_plain, :voicing, :place, :manner, :additional, :extra, :unicode, :notes)
     end
 
     def verify_email

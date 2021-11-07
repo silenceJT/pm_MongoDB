@@ -19,16 +19,40 @@
           <%= form.text_field :ipa, class: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
         </div>
         <div class="mt-2">
-          <%= form.label :sequence, "Sequence", class: "block text-sm font-medium text-gray-700" %>
-          <%= form.text_field :sequence, class: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+          <%= form.label :cvd, "CVD", class: "block text-sm font-medium text-gray-700" %>
+          <%= form.text_field :cvd, class: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
         </div>
         <div class="mt-2">
-          <%= form.label :category, "Category", class: "block text-sm font-medium text-gray-700" %>
-          <%= form.text_field :category, class: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+          <%= form.label :plain_vs_non_plain, "Plain vs Non-Plain", class: "block text-sm font-medium text-gray-700" %>
+          <%= form.text_field :plain_vs_non_plain, class: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+        </div>
+        <div class="mt-2">
+          <%= form.label :voicing, "Voicing", class: "block text-sm font-medium text-gray-700" %>
+          <%= form.text_field :voicing, class: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
         </div>
         <div class="mt-2">
           <%= form.label :place, "Place", class: "block text-sm font-medium text-gray-700" %>
           <%= form.text_field :place, class: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+        </div>
+        <div class="mt-2">
+          <%= form.label :manner, "Manner", class: "block text-sm font-medium text-gray-700" %>
+          <%= form.text_field :manner, class: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+        </div>
+        <div class="mt-2">
+          <%= form.label :additional, "Additional", class: "block text-sm font-medium text-gray-700" %>
+          <%= form.text_field :additional, class: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+        </div>
+        <div class="mt-2">
+          <%= form.label :extra, "Extra", class: "block text-sm font-medium text-gray-700" %>
+          <%= form.text_field :extra, class: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+        </div>
+        <div class="mt-2">
+          <%= form.label :unicode, "Unicode", class: "block text-sm font-medium text-gray-700" %>
+          <%= form.text_field :unicode, class: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+        </div>
+        <div class="mt-2">
+          <%= form.label :notes, "Notes", class: "block text-sm font-medium text-gray-700" %>
+          <%= form.text_area :notes, rows: 4, class: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
         </div>
       </div>
       <div class="actions px-4 py-3 bg-gray-50 text-right sm:px-6">

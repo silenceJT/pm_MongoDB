@@ -86,6 +86,9 @@ class PapuasController < ApplicationController
 
       # extract no from results
       include_array.each do |inc_item|
+        if inc_item.include?('g')
+          inc_item['g'] = 'ɡ'
+        end
         include_no = []
         papuas.each do |papua|
           for p_inv in papua.inv.split("\,") do
@@ -103,6 +106,9 @@ class PapuasController < ApplicationController
       end
 
       exclude_array.each do |exc_item|
+        if exc_item.include?('g')
+          exc_item['g'] = 'ɡ'
+        end
         exclude_no = []
         papuas.each do |papua|
           for p_inv in papua.inv.split("\,") do
