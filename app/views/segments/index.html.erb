@@ -111,7 +111,8 @@
   new Date().getTime();
   
   //https://stackoverflow.com/questions/3628536/history-back-doesnt-trigger-document-ready
-  window.onpageshow = function(event) {
+  //window.onpageshow = function(event) {
+  $(window).bind("pageshow", function(event) {  
       
     // source: https://forum.jquery.com/topic/filter-table-by-multiple-user-text-inputs-separated-by-a-comma
     var $rows = $('#myTable3 tr').not(':first');
@@ -185,17 +186,27 @@
     };
 
     // resource: https://stackoverflow.com/questions/53357650/filtering-table-columns-based-on-multiple-input-fields
-    function performReset() {
+    // function performReset() {
+    //   document.getElementById("search1").value = "";
+    //   document.getElementById("search2").value = "";
+    //   document.getElementById("search3").value = "";
+    //   document.getElementById("search4").value = "";
+    //   document.getElementById("search5").value = "";
+    //   document.getElementById("search6").value = "";
+    //   $rows.show();
+    // }
+  })
+
+  function performReset() {
+      var $rows = $('#myTable3 tr').not(':first');
       document.getElementById("search1").value = "";
       document.getElementById("search2").value = "";
       document.getElementById("search3").value = "";
       document.getElementById("search4").value = "";
       document.getElementById("search5").value = "";
       document.getElementById("search6").value = "";
-      document.getElementById("search7").value = "";
       $rows.show();
     }
-  }
   
 
 </script>
