@@ -14,7 +14,7 @@
       <thead class="bg-gray-50 divide-y divide-gray-200">
         <tr class="h-12">
           <th scope="col" class="hover:bg-gray-100 cursor-pointer px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-            No
+            no
           </th>
 
           <th scope="col" class="hover:bg-gray-100 cursor-pointer px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -33,28 +33,31 @@
 
           <th scope="col" class="hover:bg-gray-100 cursor-pointer px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
             <div class="flex flex-auto items-center">
-              Plain vs Non-Plain
+              plain vs non-plain
               <input type="text" id="search3" class="focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md ml-2 w-36">
             </div>
           </th>
 
           <th scope="col" class="hover:bg-gray-100 cursor-pointer px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
             <div class="flex flex-auto items-center">
-              Voicing
+              voicing
               <input type="text" id="search4" class="focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md ml-2 w-36">
             </div>
           </th>
 
           <th scope="col" class="hover:bg-gray-100 cursor-pointer px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
             <div class="flex flex-auto items-center">
-              Place
+              place
+              <!--div id="place_dropdown" oninput="filterTable()">
+                <%#= select_tag :place, options_for_select(Segment.get_options("place")), class: "ml-2 inline-flex justify-center  rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500" %>
+              </div-->
               <input type="text" id="search5" class="focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md ml-2 w-36">
             </div>
           </th>
 
           <th scope="col" class="hover:bg-gray-100 cursor-pointer px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
             <div class="flex flex-auto items-center">
-              Manner
+              manner
               <input type="text" id="search6" class="focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md ml-2 w-36">
             </div>
           </th>
@@ -111,6 +114,7 @@
   new Date().getTime();
   
   //https://stackoverflow.com/questions/3628536/history-back-doesnt-trigger-document-ready
+  //https://pretagteam.com/question/pageshow-is-not-received-when-pressing-back-button-on-safari-on-ipad
   //window.onpageshow = function(event) {
   $(window).bind("pageshow", function(event) {  
       
@@ -198,15 +202,37 @@
   })
 
   function performReset() {
-      var $rows = $('#myTable3 tr').not(':first');
-      document.getElementById("search1").value = "";
-      document.getElementById("search2").value = "";
-      document.getElementById("search3").value = "";
-      document.getElementById("search4").value = "";
-      document.getElementById("search5").value = "";
-      document.getElementById("search6").value = "";
-      $rows.show();
+    var $rows = $('#myTable3 tr').not(':first');
+    document.getElementById("search1").value = "";
+    document.getElementById("search2").value = "";
+    document.getElementById("search3").value = "";
+    document.getElementById("search4").value = "";
+    document.getElementById("search5").value = "";
+    document.getElementById("search6").value = "";
+    $rows.show();
+  }
+
+  function filterTable() {
+    // Variables
+    let dropdown, table, rows, cells, place, filter;
+    dropdown = document.getElementById("place_dropdown");
+    table = document.getElementById("myTable3");
+    rows = table.getElementsByTagName("tr");
+    filter = dropdown.value;
+
+    // Loops through rows and hides those with countries that don't match the filter
+    for (let row of rows) { // `for...of` loops through the NodeList
+      cells = row.getElementsByTagName("td");
+      place = cells[5] || null; // gets the 6th `td` or nothing
+      // if the filter is set to 'All', or this is the header row, or 6th `td` text matches filter
+      if (filter === "All" || !place || (filter === place.textContent)) {
+        row.style.display = ""; // shows this row
+      }
+      else {
+        row.style.display = "none"; // hides this row
+      }
     }
+  }
   
 
 </script>
