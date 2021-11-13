@@ -37,6 +37,12 @@ class Segment
           field_strip = seg.place.strip
       when "manner"
           field_strip = seg.manner.strip
+      when "additional"
+          field_strip = seg.additional.strip
+      when "extra"
+          field_strip = seg.extra.strip
+      when "unicode"
+          field_strip = seg.unicode.strip
       end
       
       if array.exclude?(field_strip)
