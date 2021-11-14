@@ -11,6 +11,7 @@ class Segment
   field :no, type: Integer
   field :ipa, type: String
   field :cvd, type: String
+  field :number, type: Integer
   field :plain_vs_non_plain, type: String
   field :voicing, type: String
   field :place, type: String
@@ -20,6 +21,23 @@ class Segment
   field :unicode, type: String
   field :notes, type: String
 
+  # return languages which have that particular segment
+  def seg_papuas
+    papuas = Papua.all
+    seg = ipa.to_s
+    papuas_no = []
+    papuas.each do |pap|
+      for p_inv in pap.inv.split("\,") do
+        p_inv_striped = p_inv.strip
+        if p_inv_striped === seg
+         papuas_no.push(pap.no)
+       end
+     end
+    end
+
+    papuas = Papua.in(:no => papuas_no)
+    return papuas
+  end
 
 
   def self.get_options(field)

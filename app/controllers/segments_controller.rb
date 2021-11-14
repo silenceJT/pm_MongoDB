@@ -6,15 +6,33 @@ class SegmentsController < ApplicationController
   # GET /segments or /segments.json
   def index
     @segments = Segment.all
-    @seg_list = Array.new()
-    @papuas = Papua.all
-    @papuas.each do |pap|
-      pap.consonants.split("\,").each do |p_c|
-        unless @seg_list.to_s.include?(p_c)
-          @seg_list.push(p_c)
-        end
-      end
-    end
+
+    # get all segments from languages' inventories
+    # @seg_list = Array.new()
+    # @papuas = Papua.all
+    # @papuas.each do |pap|
+    #   pap.consonants.split("\,").each do |p_c|
+    #     unless @seg_list.to_s.include?(p_c)
+    #       @seg_list.push(p_c)
+    #     end
+    #   end
+    # end
+
+    # total number of languages which have that particular segment
+    # @segments.each do |seg|
+    #   include_seg_no = 0
+    #   Papua.each do |pap|
+    #     for p_inv in pap.inv.split("\,") do
+    #       p_inv_striped = p_inv.strip
+    #       if p_inv_striped === seg.ipa.to_s
+    #          include_seg_no = include_seg_no + 1
+    #       end
+    #     end
+    #   end
+    #   seg.number = include_seg_no
+    #   seg.save
+    # end
+
   end
 
   # GET /segments/1 or /segments/1.json
@@ -32,6 +50,8 @@ class SegmentsController < ApplicationController
       end
     end
 
+    @segment.number = include_seg_no.size
+    @segment.save
     papuas = Papua.in(:no => include_seg_no)
 
     papuas = papuas.where(:language_name => /#{params[:language_name]}/i) if params[:language_name].present?

@@ -20,54 +20,103 @@
           <th scope="col" class="hover:bg-gray-100 cursor-pointer px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
             <div class="flex flex-auto items-center">
               <p>ipa</p>
-              <input type="text" id="search1" class="focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md ml-2 w-16">
             </div>
           </th>
 
           <th scope="col" class="hover:bg-gray-100 cursor-pointer px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
             <div class="flex flex-auto items-center">
               cvd
-              <input type="text" id="search2" class="focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md ml-2 w-16">
             </div>
           </th>
 
-          <th scope="col" class="hover:bg-gray-100 cursor-pointer px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+          <th scope="col" class="hover:bg-gray-100 cursor-pointer px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
             <div class="flex flex-auto items-center">
-              plain vs non-plain
-              <input type="text" id="search3" class="focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md ml-2 w-36">
+              number
             </div>
           </th>
 
-          <th scope="col" class="hover:bg-gray-100 cursor-pointer px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+          <th scope="col" class="hover:bg-gray-100 cursor-pointer px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <div class="flex flex-auto items-center">
+              plain      
+            </div>
+          </th>
+
+          <th scope="col" class="hover:bg-gray-100 cursor-pointer px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
             <div class="flex flex-auto items-center">
               voicing
-              <input type="text" id="search4" class="focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md ml-2 w-36">
             </div>
           </th>
 
-          <th scope="col" class="hover:bg-gray-100 cursor-pointer px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+          <th scope="col" class="hover:bg-gray-100 cursor-pointer px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
             <div class="flex flex-auto items-center">
               place
-              <!--div id="place_dropdown" oninput="filterTable()">
-                <%#= select_tag :place, options_for_select(Segment.get_options("place")), class: "ml-2 inline-flex justify-center  rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500" %>
-              </div-->
-              <input type="text" id="search5" class="focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md ml-2 w-36">
             </div>
           </th>
 
-          <th scope="col" class="hover:bg-gray-100 cursor-pointer px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+          <th scope="col" class="hover:bg-gray-100 cursor-pointer px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
             <div class="flex flex-auto items-center">
               manner
-              <input type="text" id="search6" class="focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md ml-2 w-36">
             </div>
           </th>
 
-          <!-- <th scope="col" class="hover:bg-gray-100 cursor-pointer px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+          <th scope="col" class="hover:bg-gray-100 cursor-pointer px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
             <div class="flex flex-auto items-center">
-              Unicode
-              <input type="text" id="search7" class="focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md ml-2 w-36">
+              additional
             </div>
-          </th> -->
+          </th>
+        </tr>
+        <tr>
+            <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              
+            </th>
+
+            <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <input type="text" id="search1" class="focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md w-16">
+            </th>
+
+            <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <!-- <input type="text" id="search2" class="focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md w-16"> -->
+              <div id="cvd_dropdown">
+                <%= select_tag :cvd, options_for_select(Segment.get_options("cvd"), "All"), class: "inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500 w-20" %>
+              </div>
+            </th>
+
+            <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <input type="text" id="search3" class="focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md w-16">
+            </th>
+
+            <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <!-- <input type="text" id="search4" class="focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md w-36"> -->
+              <div id="plain_dropdown">
+                <%= select_tag :plain_vs_non_plain, options_for_select(Segment.get_options("plain_vs_non_plain"), "All"), class: "inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500" %>
+              </div>
+            </th>
+
+            <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <!-- <input type="text" id="search5" class="focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md w-36"> -->
+              <div id="voicing_dropdown">
+                <%= select_tag :voicing, options_for_select(Segment.get_options("voicing"), "All"), class: "inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500" %>
+              </div>
+            </th>
+
+            <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <!-- <input type="text" id="search6" class="focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md w-36"> -->
+              <div id="place_dropdown">
+                <%= select_tag :place, options_for_select(Segment.get_options("place"), "All"), class: "inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500" %>
+              </div>
+            </th>
+
+            <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <!-- <input type="text" id="search7" class="focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md w-36"> -->
+              <div id="manner_dropdown">
+                <%= select_tag :manner, options_for_select(Segment.get_options("manner"), "All"), class: "inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500" %>
+              </div>
+            </th>
+
+            <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <input type="text" id="search8" class="focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md w-36">
+            </th>
+
         </tr>
       </thead>
       <tbody class="bg-white divide-y divide-gray-200">
@@ -85,21 +134,28 @@
           <td class="px-4 py-4 whitespace-normal">
             <div class="text-sm text-gray-500"><%= segment.cvd %></div>
           </td>
-          <td class="px-2 py-4 whitespace-normal">
+          <td class="px-4 py-4 whitespace-normal">
+            <% if segment.number == 0 %>
+              <div class="text-sm text-red-600"><%= segment.number %></div>
+            <% else %>
+              <div class="text-sm text-gray-500"><%= segment.number %></div>
+            <% end %>  
+          </td>
+          <td class="px-4 py-4 whitespace-normal">
             <div class="text-sm text-gray-500"><%= segment.plain_vs_non_plain %></div>
           </td>
-          <td class="px-3 py-4 whitespace-normal text-sm text-gray-500">
+          <td class="px-4 py-4 whitespace-normal text-sm text-gray-500">
             <%= segment.voicing %>
           </td>
-          <td class="px-3 py-4 whitespace-normal text-sm text-gray-500">
+          <td class="px-4 py-4 whitespace-normal text-sm text-gray-500">
             <%= segment.place %>
           </td>
-          <td class="px-3 py-4 whitespace-normal text-sm text-gray-500">
+          <td class="px-4 py-4 whitespace-normal text-sm text-gray-500">
             <%= segment.manner %>
           </td>
-          <!-- <td class="px-3 py-4 whitespace-normal text-sm text-gray-500">
-            <%= segment.unicode %>
-          </td> -->
+          <td class="px-3 py-4 whitespace-normal text-sm text-gray-500">
+            <%= segment.additional %>
+          </td>
         </tr>
         <% end %>
       </tbody>
@@ -116,81 +172,165 @@
   //https://stackoverflow.com/questions/3628536/history-back-doesnt-trigger-document-ready
   //https://pretagteam.com/question/pageshow-is-not-received-when-pressing-back-button-on-safari-on-ipad
   //window.onpageshow = function(event) {
-  $(window).bind("pageshow", function(event) {  
+  $(window).bind("pageshow", function() {  
       
     // source: https://forum.jquery.com/topic/filter-table-by-multiple-user-text-inputs-separated-by-a-comma
-    var $rows = $('#myTable3 tr').not(':first');
-    var filters = { col1: '', col2: '', col3: '', col4: '', col5: '', col6: '', col7: ''};
+    //var $rows = $('#myTable3 th tr').not(':first').not('tr:nth-child(2)');
+    var $rows = $('#myTable3 tbody tr')
+    var filters = { col1: '', col2: '', col3: '', col4: '', col5: '', col6: '', col7: '', col8: ''};
     $('#search1').keyup(function() {
       var val = $.trim($(this).val()).replace(/ +/g, ' ');
       filters.col1 = val.replace(/g/, 'ɡ');
       applyFilters();
     });
-    $('#search2').keyup(function() {
-      var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+    // $('#search2').keyup(function() {
+    //   var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+    //   filters.col2 = val;
+    //   applyFilters();
+    // });
+    $('#cvd_dropdown').change(function() {
+      var val = $('#cvd_dropdown option:selected').text().toLowerCase();
       filters.col2 = val;
       applyFilters();
-    });
+    })
     $('#search3').keyup(function() {
       var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
       filters.col3 = val;
       applyFilters();
     });
-    $('#search4').keyup(function() {
-      var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+    // $('#search4').keyup(function() {
+    //   var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+    //   filters.col4 = val;
+    //   applyFilters();
+    // });
+    $('#plain_dropdown').change(function() {
+      var val = $('#plain_dropdown option:selected').text().toLowerCase();
       filters.col4 = val;
       applyFilters();
-    });
-    $('#search5').keyup(function() {
-      var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+    })
+    // $('#search5').keyup(function() {
+    //   var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+    //   filters.col5 = val;
+    //   applyFilters();
+    // });
+    $('#voicing_dropdown').change(function() {
+      var val = $('#voicing_dropdown option:selected').text().toLowerCase();
       filters.col5 = val;
       applyFilters();
-    });
-    $('#search6').keyup(function() {
-      var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+    })
+    // $('#search6').keyup(function() {
+    //   var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+    //   filters.col6 = val;
+    //   applyFilters();
+    // });
+    $('#place_dropdown').change(function() {
+      var val = $('#place_dropdown option:selected').text().toLowerCase();
       filters.col6 = val;
       applyFilters();
-    });
-    $('#search7').keyup(function() {
-      var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+    })
+    // $('#search7').keyup(function() {
+    //   var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+    //   filters.col7 = val;
+    //   applyFilters();
+    // });
+    $('#manner_dropdown').change(function() {
+      var val = $('#manner_dropdown option:selected').text().toLowerCase();
       filters.col7 = val;
+      applyFilters();
+    })
+
+    $('#search8').keyup(function() {
+      var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+      filters.col8 = val;
       applyFilters();
     });
 
     function applyFilters() {
       $rows.show();
+
+      // IPA
       $rows.filter(function() {
         var text = $(this).find('td:nth-child(2)').text().replace(/\s+/g, ' ');
         return !~text.indexOf(filters.col1);
       }).hide();
+
+      // CVD
       $rows.filter(function() {
         var text = $(this).find('td:nth-child(3)').text().replace(/\s+/g, ' ').toLowerCase();
-        return !~text.indexOf(filters.col2);
+        if (filters.col2 == '' || filters.col2 == 'all' || text.trim() === filters.col2) {
+          return false;
+        }
+        else 
+          return true;
+        //return !~text.indexOf(filters.col2);
       }).hide();
+
+      // Number
       $rows.filter(function() {
         var text = $(this).find('td:nth-child(4)').text().replace(/\s+/g, ' ').toLowerCase();
-        return !~text.indexOf(filters.col3);
+        if (filters.col3 == '' || text.trim() === filters.col3) {
+          return false;
+        }
+        else 
+          return true;
+        //return text.indexOf(filters.col3) !== 0;
+        //return !~text.indexOf(filters.col3);
       }).hide();
+
+      // Plain
       $rows.filter(function() {
         var text = $(this).find('td:nth-child(5)').text().replace(/\s+/g, ' ').toLowerCase();
-        return !~text.indexOf(filters.col4);
+        if (filters.col4 == '' || filters.col4 == 'all' || text.trim() === filters.col4) {
+          return false;
+        }
+        else 
+          return true;
+        //return !~text.indexOf(filters.col4);
       }).hide();
+
+      // Voicing
       $rows.filter(function() {
         var text = $(this).find('td:nth-child(6)').text().replace(/\s+/g, ' ').toLowerCase();
-        return !~text.indexOf(filters.col5);
+        if (filters.col5 == '' || filters.col5 == 'all' || text.trim() === filters.col5) {
+          return false;
+        }
+        else 
+          return true;
+        //return !~text.indexOf(filters.col5);
       }).hide();
+
+      // Place
       $rows.filter(function() {
         var text = $(this).find('td:nth-child(7)').text().replace(/\s+/g, ' ').toLowerCase();
-        return !~text.indexOf(filters.col6);
+        if (filters.col6 == '' || filters.col6 == 'all' || text.trim() === filters.col6) {
+          return false;
+        }
+        else 
+          return true;
+        //return !~text.indexOf(filters.col6);
       }).hide();
+
+      // Manner
       $rows.filter(function() {
         var text = $(this).find('td:nth-child(8)').text().replace(/\s+/g, ' ').toLowerCase();
-        return !~text.indexOf(filters.col7);
+        if (filters.col7 == '' || filters.col7 == 'all' || text.trim() === filters.col7) {
+          return false;
+        }
+        else 
+          return true;
+        //return !~text.indexOf(filters.col7);
+      }).hide();
+
+      // Additional
+      $rows.filter(function() {
+        var text = $(this).find('td:nth-child(9)').text().replace(/\s+/g, ' ').toLowerCase();
+        return !~text.indexOf(filters.col8);
       }).hide();
     };
 
     // resource: https://stackoverflow.com/questions/53357650/filtering-table-columns-based-on-multiple-input-fields
     // function performReset() {
+    //   var $rows = $('#myTable3 tr').not(':first');
     //   document.getElementById("search1").value = "";
     //   document.getElementById("search2").value = "";
     //   document.getElementById("search3").value = "";
@@ -202,36 +342,24 @@
   })
 
   function performReset() {
+    //event.preventDefault();
+    //$(this).prev().val("").change();
     var $rows = $('#myTable3 tr').not(':first');
+    
     document.getElementById("search1").value = "";
-    document.getElementById("search2").value = "";
+    // document.getElementById("search2").value = "";
     document.getElementById("search3").value = "";
-    document.getElementById("search4").value = "";
-    document.getElementById("search5").value = "";
-    document.getElementById("search6").value = "";
+    document.getElementById("search8").value = "";
+    //document.getElementById("search4").value = "";
+    //document.getElementById("search5").value = "";
+    //document.getElementById("search6").value = "";
+    //document.getElementById("search7").value = "";
+    $('select')[0].value = "All";
+    $('select')[1].value = "All";
+    $('select')[2].value = "All";
+    $('select')[3].value = "All";
+    $('select')[4].value = "All";
     $rows.show();
-  }
-
-  function filterTable() {
-    // Variables
-    let dropdown, table, rows, cells, place, filter;
-    dropdown = document.getElementById("place_dropdown");
-    table = document.getElementById("myTable3");
-    rows = table.getElementsByTagName("tr");
-    filter = dropdown.value;
-
-    // Loops through rows and hides those with countries that don't match the filter
-    for (let row of rows) { // `for...of` loops through the NodeList
-      cells = row.getElementsByTagName("td");
-      place = cells[5] || null; // gets the 6th `td` or nothing
-      // if the filter is set to 'All', or this is the header row, or 6th `td` text matches filter
-      if (filter === "All" || !place || (filter === place.textContent)) {
-        row.style.display = ""; // shows this row
-      }
-      else {
-        row.style.display = "none"; // hides this row
-      }
-    }
   }
   
 

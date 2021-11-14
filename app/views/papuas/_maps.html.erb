@@ -20,13 +20,14 @@
         zoom: 4.75 // starting zoom
     });
 
-    
+    var id_results = [];
     var lng_results = [];
     var lat_results = [];
     var name_results = [];
     var family_results = [];
     var country_results = [];
     var lng_other = [];
+    var id_other = [];
     var lat_other = [];
     var name_other = [];    
     var family_other = [];
@@ -52,6 +53,7 @@
     // }
     
     <% papuas_results.each do |p_r| %>
+      id_results.push("<%= p_r.id %>")
       lng_results.push("<%= p_r.longitude %>")
       lat_results.push("<%= p_r.latitude %>")
       name_results.push("<%= p_r.language_name %>")
@@ -60,6 +62,7 @@
     <% end %>
 
     <% papuas_other.each do |p_o| %>
+      id_other.push("<%= p_o.id %>")
       lng_other.push("<%= p_o.longitude %>")
       lat_other.push("<%= p_o.latitude %>")
       name_other.push("<%= p_o.language_name %>")
@@ -104,7 +107,7 @@
           "coordinates": []
         },
         "properties": {
-          "description": `<strong>${name_results[i]}</strong><p>${family_results[i]}</P>`,
+          "description": `<a href="/papuas/${id_results[i]}" style="color:DodgerBlue;"><strong>${name_results[i]}</strong></a><p>${family_results[i]}</P>`,
           "ethnicity": country_results[i]
         }
       });
@@ -123,7 +126,7 @@
           "coordinates": []
         },
         "properties": {
-          "description": `<strong>${name_other[i]}</strong><p>${family_other[i]}</P>`,
+          "description": `<a href="/papuas/${id_other[i]}"><strong>${name_other[i]}</strong></a><p>${family_other[i]}</P>`,
           "ethnicity": country_other[i],
           "icon": "za-provincial-2"
         }
