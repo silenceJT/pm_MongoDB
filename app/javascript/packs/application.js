@@ -24,6 +24,8 @@ require("stylesheets/application.scss")
 require("chartkick/chart.js")
 //= require jquery
 //= require jquery_ujs
+//= require_tree .
+require("packs/searches.js")
 
 $(document).ready(function() {
 	
@@ -47,6 +49,14 @@ $(document).ready(function() {
 	  };
 	}
 
+	// $("#phonemes_search span").click(function(e) {
+	// 	console.log('change');
+	// 	var str = $("#phonemes_search").serialize();
+	// 	$("#results").text(str);
+ //   	$.get($("#phonemes_search").attr("action"), $("#phonemes_search").serialize(), null, "script");
+ //    return false;
+ //  });
+
 	// Select tag change will requery the table
 	// $("#papuas_search #papuas_table select").change(function() {
  //    	$.get($("#papuas_search").attr("action"), $("#papuas_search").serialize(), null, "script");
@@ -54,10 +64,28 @@ $(document).ready(function() {
  //  	});
 
 	// Any input will requery the table
-  	// $("#papuas_search #papuas_table input").keyup(delay(function(e) {
-   //  	$.get($("#papuas_search").attr("action"), $("#papuas_search").serialize(), null, "script");
-   //  	return false;
-  	// }, 500));
+	// $("#papuas_search input").keyup(delay(function(e) {
+	// 	var str = $("#papuas_search").serialize();
+	// 	console.log(str);
+ //  	$.get($("#papuas_search").attr("action"), $("#papuas_search").serialize(), "script");
+ //  	return false;
+	// }, 500));
+
+	
+	// $("#papuas_search input").keyup(delay(function(e) {
+	// 	$.ajax({
+	// 		url: '/papuas',
+	// 		type: 'GET',
+	// 		cache: 'true',
+	// 		dataType: 'script',
+	// 		data: $("#papuas_search").serialize(),
+	// 		success: function(data) { 
+
+	// 			console.log(data);
+	// 		}
+	// 	});
+  	
+	// }, 500));
 
   //sort table
   //$(function() {
@@ -66,6 +94,8 @@ $(document).ready(function() {
   	$("#myTable3").tablesorter(); //segments
   	$("#myTable4").tablesorter(); //search histories
 	//});
+
+	//phoneme search
   
     
 });

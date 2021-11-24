@@ -1,8 +1,5 @@
-//$("#papuas_search").html("<%= escape_javascript(render("papuas")) %>");
-$("#papuas_table tbody").html("<%= escape_javascript(render("papuas")) %>");
-$("#page_entries_info").html("<%= escape_javascript(render("page_entries_info")) %>");
+console.log('index.js works');
+$('#papuas_results').html('<%= escape_javascript(render('papuas', papuas: @papuas)) %>');
+$('#papuas_rest').html('<%= escape_javascript(render('papuas_rest', papuas: @papuas_other)) %>');
 
-//works fine but slow
-$("#paginator").html("<%= escape_javascript(paginate(@papuas_page, :remote => true).to_s) %>");
-
-$("#charts").html("<%= escape_javascript(render("charts")) %>");
+$("#page_entries_info").html("<%= escape_javascript(render('page_entries_info', papuas: @papuas, papuas_other: @papuas_other)) %>");

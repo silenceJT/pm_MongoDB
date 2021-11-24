@@ -12,6 +12,24 @@ class SearchesController < ApplicationController
     end
 	end
 
+	def phoneme
+		@search = Search.new()
+		@papuas = Papua.search(params[:language_name], params[:language_family], params[:iso], params[:area], 
+      params[:country], params[:region], params[:c_size], params[:c_compare], params[:v_size], 
+      params[:v_compare], params[:total_size], params[:total_compare], params[:inv])
+
+		other = Array.new()
+    @papuas.each do |p3|
+      other.push(p3.no)
+    end
+    @papuas_other = Papua.not_in(:no => other)
+    
+		respond_to do |format|
+        format.html
+        format.js { render :layout => false }
+    end
+	end
+
 	def new
 		@search = Search.new
 	end

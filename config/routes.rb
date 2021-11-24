@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :papuas
   devise_for :users
   get 'whatsnew/index'
-  get 'phonemes/index'
+  get 'searches/phoneme'
   root 'home#index'
   #resources :products
   resources :searches

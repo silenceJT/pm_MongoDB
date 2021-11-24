@@ -75,7 +75,7 @@
     </div>
 
     <div class="flex">
-      <%= submit_tag "START!", class: "items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 text-center w-24" %>
+      <%= submit_tag "START!", name: nil, class: "items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 text-center w-24", remote: true %>
       <%= link_to "Reset", papuas_path(anchor: "anchor_page_entries_info"), class: "ml-3 items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 text-center w-24" %>
     </div>
 
@@ -86,17 +86,109 @@
     </div>
   </div>
 
+  <table id="input_row" class="min-w-full divide-y divide-gray-200 shadow overflow-hidden border-b border-gray-200 sm:rounded-lg mb-4">
+    <thead class="bg-gray-50 divide-y divide-gray-200">
+      <tr>
+            <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              
+            </th>
+
+            <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <!-- <input type="text" id="search_language" name="search_language" class="focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md w-28"> -->
+              <%= text_field_tag :language_name, params[:language_name], placeholder: "Language", class: "focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md w-28"%>
+            </th>
+
+            <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <!-- <input type="text" id="search_family" name="search_family" class="focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md w-32"> -->
+              <%= text_field_tag :language_family, params[:language_family], placeholder: "Language Family", class: "focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md w-48"%>
+            </th>
+
+            <th scope="col" class="px-2 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <!-- <input type="text" id="search_iso" name="search_iso" class="focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md w-12"> -->
+              <%= text_field_tag :iso, params[:iso], placeholder: "ISO", class: "focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md w-14"%>
+            </th>
+
+            <th scope="col" class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <!-- <input type="text" id="search_country" name="search_country" class="focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md w-20"> -->
+              <%= text_field_tag :country, params[:country], placeholder: "Country", class: "focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md w-24"%>
+            </th>
+
+            <th scope="col" class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <!-- <input type="text" id="search_inv" name="search_inv" class="focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md w-80"> -->
+              <%= text_field_tag :inv, params[:inv], placeholder: "Inventory", class: "focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md w-80"%>
+            </th>
+
+            <th scope="col" class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <div class="flex rounded-md shadow-sm">
+                <!-- <span class="inline-flex items-center">
+                  <select id="select_c" name="select_c" class="focus:ring-indigo-500 focus:border-indigo-500 h-full py-0 pl-2 pr-7 border-gray-300 bg-transparent text-gray-500 sm:text-sm rounded-l-md">
+                    <option value="gte"> >= </option>
+                    <option value="gt"> > </option>
+                    <option value="eq" selected> = </option>
+                    <option value="lt"> < </option>
+                    <option value="lte"> <= </option>
+                  </select>
+                </span>
+                <input type="text" id="search_c" name="search_c" class="focus:ring-indigo-500 focus:border-indigo-500 block sm:text-sm border-gray-300 rounded-none rounded-r-md w-14"> -->
+                <span class="inline-flex items-center">
+                  <%= select_tag :c_compare, options_for_select(Search::COMPARE), class: "focus:ring-indigo-500 focus:border-indigo-500 h-full py-0 pl-2 pr-7 border-gray-300 bg-transparent text-gray-500 sm:text-sm rounded-l-md" %>
+                </span>
+                <%= text_field_tag :c_size, params[:c_size], placeholder: "C", class: "focus:ring-indigo-500 focus:border-indigo-500 block sm:text-sm border-gray-300 rounded-none rounded-r-md w-14" %>
+              </div>
+            </th>
+
+            <th scope="col" class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <div class="flex rounded-md shadow-sm">
+                <!-- <span class="inline-flex items-center">
+                  <select id="select_v" name="select_v" class="focus:ring-indigo-500 focus:border-indigo-500 h-full py-0 pl-2 pr-7 border-gray-300 bg-transparent text-gray-500 sm:text-sm rounded-l-md">
+                    <option value="gte"> >= </option>
+                    <option value="gt"> > </option>
+                    <option value="eq" selected> = </option>
+                    <option value="lt"> < </option>
+                    <option value="lte"> <= </option>
+                  </select>
+                </span>
+                <input type="text" id="search_v" name="search_v" class="focus:ring-indigo-500 focus:border-indigo-500 block sm:text-sm border-gray-300 rounded-none rounded-r-md w-14"> -->
+                <span class="inline-flex items-center">
+                  <%= select_tag :v_compare, options_for_select(Search::COMPARE), class: "focus:ring-indigo-500 focus:border-indigo-500 h-full py-0 pl-2 pr-7 border-gray-300 bg-transparent text-gray-500 sm:text-sm rounded-l-md" %>
+                </span>
+                <%= text_field_tag :v_size, params[:v_size], placeholder: "V", class: "focus:ring-indigo-500 focus:border-indigo-500 block sm:text-sm border-gray-300 rounded-none rounded-r-md w-14" %>
+              </div>
+            </th>
+
+            <th scope="col" class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <div class="flex rounded-md shadow-sm">
+                <!-- <span class="inline-flex items-center">
+                  <select id="select_cv" name="select_cv" class="focus:ring-indigo-500 focus:border-indigo-500 h-full py-0 pl-2 pr-7 border-gray-300 bg-transparent text-gray-500 sm:text-sm rounded-l-md">
+                    <option value="gte"> >= </option>
+                    <option value="gt"> > </option>
+                    <option value="eq" selected> = </option>
+                    <option value="lt"> < </option>
+                    <option value="lte"> <= </option>
+                  </select>
+                </span>
+                <input type="text" id="search_cv" name="search_cv" class="focus:ring-indigo-500 focus:border-indigo-500 block sm:text-sm border-gray-300 rounded-none rounded-r-md w-14"> -->
+                <span class="inline-flex items-center">
+                  <%= select_tag :total_compare, options_for_select(Search::COMPARE), class: "focus:ring-indigo-500 focus:border-indigo-500 h-full py-0 pl-2 pr-7 border-gray-300 bg-transparent text-gray-500 sm:text-sm rounded-l-md" %>
+                </span>
+                <%= text_field_tag :total_size, params[:total_size], placeholder: "Total", class: "focus:ring-indigo-500 focus:border-indigo-500 block sm:text-sm border-gray-300 rounded-none rounded-r-md w-20" %>
+              </div>
+            </th>
+        </tr>
+    </thead>
+  </table>
+
 
   <!-- result table   -->
-  <%= render 'papuas', papuas: @papuas %>
-
+  <div id="papuas_results"><%= render 'papuas', papuas: @papuas %></div>
+  
   <div class="text-center px-4 py-6 text-lg text-gray-700 font-medium">
     The rest 
     <span class="font-semibold text-blue-700 text-2xl"> <%= @papuas_other.size %> </span>
     languages
   </div>
 
-  <%= render 'papuas_rest', papuas: @papuas_other %>
+  <div id="papuas_rest"><%= render 'papuas_rest', papuas: @papuas_other %></div>
 
 <!-- <div class="align-middle inline-block min-w-full" id="rest_table">
   <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
@@ -255,6 +347,7 @@
 
     </div>
   </div-->
+<% end %>
 
 <script>
   function sortTable(n) {
@@ -324,4 +417,3 @@
     }*/
     
 </script>
-<% end %>

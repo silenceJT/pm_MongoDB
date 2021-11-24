@@ -1,3 +1,35 @@
 // Place all the styles related to the searches controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+
+#chooser span {
+	cursor: hand;
+	cursor: pointer;
+	border-radius: 5px;
+	padding: 0px 3px 2px 3px;
+}
+
+#chooser span:hover {
+	background-color: #ddd;
+}
+
+#chooser span.yes {
+	color: #fff;
+	background-color: #04b;
+}
+
+#chooser span.yes:hover {
+	color: #fff;
+	background-color: #24d;
+}
+
+#chooser span.no {
+	color: #fff;
+	background-color: #c01;
+}
+
+#chooser span.no:hover {
+	color: #fff;
+	background-color: #e03;
+}

@@ -1,0 +1,89 @@
+<%= form_tag papuas_path, :method => 'get', :id => "phonemes_search" do %>
+<div id="chooser" class="mx-64 p-10 bg-white shadow overflow-hidden sm:rounded-lg mt-5 font-mono">
+	<div class="align-middle inline-block min-w-full" id="phonemes_table">
+		<div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+			<table id="myTable5" class="min-w-full divide-y divide-gray-200 font-mono">
+				<tbody class="bg-white divide-y divide-gray-200">
+					<tr class="divide-x divide-gray-200">
+						<td class="px-4 py-4 whitespace-normal">Consonants</td>
+						<td class="px-4 py-4 whitespace-normal">Bilabial</td>
+						<td class="px-4 py-4 whitespace-normal">Dental</td>
+						<td class="px-4 py-4 whitespace-normal">Alveolar</td>
+						<td class="px-4 py-4 whitespace-normal">Retroflex</td>
+						<td class="px-4 py-4 whitespace-normal">Palatal</td>
+						<td class="px-4 py-4 whitespace-normal">Velar</td>
+					</tr>
+					<tr class="divide-x divide-gray-200">
+						<td class="px-4 py-4 whitespace-normal">Plain</td>
+						<td class="px-4 py-4">
+							<span>p</span>
+							<span>pʰ</span>
+							<span>pʷ</span>
+							<span>b</span>
+							<span>bʷ</span>
+						</td>
+						<td class="px-4 py-4">
+							<span>t̪</span>
+							<span>t̪ʰ</span>
+							<span>d̪</span>
+							<span>ⁿd̪</span>
+						</td>
+						<td class="px-4 py-4">
+							<span>t</span>
+							<span>tʰ</span>
+							<span>d</span>
+							<span>tʷ</span>
+						</td>
+						<td class="px-4 py-4">
+							<span>ʈ</span>
+							<span>ʈʰ</span>
+							<span>ɖ</span>
+						</td>
+						<td class="px-4 py-4">
+							<span>c</span>
+							<span>cʰ</span>
+							<span>Ɉ</span>
+							<span>ᵑc</span>
+						</td>
+						<td class="px-4 py-4">
+							<span>k</span>
+							<span>kʰ</span>
+							<span>ɡ</span>
+							<span>kʷ</span>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div>
+		<span f="-1">Reset</span>
+	</div>
+</div>
+
+
+<div>
+	<%#= text_field_tag :inv, params[:inv], id: "query" %>
+	<%= submit_tag "Submit", :style => "display: none;", remote: true %>
+	<p id="results"></p>
+</div>
+
+
+
+<div class="mt-3 bg-white py-3 flex items-center justify-between border-t border-gray-200">
+    <div id="page_entries_info">
+    	<%= render 'papuas/page_entries_info', papuas: @search.papuas, papuas_other: @search.papuas_other %>
+    </div> 
+</div>
+
+<div id="papuas_results"><%= render 'papuas/papuas', papuas: @search.papuas %></div>
+  
+<div class="text-center px-4 py-6 text-lg text-gray-700 font-medium">
+  The rest
+  <span class="font-semibold text-blue-700 text-2xl"> <%= @search.papuas_other.size %> </span>
+  languages
+</div>
+
+<div id="papuas_rest" class="px-4"><%= render 'papuas/papuas_rest', papuas: @search.papuas_other %></div>
+
+<% end %>
