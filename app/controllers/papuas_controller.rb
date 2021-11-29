@@ -26,6 +26,7 @@ class PapuasController < ApplicationController
     end
     @papuas_other = Papua.not_in(:no => other)
 
+    # must at the end
     respond_to do |format|
         format.html { }
         format.json { render json: @papuas }

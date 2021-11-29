@@ -13,6 +13,56 @@ $(document).ready(function() {
 	var query = [];
 	var query_string = "";
 
+	$(function (){
+		var stop = false;
+		$.ajax({
+			url: '/segments',
+			type: 'GET',
+			async: false,
+			cache: 'true',
+			dataType: 'json',
+			//data: {json},
+			success: function(segments) { 
+				var no = 0;
+				$.each(segments, function(no, segment) {
+					no = no + 1;
+					var $rows = $('#myTable5 tbody tr');
+					for(i = 1; i <= 15; i++) {
+						var colText = $(`#myTable5 tr:eq(0) td:eq(${i})`).text().toLowerCase(); // First row, find which column
+						if ( colText  == segment.place.toLowerCase()) {
+							var colNo = i;
+							break;
+						}
+					}
+
+					for(j = 1; j <= 16; j++) {
+						var rowText = $(`#myTable5 tr:eq(${j}) td:eq(0)`).text().toLowerCase(); // First column, find which row
+						if ( rowText  == segment.manner.toLowerCase()) {
+							var rowNo = j;
+							break;
+						}
+					}
+
+					//console.log("no: "+ no + ", size: " + segments.length);
+					$(`#myTable5 tr:eq(${rowNo}) td:eq(${colNo})`).append('<span>' + segment.ipa + '</span>');
+
+					if(no == segments.length){
+						stop = true;
+						//console.log(stop);
+					}
+				});
+			},
+		});
+		if(stop){
+			//console.log("stoped");
+			$('#chooser span').click(function(e) {
+				handle_click(this);
+			});
+		}
+	});
+
+	//fillTable();
+
 	function handle_click(span) {
 		var text = $(span).text();
 		if (span != null) {
@@ -71,11 +121,11 @@ $(document).ready(function() {
 				console.log(data);
 			}
 		});
-	}
+	};
 
-	$('#chooser span').click(function(e) {
-		handle_click(this);
-	});
+	// $('#chooser span').click(function(e) {
+	// 	handle_click(this);
+	// });
 
 	//handle_click(null);
 

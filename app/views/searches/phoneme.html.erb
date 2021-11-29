@@ -1,63 +1,29 @@
 <%= form_tag papuas_path, :method => 'get', :id => "phonemes_search" do %>
-<div id="chooser" class="mx-64 p-10 bg-white shadow overflow-hidden sm:rounded-lg mt-5 font-mono">
-	<div class="align-middle inline-block min-w-full" id="phonemes_table">
+<div id="chooser" class="mt-5">
+	<div class="align-middle inline-block min-w-full text-sm" id="phonemes_table">
 		<div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-			<table id="myTable5" class="min-w-full divide-y divide-gray-200 font-mono">
+			<table id="myTable5" class="table-fixed min-w-full divide-y divide-gray-200 font-mono ">
 				<tbody class="bg-white divide-y divide-gray-200">
 					<tr class="divide-x divide-gray-200">
-						<td class="px-4 py-4 whitespace-normal">Consonants</td>
-						<td class="px-4 py-4 whitespace-normal">Bilabial</td>
-						<td class="px-4 py-4 whitespace-normal">Dental</td>
-						<td class="px-4 py-4 whitespace-normal">Alveolar</td>
-						<td class="px-4 py-4 whitespace-normal">Retroflex</td>
-						<td class="px-4 py-4 whitespace-normal">Palatal</td>
-						<td class="px-4 py-4 whitespace-normal">Velar</td>
+						<td class="px-2 py-2 whitespace-pre-line">Consonants</td>
+						<% for cName in Search::COLNAMES %>
+							<td class="px-2 py-2 whitespace-pre-line"><%= cName %></td>
+						<% end %>
 					</tr>
-					<tr class="divide-x divide-gray-200">
-						<td class="px-4 py-4 whitespace-normal">Plain</td>
-						<td class="px-4 py-4">
-							<span>p</span>
-							<span>pʰ</span>
-							<span>pʷ</span>
-							<span>b</span>
-							<span>bʷ</span>
-						</td>
-						<td class="px-4 py-4">
-							<span>t̪</span>
-							<span>t̪ʰ</span>
-							<span>d̪</span>
-							<span>ⁿd̪</span>
-						</td>
-						<td class="px-4 py-4">
-							<span>t</span>
-							<span>tʰ</span>
-							<span>d</span>
-							<span>tʷ</span>
-						</td>
-						<td class="px-4 py-4">
-							<span>ʈ</span>
-							<span>ʈʰ</span>
-							<span>ɖ</span>
-						</td>
-						<td class="px-4 py-4">
-							<span>c</span>
-							<span>cʰ</span>
-							<span>Ɉ</span>
-							<span>ᵑc</span>
-						</td>
-						<td class="px-4 py-4">
-							<span>k</span>
-							<span>kʰ</span>
-							<span>ɡ</span>
-							<span>kʷ</span>
-						</td>
-					</tr>
+					<% for rName in Search::ROWNAMES %>
+						<tr class="divide-x divide-gray-200">
+							<td class="px-2 py-2 whitespace-pre-line"><%= rName %></td>
+							<% for i in 1..Search::COLNAMES.size %>
+								<td class="px-2 py-2 whitespace-pre-line text-base font-sans"></td>
+							<% end %>
+						</tr>
+					<% end %>
 				</tbody>
 			</table>
 		</div>
 	</div>
 	<div>
-		<span f="-1">Reset</span>
+		<span f="-1" class="mt-2 items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 text-center w-28">Reset</span>
 	</div>
 </div>
 

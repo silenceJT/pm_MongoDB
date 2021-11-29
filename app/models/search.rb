@@ -20,6 +20,13 @@ class Search
 
   COMPARE = %w{ >= > = < <= }
 
+  COLNAMES = %w{ Bilabial Labial Labio-dental Dental Alveolar Alveolo-palatal Postalveolar 
+    Retroflex Labio-palatal Palatal Labio-velar Velar Uvular Pharyngeal Glottal}
+
+  ROWNAMES = [ "Plosive", "Affricate", "Lateral Affricate", "Fricative", "Lateral Fricative", "Nasal", 
+    "Trill", "Tap", "Lateral Tap", "Flap", "Lateral Flap", "Approximant", "Central Approximant", 
+    "Lateral Approximant", "Implosive", "Implosive, Double Articulation" ]
+
   def papuas
     @papuas ||= find_papuas
   end
