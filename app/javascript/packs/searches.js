@@ -43,12 +43,16 @@ $(document).ready(function() {
 						}
 					}
 
-					//console.log("no: "+ no + ", size: " + segments.length);
-					$(`#myTable5 tr:eq(${rowNo}) td:eq(${colNo})`).append('<span>' + segment.ipa + '</span>');
+					
+					if(segment.number == 0){
+						$(`#myTable5 tr:eq(${rowNo}) td:eq(${colNo})`).append('<span class="zero">' + segment.ipa + '</span>');
+					}
+					else{
+						$(`#myTable5 tr:eq(${rowNo}) td:eq(${colNo})`).append('<span>' + segment.ipa + '</span>');
+					}
 
 					if(no == segments.length){
 						stop = true;
-						//console.log(stop);
 					}
 				});
 			},
@@ -118,7 +122,7 @@ $(document).ready(function() {
 			data: `language_name=&language_family=&iso=&country=&inv=${query_string}&c_compare=%3E%3D&c_size=&v_compare=%3E%3D&v_size=&total_compare=%3E%3D&total_size=`,
 			success: function(data) { 
 
-				console.log(data);
+				//console.log(data);
 			}
 		});
 	};

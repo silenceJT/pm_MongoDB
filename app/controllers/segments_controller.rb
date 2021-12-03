@@ -5,7 +5,7 @@ class SegmentsController < ApplicationController
 
   # GET /segments or /segments.json
   def index
-    @segments = Segment.all
+    @segments = Segment.all.order(no: 1)
 
     # get all segments from languages' inventories
     # @seg_list = Array.new()
