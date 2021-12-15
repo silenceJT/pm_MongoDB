@@ -34,7 +34,7 @@ class Papua
   def self.search(language_name, language_family, iso, area, country, region, c_size, c_compare, v_size, v_compare,
     total_size, total_compare, inv)
     papuas = Papua.all
-    
+
     papuas = papuas.where(:language_name => /#{language_name}/i) if language_name.present?
     papuas = papuas.where(:language_family => /#{language_family}/i) if language_family.present?
     papuas = papuas.where(:iso => /#{iso}/i) if iso.present?
@@ -60,30 +60,30 @@ class Papua
     if v_size.present?
       case v_compare
       when ">="
-        papuas = papuas.where(:count_of_consonants.gte => v_size)
+        papuas = papuas.where(:count_of_vowels.gte => v_size)
       when ">"
-        papuas = papuas.where(:count_of_consonants.gt => v_size)
+        papuas = papuas.where(:count_of_vowels.gt => v_size)
       when "="
-        papuas = papuas.where(:count_of_consonants => v_size)
+        papuas = papuas.where(:count_of_vowels => v_size)
       when "<"
-        papuas = papuas.where(:count_of_consonants.lt => v_size)
+        papuas = papuas.where(:count_of_vowels.lt => v_size)
       else
-        papuas = papuas.where(:count_of_consonants.lte => v_size)
+        papuas = papuas.where(:count_of_vowels.lte => v_size)
       end
     end
 
     if total_size.present?
       case total_compare
       when ">="
-        papuas = papuas.where(:count_of_consonants.gte => total_size)
+        papuas = papuas.where(:count_of_segments.gte => total_size)
       when ">"
-        papuas = papuas.where(:count_of_consonants.gt => total_size)
+        papuas = papuas.where(:count_of_segments.gt => total_size)
       when "="
-        papuas = papuas.where(:count_of_consonants => total_size)
+        papuas = papuas.where(:count_of_segments => total_size)
       when "<"
-        papuas = papuas.where(:count_of_consonants.lt => total_size)
+        papuas = papuas.where(:count_of_segments.lt => total_size)
       else
-        papuas = papuas.where(:count_of_consonants.lte => total_size)
+        papuas = papuas.where(:count_of_segments.lte => total_size)
       end
     end
 
