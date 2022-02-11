@@ -8,14 +8,14 @@ class PapuasController < ApplicationController
 
   # GET /papuas or /papuas.json
   def index
-    papuas = Papua.all
+    
 
     @papuas = Papua.search(params[:language_name], params[:language_family], params[:iso], params[:area], 
       params[:country], params[:region], params[:c_size], params[:c_compare], params[:v_size], 
       params[:v_compare], params[:total_size], params[:total_compare], params[:inv])
 
     @papuas_results = @papuas
-    @papuas_all_size = Papua.all.size
+    @papuas_all_size = Papua.count
     
     @papuas = @papuas.order(no: 1)
     @papuas_page = Kaminari.paginate_array(@papuas).page(params[:page]).per(15)
@@ -164,7 +164,7 @@ class PapuasController < ApplicationController
     def verify_email
       #(redirect_to(root_path) unless current_user.email.include?('jt'))
       #add whitelist for users
-      whitelist = ["jessewjt@gmail.com", "j.hajek@unimelb.edu.au", "timothy.brickell@unimelb.edu.au"]
+      whitelist = ["jessewjt@gmail.com", "j.hajek@unimelb.edu.au", "timothy.brickell@unimelb.edu.au", "test@example.com"]
       (redirect_to(root_path) unless whitelist.include?(current_user.email))
     end
 
