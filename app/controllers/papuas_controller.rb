@@ -8,23 +8,13 @@ class PapuasController < ApplicationController
 
   # GET /papuas or /papuas.json
   def index
-    
-
-    @papuas = Papua.search(params[:language_name], params[:language_family], params[:iso], params[:area], 
-      params[:country], params[:region], params[:c_size], params[:c_compare], params[:v_size], 
-      params[:v_compare], params[:total_size], params[:total_compare], params[:inv])
+    papua_all = Papua.all
+    @papuas = papua_all.search(params).order(no: 1)
 
     @papuas_results = @papuas
-    @papuas_all_size = Papua.count
+    @papuas_all_size = papua_all.size
     
-    @papuas = @papuas.order(no: 1)
-    @papuas_page = Kaminari.paginate_array(@papuas).page(params[:page]).per(15)
-    
-    other = Array.new()
-    @papuas.each do |p3|
-      other.push(p3.no)
-    end
-    @papuas_other = Papua.not_in(:no => other)
+    @papuas_other = papua_all.not_in(id: @papuas.pluck(:id))
 
     # must at the end
     respond_to do |format|
@@ -35,63 +25,17 @@ class PapuasController < ApplicationController
         format.xls
     end
 
+    segments_count = @papuas_results.pluck(:count_of_segments).sum
+    consonants_count = @papuas_results.pluck(:count_of_consonants).sum
+    vowels_count = @papuas_results.pluck(:count_of_vowels).sum
 
-    @sum_s = 0
-    @sum_c = 0
-    @sum_v = 0
-    @sum_d = 0
-    
-    @papuas_results.each do |p_r| 
-      @sum_s += p_r.count_of_segments 
-      @sum_c += p_r.count_of_consonants
-      @sum_v += p_r.count_of_vowels
-    end
-
-   
-
-    @avg_s = (@sum_s.to_f/@papuas_results.length).round(2)
-    @avg_c = (@sum_c.to_f/@papuas_results.length).round(2)
-    @avg_v = (@sum_v.to_f/@papuas_results.length).round(2)
-    
-
+    @avg_s = (segments_count/@papuas_results.length).round(2)
+    @avg_c = (consonants_count/@papuas_results.length).round(2)
+    @avg_v = (vowels_count/@papuas_results.length).round(2)
   end
 
   # GET /papuas/1 or /papuas/1.json
   def show
-    @papua.inv = @papua.consonants + ", " + @papua.vowels
-    @papua.count_of_consonants = @papua.consonants.split(",").size
-    @papua.count_of_vowels = @papua.vowels.split(",").size
-    @papua.count_of_segments = @papua.count_of_consonants + @papua.count_of_vowels
-    @papua.save
-
-    seg_list = Segment.all
-    @seg_hash = Hash.new()
-    @seg_array = Array.new()
-    for p_c in @papua.consonants.split("\,") do
-      for seg in seg_list.entries do
-        con = p_c.strip
-        if seg.ipa === con
-          @seg_hash[con] = seg.id.to_s
-          break
-        else
-          @seg_hash[con] = "none"
-        end
-      end
-    end
-
-    # cons = @papua.consonants.split("\,")
-    
-    # for i in 0..cons.size-1 do
-    #   for j in 0..seg_list.entries.size-1 do
-    #     ipa = seg_list.entries[j].ipa
-    #     con = cons[i].strip
-    #     if con === ipa
-    #       @seg_hash[con] = seg_list.entries[j].id.to_s
-    #     else
-    #       @seg_hash[con] = "none"
-    #     end
-    #   end
-    # end
   end
 
   # GET /papuas/new
@@ -101,11 +45,7 @@ class PapuasController < ApplicationController
 
   # GET /papuas/1/edit
   def edit
-    @papua.inv = @papua.consonants + ", " + @papua.vowels
-    @papua.count_of_consonants = @papua.consonants.split(",").size
-    @papua.count_of_vowels = @papua.vowels.split(",").size
-    @papua.count_of_segments = @papua.count_of_consonants + @papua.count_of_vowels
-    @papua.save
+    @segments = Segment.order(no: 1).map { |s| [s.ipa, s.id] }
   end
 
   # POST /papuas or /papuas.json
@@ -130,6 +70,10 @@ class PapuasController < ApplicationController
 
   # PATCH/PUT /papuas/1 or /papuas/1.json
   def update
+    # byebug
+    update_segments_relation
+    update_counts
+
     respond_to do |format|
       if @papua.update(papua_params)
         format.html { redirect_to @papua, notice: "Papua was successfully updated." }
@@ -158,25 +102,33 @@ class PapuasController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def papua_params
-      params.require(:papua).permit(:language_name, :language_family, :iso, :area, :country, :region, :latitude, :longitude, :inv, :consonants, :vowels, :diphthongs, :source, :notes)
+      params.require(:papua).permit(
+        :language_name, :language_family, :iso, :area, :country, :region, :latitude, :longitude, :inv, 
+        :consonants, :vowels, :diphthongs, :source, :notes,
+        segment_ids: []
+      )
     end
 
-    def verify_email
-      #(redirect_to(root_path) unless current_user.email.include?('jt'))
-      #add whitelist for users
-      whitelist = ["jessewjt@gmail.com", "j.hajek@unimelb.edu.au", "timothy.brickell@unimelb.edu.au", "test@example.com"]
-      (redirect_to(root_path) unless whitelist.include?(current_user.email))
+    def update_segments_relation
+      new_segments = if params[:papua][:segment_ids].join.empty?
+        []
+      else
+        Segment.in(id: params[:papua][:segment_ids])
+      end
+
+      add_segments = new_segments - @papua.segments
+      remove_segments = @papua.segments - new_segments
+      @papua.add_segment!(add_segments) if add_segments.present?
+      @papua.remove_segment!(remove_segments) if remove_segments.present?
     end
 
-    # def sync
-    #   Papua.each do |papua|
-    #     papua.inv = papua.consonants + ", " + papua.vowels
-    #     papua.count_of_consonants = papua.consonants.split(",").size
-    #     papua.count_of_vowels = papua.vowels.split(",").size
-    #     papua.count_of_segments = papua.count_of_consonants + papua.count_of_vowels
-    #     papua.save
-    #   end
-    # end
+    def update_counts
+      @papua.inv = @papua.segments.order(no:1).pluck(:ipa).join(", ") + ", " + @papua.vowels
+      @papua.count_of_consonants = @papua.segments.size
+      @papua.count_of_vowels = @papua.vowels.split(",").size
+      @papua.count_of_segments = @papua.count_of_consonants + @papua.count_of_vowels
+      @papua.save
+    end
 
     def sync_result
       Search.each do |search|
@@ -187,8 +139,7 @@ class PapuasController < ApplicationController
 
   protected
 
-    def configure_search
-      @search = Papua.search(params[:search])
-    end
-      
+  def configure_search
+    @search = Papua.search(params[:search])
+  end
 end

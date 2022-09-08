@@ -1,5 +1,7 @@
 class SearchesController < ApplicationController
   #after_action :sync, only: %i[ create ]
+  before_action :authenticate_user!
+  before_action :verify_email
 
 	def index
 		@searches = Search.all
@@ -14,15 +16,8 @@ class SearchesController < ApplicationController
 
 	def phoneme
 		@search = Search.new()
-		@papuas = Papua.search(params[:language_name], params[:language_family], params[:iso], params[:area], 
-      params[:country], params[:region], params[:c_size], params[:c_compare], params[:v_size], 
-      params[:v_compare], params[:total_size], params[:total_compare], params[:inv])
-
-		other = Array.new()
-    @papuas.each do |p3|
-      other.push(p3.no)
-    end
-    @papuas_other = Papua.not_in(:no => other)
+    @papuas = Papua.search(params)
+    @papuas_other = Papua.not_in(id: @papuas.pluck(:id))
     
 		respond_to do |format|
         format.html

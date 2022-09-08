@@ -119,22 +119,16 @@
 
       <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
         <dt class="text-sm font-medium text-gray-500">
-          Consonants(<%= @papua.consonants.split(",").size %>)
+          Consonants(<%= @papua.segments.count %>)
           <p class="mt-1 max-w-2xl text-xs text-gray-400">
             <span class="text-red-400">Red</span> symbol means the consonants are not in Segment list
           </p>
         </dt>
         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 leading-loose">
-          <% @seg_hash.each do |k,v| %>
-            <% if "#{v}".exclude?("none") %>
-              <span class="px-4 inline-flex text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                <a href="/segments/<%= v %>" target="_blank" class=""><%= "#{k}" %></a>
-              </span>
-            <% else %>
-              <span class="px-4 inline-flex text-sm leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                <%= "#{k}" %>
-              </span>
-            <% end %> 
+          <% @papua.segments.order(no:1).each do |seg| %>
+            <span class="px-4 inline-flex text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+              <a href="/segments/<%= seg.id %>" target="_blank" class=""><%= seg.ipa %></a>
+            </span>
           <% end %>
         </dd>
       </div>

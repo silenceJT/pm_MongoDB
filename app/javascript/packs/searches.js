@@ -119,7 +119,7 @@ $(document).ready(function() {
 			type: 'GET',
 			cache: 'true',
 			dataType: 'script',
-			data: `language_name=&language_family=&iso=&country=&inv=${query_string}&c_compare=%3E%3D&c_size=&v_compare=%3E%3D&v_size=&total_compare=%3E%3D&total_size=`,
+			data: `inv=${query_string}`,
 			success: function(data) { 
 
 				//console.log(data);
