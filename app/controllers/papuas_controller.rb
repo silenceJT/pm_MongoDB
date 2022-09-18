@@ -29,9 +29,9 @@ class PapuasController < ApplicationController
     consonants_count = @papuas_results.pluck(:count_of_consonants).sum
     vowels_count = @papuas_results.pluck(:count_of_vowels).sum
 
-    @avg_s = (segments_count/@papuas_results.length).round(2)
-    @avg_c = (consonants_count/@papuas_results.length).round(2)
-    @avg_v = (vowels_count/@papuas_results.length).round(2)
+    @avg_s = @papuas_results.length > 0 ? (segments_count/@papuas_results.length).round(2) : 0
+    @avg_c = @papuas_results.length > 0 ? (consonants_count/@papuas_results.length).round(2) : 0
+    @avg_v = @papuas_results.length > 0 ? (vowels_count/@papuas_results.length).round(2) : 0
   end
 
   # GET /papuas/1 or /papuas/1.json
@@ -70,7 +70,6 @@ class PapuasController < ApplicationController
 
   # PATCH/PUT /papuas/1 or /papuas/1.json
   def update
-    # byebug
     update_segments_relation
     update_counts
 
