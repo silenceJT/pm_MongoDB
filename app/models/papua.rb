@@ -119,7 +119,7 @@ class Papua
       
       papuas = papuas.where(:segment_ids.nin => exclude_lowercase_ids) if exclude_lowercase_ids.present?
 
-      papuas = papuas.where(:segment_ids.in => include_uppercase_ids) if include_uppercase_ids.present?
+      papuas = papuas.where(:segment_ids.all => include_uppercase_ids) if include_uppercase_ids.present?
       
       papuas = papuas.where(:segment_ids.nin => exclude_uppercase_ids) if exclude_uppercase_ids.present?
     end
@@ -148,6 +148,7 @@ class Papua
 
     array.each do |str|
       case str
+      # Manner
       when 'PLO'
         ids &= Segment.plosive.pluck(:id)
       when 'NAS'
@@ -180,6 +181,8 @@ class Papua
         ids &= Segment.flap.pluck(:id)
       when 'LAF'
         ids &= Segment.lateral_affricate.pluck(:id)
+      
+      # Place
       when 'VEL'
         ids &= Segment.velar.pluck(:id)
       when 'ALV'
@@ -212,10 +215,14 @@ class Papua
         ids &= Segment.pharyngeal.pluck(:id)
       when 'DAC'
         ids &= Segment.dental_alveolar_cluster.pluck(:id)
+
+      # Voicing
       when 'VL'
         ids &= Segment.voiceless.pluck(:id)
       when 'VD'
         ids &= Segment.voiced.pluck(:id)
+
+      # Plain vs non plain
       when 'ASP'
         ids &= Segment.aspirated.pluck(:id)
       when 'PLA'
