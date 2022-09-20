@@ -91,7 +91,7 @@ class Papua
       include_lowercase_ary = []
 
       exclude_uppercase_ary = []
-      exclude_lowerercase_ary = []
+      exclude_lowercase_ary = []
 
       if params[:inv].match?(/\b[A-Z]+\b/)
         include_uppercase_ids = []
@@ -115,13 +115,13 @@ class Papua
       include_lowercase_ids = Segment.in(ipa: include_lowercase_ary).pluck(:id)
       exclude_lowercase_ids = Segment.in(ipa: exclude_lowercase_ary).pluck(:id)
 
-      papuas = papuas.where(:segment_ids.all => include_lowercase_ids) if include_lowercase_ids.present?
+      papuas = papuas.where(:segment_ids.all => include_lowercase_ids) if include_lowercase_ary.present?
       
-      papuas = papuas.where(:segment_ids.nin => exclude_lowercase_ids) if exclude_lowercase_ids.present?
+      papuas = papuas.where(:segment_ids.nin => exclude_lowercase_ids) if exclude_lowercase_ary.present?
 
-      papuas = papuas.where(:segment_ids.all => include_uppercase_ids) if include_uppercase_ids.present?
+      papuas = papuas.where(:segment_ids.all => include_uppercase_ids) if include_uppercase_ary.present?
       
-      papuas = papuas.where(:segment_ids.nin => exclude_uppercase_ids) if exclude_uppercase_ids.present?
+      papuas = papuas.where(:segment_ids.nin => exclude_uppercase_ids) if exclude_uppercase_ary.present?
     end
 
     papuas
