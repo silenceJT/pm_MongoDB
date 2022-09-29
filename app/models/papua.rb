@@ -119,7 +119,7 @@ class Papua
       
       papuas = papuas.where(:segment_ids.nin => exclude_lowercase_ids) if exclude_lowercase_ary.present?
 
-      papuas = papuas.where(:segment_ids.all => include_uppercase_ids) if include_uppercase_ary.present?
+      papuas = papuas.where(:segment_ids.in => include_uppercase_ids) if include_uppercase_ary.present?
       
       papuas = papuas.where(:segment_ids.nin => exclude_uppercase_ids) if exclude_uppercase_ary.present?
     end
