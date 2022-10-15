@@ -26,6 +26,7 @@ class SegmentsController < ApplicationController
   # POST /segments or /segments.json
   def create
     @segment = Segment.new(segment_params)
+    @segment.no = Segment.all.size + 1
 
     respond_to do |format|
       if @segment.save

@@ -41,6 +41,7 @@ class PapuasController < ApplicationController
   # GET /papuas/new
   def new
     @papua = Papua.new
+    @segments = Segment.order(no: 1).map { |s| [s.ipa, s.id] }
   end
 
   # GET /papuas/1/edit

@@ -1,0 +1,225 @@
+<!--p id="notice"><%= notice %></p-->
+<%#= render "shared/flash_notice" %>
+
+<div class="flex items-center">
+  <h1 class="py-2 text-3xl text-gary-900 font-bold">Vowels</h1>
+
+  <button id="segReset" onclick="performReset()" class="ml-3 items-center px-4 py-2 border border-transparent 
+    rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none 
+    focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 text-center w-28">Reset</button>
+
+  <% if user_signed_in? && current_user.admin? %>
+    <a href="<%= new_vowel_path(@vowel) %>">
+      <span class="hidden sm:block">
+        <button type="button" class="ml-3 inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+          <svg xmlns="http://www.w3.org/2000/svg" class="-ml-1 mr-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          New Vowel
+        </button>  
+      </span>
+    </a>
+  <% end %> 
+</div>
+
+<div class="align-middle inline-block min-w-full" id="vowels_table">
+  <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+
+    <table id="myTable4" class="min-w-full divide-y divide-gray-200 font-mono">
+      <thead class="bg-gray-50 divide-y divide-gray-200">
+        <tr class="h-12">
+          <th scope="col" class="hover:bg-gray-100 cursor-pointer px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            no
+          </th>
+
+          <th scope="col" class="hover:bg-gray-100 cursor-pointer px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <div class="flex flex-auto items-center">
+              <p>ipa</p>
+            </div>
+          </th>
+
+          <th scope="col" class="hover:bg-gray-100 cursor-pointer px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <div class="flex flex-auto items-center">
+              short
+            </div>
+          </th>
+
+          <th scope="col" class="hover:bg-gray-100 cursor-pointer px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <div class="flex flex-auto items-center">
+              lengthened
+            </div>
+          </th>
+
+          <th scope="col" class="hover:bg-gray-100 cursor-pointer px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <div class="flex flex-auto items-center">
+              nasalised      
+            </div>
+          </th>
+
+          <th scope="col" class="hover:bg-gray-100 cursor-pointer px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <div class="flex flex-auto items-center">
+              oral
+            </div>
+          </th>
+        </tr>
+        <tr>
+            <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              
+            </th>
+
+            <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <input type="text" id="search1" class="focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md w-16">
+            </th>
+
+            <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <input type="text" id="search2" class="focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md w-16">
+            </th>
+
+            <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <input type="text" id="search3" class="focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md w-16">
+            </th>
+
+            <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <input type="text" id="search4" class="focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md w-16">
+            </th>
+
+            <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <input type="text" id="search5" class="focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md w-16">
+            </th>
+        </tr>
+      </thead>
+      <tbody class="bg-white divide-y divide-gray-200">
+        <% @vowels.each do |vowel| %>
+        <tr onclick="window.location.href='/vowels/<%= vowel.id.to_s %>'" style="cursor:pointer">
+          <td class="px-4 py-4 whitespace-normal">
+            <div class="text-sm text-gray-900"><%= vowel.no %></div>
+          </td>
+
+          <td class="px-4 py-4 whitespace-normal">
+            <div class="flex items-center">
+              <div class="text-sm font-medium text-gray-900"><%= vowel.ipa %></div> 
+            </div>
+          </td>
+          <td class="px-4 py-4 whitespace-normal">
+            <div class="text-sm text-gray-500"><%= vowel.short %></div>
+          </td>
+          <td class="px-4 py-4 whitespace-normal">
+            <div class="text-sm text-gray-500"><%= vowel.lengthened %></div>
+          </td>
+          <td class="px-4 py-4 whitespace-normal text-sm text-gray-500">
+            <%= vowel.nasalised %>
+          </td>
+          <td class="px-4 py-4 whitespace-normal text-sm text-gray-500">
+            <%= vowel.oral %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+
+    </table>
+  </div>
+</div>
+
+<script>
+
+  //https://stackoverflow.com/questions/11871253/execute-document-ready-even-if-user-came-to-the-page-by-hitting-the-back-button/48213805
+  //new Date().getTime();
+  
+  //https://stackoverflow.com/questions/3628536/history-back-doesnt-trigger-document-ready
+  //https://pretagteam.com/question/pageshow-is-not-received-when-pressing-back-button-on-safari-on-ipad
+  //window.onpageshow = function(event) {
+  $(window).bind("pageshow", function() {  
+      
+    // source: https://forum.jquery.com/topic/filter-table-by-multiple-user-text-inputs-separated-by-a-comma
+    //var $rows = $('#myTable4 th tr').not(':first').not('tr:nth-child(2)');
+    var $rows = $('#myTable4 tbody tr')
+    var filters = { col1: '', col2: '', col3: '', col4: '', col5: ''};
+    $('#search1').keyup(function() {
+      var val = $.trim($(this).val()).replace(/ +/g, ' ');
+      filters.col1 = val.replace(/g/, 'ɡ');
+      applyFilters();
+    });
+    $('#search2').keyup(function() {
+      var val = $.trim($(this).val()).replace(/ +/g, ' ');
+      filters.col2 = val.replace(/g/, 'ɡ');
+      applyFilters();
+    });
+    $('#search3').keyup(function() {
+      var val = $.trim($(this).val()).replace(/ +/g, ' ');
+      filters.col3 = val.replace(/g/, 'ɡ');
+      applyFilters();
+    });
+    $('#search4').keyup(function() {
+      var val = $.trim($(this).val()).replace(/ +/g, ' ');
+      filters.col4 = val.replace(/g/, 'ɡ');
+      applyFilters();
+    });
+    $('#search5').keyup(function() {
+      var val = $.trim($(this).val()).replace(/ +/g, ' ');
+      filters.col5 = val.replace(/g/, 'ɡ');
+      applyFilters();
+    });
+
+
+function applyFilters() {
+      $rows.show();
+
+      // ipa
+      $rows.filter(function() {
+        var text = $(this).find('td:nth-child(2)').text().replace(/\s+/g, ' ');
+        return !~text.indexOf(filters.col1);
+      }).hide();
+
+      // short
+      $rows.filter(function() {
+        var text = $(this).find('td:nth-child(3)').text().replace(/\s+/g, ' ').toLowerCase();
+        return !~text.indexOf(filters.col2);
+      }).hide();
+
+      // lengthened
+      $rows.filter(function() {
+        var text = $(this).find('td:nth-child(4)').text().replace(/\s+/g, ' ').toLowerCase();
+        return !~text.indexOf(filters.col3);
+      }).hide();
+
+      // nasalised
+      $rows.filter(function() {
+        var text = $(this).find('td:nth-child(5)').text().replace(/\s+/g, ' ').toLowerCase();
+        return !~text.indexOf(filters.col4);
+      }).hide();
+
+      // oral
+      $rows.filter(function() {
+        var text = $(this).find('td:nth-child(6)').text().replace(/\s+/g, ' ').toLowerCase();
+        return !~text.indexOf(filters.col5);
+      }).hide();
+    };
+
+    // resource: https://stackoverflow.com/questions/53357650/filtering-table-columns-based-on-multiple-input-fields
+    // function performReset() {
+    //   var $rows = $('#myTable4 tr').not(':first');
+    //   document.getElementById("search1").value = "";
+    //   document.getElementById("search2").value = "";
+    //   document.getElementById("search3").value = "";
+    //   document.getElementById("search4").value = "";
+    //   document.getElementById("search5").value = "";
+    //   document.getElementById("search6").value = "";
+    //   $rows.show();
+    // }
+  })
+
+  function performReset() {
+    //event.preventDefault();
+    //$(this).prev().val("").change();
+    var $rows = $('#myTable4 tr').not(':first');
+    
+    document.getElementById("search1").value = "";
+    document.getElementById("search2").value = "";
+    document.getElementById("search3").value = "";
+    document.getElementById("search4").value = "";
+    document.getElementById("search5").value = "";
+    $rows.show();
+  }
+  
+
+</script>

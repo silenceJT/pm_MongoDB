@@ -1,4 +1,8 @@
 FactoryBot.define do
+  factory :vowel do
+    
+  end
+
   factory :user do
     first_name { "John" }
     last_name  { "Doe" }
