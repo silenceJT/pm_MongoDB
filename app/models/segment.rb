@@ -1,6 +1,6 @@
 class Segment
   include Mongoid::Document
-  # store_in collection: "Segments", database: "Papua"
+  # store_in collection: "Segments_test", database: "Papua"
   # field :no, type: Integer
   # field :ipa, type: String
   # field :sequence, type: String
