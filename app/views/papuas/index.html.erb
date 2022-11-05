@@ -103,6 +103,11 @@
               <%= text_field_tag :language_family, params[:language_family], placeholder: "Language Family", class: "focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md w-48"%>
             </th>
 
+            <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <!-- <input type="text" id="search_family" name="search_family" class="focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md w-32"> -->
+              <%= text_field_tag :phylum, params[:phylum], placeholder: "Phylum", class: "focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md w-28"%>
+            </th>
+
             <th scope="col" class="px-2 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
               <!-- <input type="text" id="search_iso" name="search_iso" class="focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md w-12"> -->
               <%= text_field_tag :iso, params[:iso], placeholder: "ISO", class: "focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md w-14"%>

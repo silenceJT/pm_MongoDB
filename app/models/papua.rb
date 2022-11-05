@@ -6,6 +6,7 @@ class Papua
   field :no, type: Integer
   field :language_name, type: String
   field :language_family, type: String
+  field :phylum, type: String
   field :iso, type: String
   field :area, type: String
   field :country, type: String
