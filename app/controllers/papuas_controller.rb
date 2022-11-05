@@ -103,7 +103,7 @@ class PapuasController < ApplicationController
     # Only allow a list of trusted parameters through.
     def papua_params
       params.require(:papua).permit(
-        :language_name, :language_family, :iso, :area, :country, :region, :latitude, :longitude, :inv, 
+        :language_name, :language_family, :phylum, :iso, :area, :country, :region, :latitude, :longitude, :inv, 
         :consonants, :vowels, :diphthongs, :source, :notes,
         segment_ids: []
       )
