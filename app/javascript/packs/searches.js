@@ -27,7 +27,7 @@ $(document).ready(function() {
 				$.each(segments, function(no, segment) {
 					no = no + 1;
 					var $rows = $('#myTable5 tbody tr');
-					for(i = 1; i <= 15; i++) {
+					for(i = 1; i <= 17; i++) {
 						var colText = $(`#myTable5 tr:eq(0) td:eq(${i})`).text().toLowerCase(); // First row, find which column
 						if ( colText  == segment.place.toLowerCase()) {
 							var colNo = i;
@@ -35,7 +35,7 @@ $(document).ready(function() {
 						}
 					}
 
-					for(j = 1; j <= 16; j++) {
+					for(j = 1; j <= 15; j++) {
 						var rowText = $(`#myTable5 tr:eq(${j}) td:eq(0)`).text().toLowerCase(); // First column, find which row
 						if ( rowText  == segment.manner.toLowerCase()) {
 							var rowNo = j;
