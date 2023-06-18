@@ -6,6 +6,11 @@ class SegmentsController < ApplicationController
   # GET /segments or /segments.json
   def index
     @segments = Segment.all.order(no: 1)
+  
+    respond_to do |format|
+      format.html { }
+      format.json { render json: @segments.to_json(only: [:ipa, :manner, :place, :number]) }
+    end
   end
 
   # GET /segments/1 or /segments/1.json
@@ -69,6 +74,6 @@ class SegmentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def segment_params
-      params.require(:segment).permit(:no, :ipa, :cvd, :plain_vs_non_plain, :voicing, :place, :manner, :additional, :extra, :unicode, :notes)
+      params.require(:segment).permit(:no, :ipa, :cvd, :number, :plain_vs_non_plain, :voicing, :place, :manner, :additional, :extra, :unicode, :notes)
     end
 end

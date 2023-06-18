@@ -1,8 +1,8 @@
 class Papua
   include Mongoid::Document
   include Mongoid::Search
-  # store_in collection: "Papua", database: "SPS"
   store_in collection: "Papuas", database: "Papua"
+  # store_in collection: "Papuas_new", database: "Papua"  # Test only
   field :no, type: Integer
   field :language_name, type: String
   field :language_family, type: String
@@ -15,7 +15,7 @@ class Papua
   field :longitude, type: String
   field :inv, type: String
   field :consonants, type: String
-  field :vowels, type: String
+  field :v_segments, type: String
   field :diphthongs, type: String
   field :count_of_segments, type: Integer
   field :count_of_consonants, type: Integer
@@ -25,6 +25,7 @@ class Papua
   field :notes, type: String
 
   has_and_belongs_to_many :segments
+  has_and_belongs_to_many :vowels
 
   def self.search(params)
     papuas = Papua.all
