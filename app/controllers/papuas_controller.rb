@@ -53,9 +53,9 @@ class PapuasController < ApplicationController
   def create
     @papua = Papua.new(papua_params)
     @papua.no = Papua.all.size + 1
-    @papua.inv = @papua.consonants + ", " + @papua.vowels
+    @papua.inv = @papua.consonants + ", " + @papua.v_segments
     @papua.count_of_consonants = @papua.consonants.split(",").size
-    @papua.count_of_vowels = @papua.vowels.split(",").size
+    @papua.count_of_vowels = @papua.v_segments.split(",").size
     @papua.count_of_segments = @papua.count_of_consonants + @papua.count_of_vowels
 
     respond_to do |format|
@@ -104,7 +104,7 @@ class PapuasController < ApplicationController
     def papua_params
       params.require(:papua).permit(
         :language_name, :language_family, :phylum, :iso, :area, :country, :region, :latitude, :longitude, :inv, 
-        :consonants, :vowels, :diphthongs, :source, :notes,
+        :consonants, :v_segments, :diphthongs, :source, :notes,
         segment_ids: []
       )
     end
@@ -123,9 +123,9 @@ class PapuasController < ApplicationController
     end
 
     def update_counts
-      @papua.inv = @papua.segments.order(no:1).pluck(:ipa).join(", ") + ", " + @papua.vowels
+      @papua.inv = @papua.segments.order(no:1).pluck(:ipa).join(", ") + ", " + @papua.v_segments
       @papua.count_of_consonants = @papua.segments.size
-      @papua.count_of_vowels = @papua.vowels.split(",").size
+      @papua.count_of_vowels = @papua.v_segments.split(",").size
       @papua.count_of_segments = @papua.count_of_consonants + @papua.count_of_vowels
       @papua.save
     end
