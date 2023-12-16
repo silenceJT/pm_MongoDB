@@ -83,36 +83,31 @@ class Papua
     end
 
     if params[:inv].present?
-      input_ary = params[:inv].split(" ")
-
-      exclude_ary = input_ary.select { |i| i.start_with?("-") }
-      include_ary = input_ary - exclude_ary
-      exclude_ary = exclude_ary.map { |e| e.gsub(/-/, '') }
-
+      input = params[:inv]
       include_uppercase_ary = []
       include_lowercase_ary = []
 
       exclude_uppercase_ary = []
       exclude_lowercase_ary = []
 
-      if params[:inv].match?(/\b[A-Z]+\b/)
-        include_uppercase_ids = []
-        exclude_uppercase_ids = []
-
-        include_ary.each do |inc_str|
-          include_uppercase_ary.push(inc_str) if inc_str.match?(/\b[A-Z]+\b/)
+      input.split.each do |char|
+        if char.start_with?('-')
+          if char[1..-1].match?(/[a-z]/)
+            exclude_lowercase_ary << char[1..-1].downcase
+          else
+            exclude_uppercase_ary << char[1..-1].upcase
+          end
+        else
+          if char.match?(/[a-z]/)
+            include_lowercase_ary << char
+          else
+            include_uppercase_ary << char.upcase
+          end
         end
-
-        exclude_ary.each do |exc_str|
-          exclude_uppercase_ary.push(exc_str) if exc_str.match?(/\b[A-Z]+\b/)
-        end
-
-        include_uppercase_ids = self.process_uppercase(include_uppercase_ary)
-        exclude_uppercase_ids = self.process_uppercase(exclude_uppercase_ary)
       end
 
-      include_lowercase_ary = include_ary - include_uppercase_ary
-      exclude_lowercase_ary = exclude_ary - exclude_uppercase_ary
+      include_uppercase_ids = self.process_uppercase(include_uppercase_ary)
+      exclude_uppercase_ids = self.process_uppercase(exclude_uppercase_ary)
 
       include_lowercase_ids = Segment.in(ipa: include_lowercase_ary).pluck(:id)
       exclude_lowercase_ids = Segment.in(ipa: exclude_lowercase_ary).pluck(:id)
