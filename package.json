@@ -14,7 +14,6 @@
     "chartkick": "^4.0.4",
     "css-loader": "5.2.2",
     "jquery": "^3.6.0",
-    "node": "16",
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-import": "^14.0.1",
     "tailwindcss": "^2.1.1",
@@ -42,6 +41,8 @@
     "serve": "webpack serve"
   },
   "engines": {
-    "node": "16.x"
+    "node": "18.18",
+    "npm": "10.2",
+    "yarn": "1.22"
   }
 }
