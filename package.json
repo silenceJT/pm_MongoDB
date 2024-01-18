@@ -41,8 +41,8 @@
     "serve": "webpack serve"
   },
   "engines": {
-    "node": "18.18",
-    "npm": "10.2",
-    "yarn": "1.22"
+    "node": "16.18.1",
+    "npm": "8.19.2",
+    "yarn": "1.22.17"
   }
 }
