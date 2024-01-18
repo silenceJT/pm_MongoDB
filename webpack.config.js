@@ -14,7 +14,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: 'index.html',
+            template: 'app/views/home/index.html.erb',
         }),
 
         // Add your plugins here
