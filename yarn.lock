@@ -5431,6 +5431,11 @@ no-case@^3.0.4:
     lower-case "^2.0.2"
     tslib "^2.0.3"
 
+node-bin-setup@^1.0.0:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/node-bin-setup/-/node-bin-setup-1.1.3.tgz#d45d5220e3b2ecc3a94263a56116f727f6c1bb14"
+  integrity sha512-opgw9iSCAzT2+6wJOETCpeRYAQxSopqQ2z+N6BXwIMsQQ7Zj5M8MaafQY8JMlolRR6R1UXg2WmhKp0p9lSOivg==
+
 node-emoji@^1.8.1:
   version "1.10.0"
   resolved "https://registry.yarnpkg.com/node-emoji/-/node-emoji-1.10.0.tgz#8886abd25d9c7bb61802a658523d1f8d2a89b2da"
@@ -5481,6 +5486,13 @@ node-releases@^1.1.70:
   version "1.1.71"
   resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-1.1.71.tgz#cb1334b179896b1c89ecfdd4b725fb7bbdfc7dbb"
   integrity sha512-zR6HoT6LrLCRBwukmrVbHv0EpEQjksO6GmFcZQQuCAy139BEsoVKPYnf3jongYW83fAa1torLGYwxxky/p28sg==
+
+node@16:
+  version "16.20.2"
+  resolved "https://registry.yarnpkg.com/node/-/node-16.20.2.tgz#f952a7b055db4e0480606e13fbbfb37d75b3e857"
+  integrity sha512-B4PDiGwFfqDcx7qt1LpDgBfkRAIizDob4dJWAqGC3B1mLV84tHr3nU9MsbeRed7lbcylIb0UBKPVrNZ9PuJRnA==
+  dependencies:
+    node-bin-setup "^1.0.0"
 
 normalize-package-data@^2.5.0:
   version "2.5.0"
