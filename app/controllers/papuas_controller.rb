@@ -42,11 +42,13 @@ class PapuasController < ApplicationController
   def new
     @papua = Papua.new
     @segments = Segment.order(no: 1).map { |s| [s.ipa, s.id] }
+    @vowels = Vowel.order(no: 1).map { |v| [v.ipa, v.id] }
   end
 
   # GET /papuas/1/edit
   def edit
     @segments = Segment.order(no: 1).map { |s| [s.ipa, s.id] }
+    @vowels = Vowel.order(no: 1).map { |v| [v.ipa, v.id] }
   end
 
   # POST /papuas or /papuas.json
