@@ -144,10 +144,17 @@
 
       <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
         <dt class="text-sm font-medium text-gray-500">
-          Vowels(<%= @papua.v_segments.split(",").size %>)
+          Vowels(<%= @papua.vowels.count %>)
+          <p class="mt-1 max-w-2xl text-xs text-gray-400">
+            <span class="text-red-400">Red</span> symbol means the vowels are not in Vowel list
+          </p>
         </dt>
-        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-          <%= @papua.v_segments %>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 leading-loose">
+          <% @papua.vowels.order(no:1).each do |vow| %>
+            <span class="px-4 inline-flex text-sm leading-5 font-semibold rounded-full bg-indigo-100 text-indigo-600">
+              <a href="/vowels/<%= vow.id %>" target="_blank" class=""><%= vow.ipa %></a>
+            </span>
+          <% end %>
         </dd>
       </div>
 
