@@ -9,7 +9,7 @@
     "@tailwindcss/forms": "^0.3.2",
     "@tailwindcss/typography": "^0.4.0",
     "autoprefixer": "^10.2.5",
-    "babel-loader": "^8.2.2",
+    "babel-loader": "^9.1.3",
     "chart.js": "^3.3.2",
     "chartkick": "^4.0.4",
     "css-loader": "5.2.2",
@@ -22,6 +22,9 @@
   },
   "version": "1.0.0",
   "devDependencies": {
+    "@babel/core": "^7.23.7",
+    "@babel/node": "^7.22.19",
+    "@babel/plugin-proposal-object-rest-spread": "^7.20.7",
     "@webpack-cli/generators": "^2.0.0",
     "html-webpack-plugin": "^5.3.1",
     "postcss": "^8.2.10",
@@ -34,15 +37,17 @@
   },
   "description": "My webpack project",
   "scripts": {
+    "start":"bin/webpack-dev-server",
     "build": "webpack --mode=production",
     "build:dev": "webpack --mode=development",
     "build:prod": "webpack --mode=production",
     "watch": "webpack --watch",
-    "serve": "webpack serve"
+    "serve": "webpack serve",
+    "postinstall": "webpack"
   },
   "engines": {
-    "node": "16.18.1",
-    "npm": "8.19.2",
+    "node": "20.10.0",
+    "npm": "10.2.3",
     "yarn": "1.22.17"
   }
 }
