@@ -41,7 +41,8 @@
     "build:dev": "webpack --mode=development",
     "build:prod": "webpack --mode=production",
     "watch": "webpack --watch",
-    "serve": "webpack serve"
+    "serve": "webpack serve",
+    "postinstall": "webpack"
   },
   "engines": {
     "node": "20.10.0",
