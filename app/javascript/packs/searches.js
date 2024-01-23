@@ -27,7 +27,7 @@ $(document).ready(function() {
 				$.each(segments, function(no, segment) {
 					no = no + 1;
 					var $rows = $('#myTable5 tbody tr');
-					for(i = 1; i <= 17; i++) {
+					for(i = 1; i <= 18; i++) {
 						var colText = $(`#myTable5 tr:eq(0) td:eq(${i})`).text().toLowerCase(); // First row, find which column
 						if ( colText  === segment.place.toLowerCase()) {
 							var colNo = i;

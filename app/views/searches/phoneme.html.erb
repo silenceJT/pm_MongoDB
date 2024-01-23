@@ -46,7 +46,7 @@
     </div> 
 </div>
 
-<div id="papuas_results"><%= render 'papuas/papuas', papuas: @search.papuas %></div>
+<div id="papuas_results"><%= render 'papuas/papuas', papuas: @search.papuas.order(no: 1) %></div>
   
 <div class="text-center px-4 py-6 text-lg text-gray-700 font-medium">
   The rest
@@ -54,6 +54,6 @@
   languages
 </div>
 
-<div id="papuas_rest" class="px-4 lg:px-10"><%= render 'papuas/papuas_rest', papuas: @search.papuas_other %></div>
+<div id="papuas_rest" class="px-4 lg:px-10"><%= render 'papuas/papuas_rest', papuas: @search.papuas_other.order(no: 1) %></div>
 
 <% end %>

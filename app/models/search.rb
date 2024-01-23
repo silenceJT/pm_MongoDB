@@ -21,7 +21,7 @@ class Search
   COMPARE = %w{ >= > = < <= }
 
   COLNAMES = [ "Bilabial", "Labial", "Labio-dental", "Dental", "Dental - Alveolar Cluster", "Alveolar",
-    "Alveolo-palatal", "Postalveolar", "Retroflex", "Labio-palatal", "Palatal", "Labio-velar",
+    "Alveolo-palatal", "Postalveolar", "Retroflex", "Labio-palatal", "Palatal", "Labio-velar", "Labio-alveolar",
     "Labio-postalveolar", "Velar", "Uvular", "Pharyngeal", "Glottal" ]
 
   ROWNAMES = [ "Plosive", "Affricate", "Lateral Affricate", "Fricative", "Lateral Fricative", "Nasal", 
