@@ -6,6 +6,11 @@ class VowelsController < ApplicationController
   # GET /vowels or /vowels.json
   def index
     @vowels = Vowel.all.order(no: 1)
+
+    respond_to do |format|
+      format.html { }
+      format.json { render json: @vowels.to_json(only: [:ipa, :short, :lengthened, :nasalised, :oral]) }
+  end
   end
 
   # GET /vowels/1 or /vowels/1.json
