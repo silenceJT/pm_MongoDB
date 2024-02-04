@@ -27,7 +27,6 @@ $(document).ready(function () {
         var no = 0;
         $.each(segments, function (no, segment) {
           no = no + 1;
-          var $rows = $("#myTable5 tbody tr");
           for (i = 1; i <= 18; i++) {
             var colText = $(`#myTable5 tr:eq(0) td:eq(${i})`)
               .text()
@@ -62,8 +61,8 @@ $(document).ready(function () {
             stop = true;
           }
 
-          if (stop) {
-            $("#consonants_table span").click(function (e) {
+          if (stop && v_stop) {
+            $("#chooser span").click(function (e) {
               handle_click(this);
             });
           }
@@ -80,7 +79,6 @@ $(document).ready(function () {
       success: function (vowels) {
         $.each(vowels, function (no, vowel) {
           no = no + 1;
-          var $rows = $("#myTable6 tbody tr");
           colNo = vowel.short.toLowerCase() === "yes" ? 1 : 2;
           rowNo = vowel.nasalised.toLowerCase() === "yes" ? 1 : 2;
 
@@ -92,8 +90,8 @@ $(document).ready(function () {
             v_stop = true;
           }
 
-          if (v_stop) {
-            $("#vowels_table span").click(function (e) {
+          if (v_stop && stop) {
+            $("#chooser span").click(function (e) {
               handle_click(this);
             });
           }
