@@ -28,6 +28,10 @@ class Search
     "Trill", "Tap", "Lateral Tap", "Flap", "Lateral Flap", "Central Approximant", 
     "Lateral Approximant", "Lateral-Central Approximant", "Implosive" ]
 
+  VOWEL_COLNAMES = [ "Short", "Lengthened" ]
+
+  VOWEL_ROWNAMES = [ "Nasalised", "Oral" ]
+
   def papuas
     @papuas ||= find_papuas
   end
