@@ -92,16 +92,16 @@ class Papua
 
       input.split.each do |char|
         if char.start_with?('-')
-          if char[1..-1].match?(/[a-z]/)
-            exclude_lowercase_ary << char[1..-1].downcase
-          else
+          if char[1..-1].match?(/[A-Z]/)
             exclude_uppercase_ary << char[1..-1].upcase
+          else
+            exclude_lowercase_ary << char[1..-1].downcase
           end
         else
-          if char.match?(/[a-z]/)
-            include_lowercase_ary << char
-          else
+          if char.match?(/[A-Z]/)
             include_uppercase_ary << char.upcase
+          else
+            include_lowercase_ary << char
           end
         end
       end
